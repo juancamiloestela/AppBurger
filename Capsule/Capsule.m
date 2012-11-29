@@ -35,6 +35,44 @@
         return @"getUserData";
     }else if(sel == @selector(isRunningOnBrowser:)){
         return @"isRunningOnBrowser";
+    }else if(sel == @selector(hideIconInDock:)){
+        return @"hideIconInDock";
+    }else if(sel == @selector(showIconInDock:)){
+        return @"showIconInDock";
+    }else if(sel == @selector(quit:)){
+        return @"quit";
+    }else if(sel == @selector(hideCloseWindowButton:)){
+        return @"hideCloseWindowButton";
+    }else if(sel == @selector(showCloseWindowButton:)){
+        return @"showCloseWindowButton";
+    }else if(sel == @selector(hideMinimizeWindowButton:)){
+        return @"hideMinimizeWindowButton";
+    }else if(sel == @selector(showMinimizeWindowButton:)){
+        return @"showMinimizeWindowButton";
+    }else if(sel == @selector(hideZoomWindowButton:)){
+        return @"hideZoomWindowButton";
+    }else if(sel == @selector(showZoomWindowButton:)){
+        return @"showZoomWindowButton";
+    }else if(sel == @selector(disableCloseWindowButton:)){
+        return @"disableCloseWindowButton";
+    }else if(sel == @selector(enableCloseWindowButton:)){
+        return @"enableCloseWindowButton";
+    }else if(sel == @selector(disableMinimizeWindowButton:)){
+        return @"disableMinimizeWindowButton";
+    }else if(sel == @selector(enableMinimizeWindowButton:)){
+        return @"enableMinimizeWindowButton";
+    }else if(sel == @selector(disableZoomWindowButton:)){
+        return @"disableZoomWindowButton";
+    }else if(sel == @selector(enableZoomWindowButton:)){
+        return @"enableZoomWindowButton";
+    }else if(sel == @selector(minimizeWindow:)){
+        return @"minimizeWindow";
+    }else if(sel == @selector(unminimizeWindow:)){
+        return @"unminimizeWindow";
+    }else if(sel == @selector(center:)){
+        return @"center";
+    }else if(sel == @selector(resizeWindowAtX:andY:andWidth:andHeight:)){
+        return @"resizeWindow";
     }
     return nil;
 }
@@ -59,6 +97,87 @@
 - (NSString *) getUserDataWithKey:(NSString *)key {
     NSLog(@"getting user data %@",key);
     return [userData stringForKey:key];
+}
+
+- (void) hideIconInDock{
+    NSLog(@"hide icon dock");
+    ProcessSerialNumber psn = { 0, kCurrentProcess };;
+    TransformProcessType(&psn, kProcessTransformToUIElementApplication);
+}
+
+- (void) showIconInDock{
+    NSLog(@"show icon dock");
+    ProcessSerialNumber psn = { 0, kCurrentProcess };
+	TransformProcessType(&psn, kProcessTransformToForegroundApplication);
+}
+
+- (void) quit{
+    [NSApp terminate:self];
+}
+
+- (void) disableCloseWindowButton{
+    [[appWindow standardWindowButton:NSWindowCloseButton] setEnabled:NO];
+}
+
+- (void) enableCloseWindowButton{
+    [[appWindow standardWindowButton:NSWindowCloseButton] setEnabled:YES];
+}
+
+- (void) disableMinimizeWindowButton{
+    [[appWindow standardWindowButton:NSWindowMiniaturizeButton] setEnabled:NO];
+}
+
+- (void) enableMinimizeWindowButton{
+    [[appWindow standardWindowButton:NSWindowMiniaturizeButton] setEnabled:YES];
+}
+
+- (void) disableZoomWindowButton{
+    [[appWindow standardWindowButton:NSWindowZoomButton] setEnabled:NO];
+}
+
+- (void) enableZoomWindowButton{
+    [[appWindow standardWindowButton:NSWindowZoomButton] setEnabled:YES];
+}
+
+
+- (void) hideCloseWindowButton{
+    [[appWindow standardWindowButton:NSWindowCloseButton] setHidden:YES];
+}
+
+- (void) showCloseWindowButton{
+    [[appWindow standardWindowButton:NSWindowCloseButton] setHidden:NO];
+}
+
+- (void) hideMinimizeWindowButton{
+    [[appWindow standardWindowButton:NSWindowMiniaturizeButton] setHidden:YES];
+}
+
+- (void) showMinimizeWindowButton{
+    [[appWindow standardWindowButton:NSWindowMiniaturizeButton] setHidden:NO];
+}
+
+- (void) hideZoomWindowButton{
+    [[appWindow standardWindowButton:NSWindowZoomButton] setHidden:YES];
+}
+
+- (void) showZoomWindowButton{
+    [[appWindow standardWindowButton:NSWindowZoomButton] setHidden:NO];
+}
+
+- (void) minimizeWindow{
+    [appWindow miniaturize:self];
+}
+
+- (void) unminimizeWindow{
+    [appWindow deminiaturize:self];
+}
+
+- (void) centerWindow{
+    [appWindow center];
+}
+
+- (void) resizeWindowAtX:(float)x andY:(float)y andWidth:(float)width andHeight:(float)height{
+    [appWindow setFrame:NSMakeRect(x, y, width, height) display:YES animate:YES];
 }
 
 - (NSString *) get:(NSString *) url{

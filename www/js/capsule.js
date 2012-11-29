@@ -10,20 +10,30 @@
 		
 
 		// App specific
-		showIconInDock: function(){},
-		hideIconInDock: function(){},
-		quit: function(){},
+		showIconInDock: function(){}, // Done
+		hideIconInDock: function(){}, // Done
+		quit: function(){}, // Done
 		
 		// window management
 		createNewWindow: function(){},
 		closeWindow: function(){},
-		disableCloseWindowButton: function(){},
-		enableCloseWindowButton: function(){},
-		disableMinimizeWindowButton: function(){},
-		enableMinimizeWindowButton: function(){},
-		minimizeWindow: function(){},
-		unminimizeWindow: function(){},
-		centerWindow: function(){},
+		hideWindow: function(){},
+		showWindow: function(){},
+		disableCloseWindowButton: function(){}, // Done
+		enableCloseWindowButton: function(){}, // Done
+		disableMinimizeWindowButton: function(){}, // Done
+		enableMinimizeWindowButton: function(){}, // Done
+		disableZoomWindowButton: function(){}, // Done
+		enableZoomWindowButton: function(){}, // Done
+		hideCloseWindowButton: function(){}, // Done
+		showCloseWindowButton: function(){}, // Done
+		hideMinimizeWindowButton: function(){}, // Done
+		showZoomWindowButton: function(){}, // Done
+		hideZoomWindowButton: function(){}, // Done
+		showMinimizeWindowButton: function(){}, // Done
+		minimizeWindow: function(){}, // Done
+		unminimizeWindow: function(){}, // Done
+		centerWindow: function(){}, // Done
 		resizeWindow: function(){},
 		disableWindowResize: function(){},
 		enableWindowResize: function(){},
@@ -41,6 +51,9 @@
 		setStatusBarText: function(){},
 
 		// file access
+		readDir: function(){},
+		makeDir: function(){},
+		deleteDir: function(){},
 		readFile: function(){},
 		writeFile: function(){},
 		deleteFile: function(){}
@@ -55,10 +68,12 @@
 
 	if (!/\.app/.test(location.href)){
 		// is running in browser
-		if (!Capsule){
+		try {
+			if (Capsule){
+				// merge with _Capsule
+			}
+		}catch(e){
 			window.Capsule = _Capsule;
-		}else{
-			// merge with user defined capsule obj
 		}
 
 		window.addEventListener('load', function(){

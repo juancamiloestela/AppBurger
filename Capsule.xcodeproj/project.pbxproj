@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4608CE9E16668FA900B5DD4A /* Capsule.m in Sources */ = {isa = PBXBuildFile; fileRef = 4608CE8C16668FA900B5DD4A /* Capsule.m */; };
 		4608CE9F16668FA900B5DD4A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4608CE8E16668FA900B5DD4A /* AppDelegate.m */; };
-		4608CEA016668FA900B5DD4A /* AppWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4608CE9016668FA900B5DD4A /* AppWebView.m */; };
 		4608CEA216668FA900B5DD4A /* Capsule.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4608CE9316668FA900B5DD4A /* Capsule.xcdatamodeld */; };
 		4608CEA316668FA900B5DD4A /* Console.m in Sources */ = {isa = PBXBuildFile; fileRef = 4608CE9616668FA900B5DD4A /* Console.m */; };
 		4608CEA416668FA900B5DD4A /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4608CE9716668FA900B5DD4A /* Credits.rtf */; };
@@ -25,8 +24,6 @@
 		4608CE8C16668FA900B5DD4A /* Capsule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Capsule.m; sourceTree = "<group>"; };
 		4608CE8D16668FA900B5DD4A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4608CE8E16668FA900B5DD4A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		4608CE8F16668FA900B5DD4A /* AppWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppWebView.h; sourceTree = "<group>"; };
-		4608CE9016668FA900B5DD4A /* AppWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppWebView.m; sourceTree = "<group>"; };
 		4608CE9116668FA900B5DD4A /* Capsule-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Capsule-Info.plist"; sourceTree = "<group>"; };
 		4608CE9216668FA900B5DD4A /* Capsule-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Capsule-Prefix.pch"; sourceTree = "<group>"; };
 		4608CE9416668FA900B5DD4A /* Capsule.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Capsule.xcdatamodel; sourceTree = "<group>"; };
@@ -65,8 +62,6 @@
 				4608CE8C16668FA900B5DD4A /* Capsule.m */,
 				4608CE8D16668FA900B5DD4A /* AppDelegate.h */,
 				4608CE8E16668FA900B5DD4A /* AppDelegate.m */,
-				4608CE8F16668FA900B5DD4A /* AppWebView.h */,
-				4608CE9016668FA900B5DD4A /* AppWebView.m */,
 				4608CEA816668FBF00B5DD4A /* Supporting Files */,
 				4608CE9316668FA900B5DD4A /* Capsule.xcdatamodeld */,
 				4608CE9516668FA900B5DD4A /* Console.h */,
@@ -192,7 +187,6 @@
 			files = (
 				4608CE9E16668FA900B5DD4A /* Capsule.m in Sources */,
 				4608CE9F16668FA900B5DD4A /* AppDelegate.m in Sources */,
-				4608CEA016668FA900B5DD4A /* AppWebView.m in Sources */,
 				4608CEA216668FA900B5DD4A /* Capsule.xcdatamodeld in Sources */,
 				4608CEA316668FA900B5DD4A /* Console.m in Sources */,
 				4608CEA716668FA900B5DD4A /* main.m in Sources */,

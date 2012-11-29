@@ -13,7 +13,8 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate,NSXMLParserDelegate>{
     IBOutlet NSMenu *statusMenu;
-    WebView *webView;
+    IBOutlet WebView *webView;
+    //WebView *webView;
     NSStatusItem *statusItem;
     Capsule *appInstance;
     Console *consoleInstance;

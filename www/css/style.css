@@ -3,3 +3,11 @@ body{
 	color:#333;
 	font-size:14px;
 }
+
+#console-output{
+	width:100%;
+	height:70px;
+}
+#console-input{
+	width:100%;
+}

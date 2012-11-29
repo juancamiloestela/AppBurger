@@ -6,6 +6,22 @@ var myApp = (function(){
 
 	function init(){
 		console.log('my app started!');
+
+		$('#console-input').keydown(function(e){
+			if (e.which == 13){
+				var src = $(this).val(),
+					result = '';
+
+				try{
+					result = eval(src);
+				}catch(error){
+					result = error.message;
+				}
+
+				$('#console-output').val($('#console-output').val() + result + "\n").scrollTop($('#console-output')[0].scrollHeight);
+
+			}
+		});
 	}
 
 	return{
@@ -21,6 +37,33 @@ document.addEventListener('capsuleready', function(){
 	}else{
 		console.log('is running on app');
 	}
+
+	
+	Capsule.hideIconInDock();
+	Capsule.hideCloseWindowButton();
+	Capsule.hideMinimizeWindowButton();
+	Capsule.hideZoomWindowButton();
+
+	setTimeout(function(){
+		console.log('showing');
+		Capsule.showIconInDock();
+		Capsule.showCloseWindowButton();
+		Capsule.showMinimizeWindowButton();
+		Capsule.showZoomWindowButton();
+		Capsule.centerWindow();
+
+		setTimeout( function(){
+			Capsule.disableCloseWindowButton();
+			Capsule.disableMinimizeWindowButton();
+			Capsule.disableZoomWindowButton();
+			Capsule.resizeWindow(0,0,500,600);
+		},3000);
+	},3000);
+
+	//Capsule.quit();
+
+
+
 
 	myApp.init();
 }, false);

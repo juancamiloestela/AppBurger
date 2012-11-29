@@ -8,7 +8,6 @@
 
 #import <Carbon/Carbon.h>
 #import "AppDelegate.h"
-#import "AppWebView.h"
 
 @implementation AppDelegate
 
@@ -50,7 +49,7 @@ typedef struct
     [statusItem setHighlightMode:YES];
     
     NSString *indexPath = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"www"];
-    webView = [[AppWebView alloc] initWithFrame:[[[self window] contentView] bounds]];
+    //webView = [[AppWebView alloc] initWithFrame:[[[self window] contentView] bounds]];
     [webView setMainFrameURL:indexPath];
     [[[self window] contentView] addSubview:webView];
     
