@@ -51,12 +51,16 @@ document.addEventListener('capsuleready', function(){
 		Capsule.showMinimizeWindowButton();
 		Capsule.showZoomWindowButton();
 		Capsule.centerWindow();
+		Capsule.disableWindowResize();
+		Capsule.setStatusBarText('Juank');
 
 		setTimeout( function(){
 			Capsule.disableCloseWindowButton();
 			Capsule.disableMinimizeWindowButton();
 			Capsule.disableZoomWindowButton();
 			Capsule.resizeWindow(0,0,500,600);
+			Capsule.enableWindowResize();
+			Capsule.setStatusBarIcon('img/defaultStatusBarIcon.png','img/defaultActiveStatusBarIcon.png');
 		},3000);
 	},3000);
 

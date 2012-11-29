@@ -61,6 +61,7 @@ typedef struct
     consoleInstance = [[Console alloc] init];
     
     [appInstance setAppWindow:[self window]];
+    [appInstance setAppStatusBar:statusItem];
 }
 
 - (IBAction)openAppWindow:(id)sender {

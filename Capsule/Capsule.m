@@ -73,6 +73,22 @@
         return @"center";
     }else if(sel == @selector(resizeWindowAtX:andY:andWidth:andHeight:)){
         return @"resizeWindow";
+    }else if(sel == @selector(disableWindowResize:)){
+        return @"disableWindowResize";
+    }else if(sel == @selector(enableWindowResize:)){
+        return @"enableWindowResize";
+    }else if(sel == @selector(hideWindowTitleBar:)){
+        return @"hideWindowTitleBar";
+    }else if(sel == @selector(showWindowTitleBar:)){
+        return @"showWindowTitleBar";
+    }else if(sel == @selector(setWindowTitle:)){
+        return @"setWindowTitle";
+    }else if(sel == @selector(getWindowTitle:)){
+        return @"getWindowTitle";
+    }else if(sel == @selector(setStatusBarIcon:withActiveIcon:)){
+        return @"setStatusBarIcon";
+    }else if (sel == @selector(setStatusBarText:)){
+        return @"setStatusBarText";
     }
     return nil;
 }
@@ -180,6 +196,80 @@
     [appWindow setFrame:NSMakeRect(x, y, width, height) display:YES animate:YES];
 }
 
+- (void) disableWindowResize{
+    [appWindow setStyleMask:[appWindow styleMask] & ~NSResizableWindowMask];
+}
+
+- (void) enableWindowResize{
+    [appWindow setStyleMask:[appWindow styleMask] | NSResizableWindowMask];
+}
+
+- (void) hideWindowTitleBar{
+    [appWindow setStyleMask:NSBorderlessWindowMask];
+}
+
+- (void) showWindowTitleBar{
+    [appWindow setStyleMask:NSTitledWindowMask];
+}
+
+- (void) setWindowTitle:(NSString *)title{
+    [appWindow setTitle:title];
+}
+
+- (NSString *)getWindowTitle{
+    return [appWindow title];
+}
+
+
+
+
+
+
+
+- (void) setStatusBarIcon:(NSString *)imagePath withActiveIcon:(NSString *)activeImagePath{
+    NSLog(@"status bar icon %@",imagePath);
+    //imagePath = @"http://localhost/Capsule/www/img/defaultStatusBarIcon.png";
+    //imagePath = @"/www/img/defaultStatusBarIcon.png";
+
+    NSImage *image = nil;
+    
+    if ([imagePath hasPrefix:@"http"]){
+        image = [[NSImage alloc] initByReferencingURL:[[NSURL alloc] initWithString:imagePath]];
+    }else{
+        NSArray *parts = [imagePath componentsSeparatedByString:@"."];
+        NSString *resourceName = [parts objectAtIndex:0];
+        NSString *resourceExt = [parts objectAtIndex:1];
+
+        imagePath = [[NSBundle mainBundle] pathForResource:resourceName ofType:resourceExt inDirectory:@"www/"];
+        image = [[NSImage alloc] initByReferencingFile:imagePath];
+    }
+    
+    NSImage *activeImage = nil;
+    
+    if ([activeImagePath hasPrefix:@"http"]){
+        image = [[NSImage alloc] initByReferencingURL:[[NSURL alloc] initWithString:activeImagePath]];
+    }else{
+        NSArray *parts = [activeImagePath componentsSeparatedByString:@"."];
+        NSString *resourceName = [parts objectAtIndex:0];
+        NSString *resourceExt = [parts objectAtIndex:1];
+        
+        activeImagePath = [[NSBundle mainBundle] pathForResource:resourceName ofType:resourceExt inDirectory:@"www/"];
+        activeImage = [[NSImage alloc] initByReferencingFile:activeImagePath];
+    }
+    
+    [appStatusBar setImage:image];
+    [appStatusBar setAlternateImage:activeImage];
+}
+
+- (void) setStatusBarText:(NSString *)text{
+    [appStatusBar setTitle:text];
+}
+
+
+
+
+
+
 - (NSString *) get:(NSString *) url{
     NSLog(@"Getting %@",url);
     NSURLRequest *theRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
@@ -229,6 +319,10 @@
 
 - (void) setAppWindow:(NSWindow *) win{
     appWindow = win;
+}
+
+- (void) setAppStatusBar:(NSStatusItem *) statusItem{
+    appStatusBar = statusItem;
 }
 
 - (void) hide {

@@ -11,7 +11,7 @@
 
 		// App specific
 		showIconInDock: function(){}, // Done
-		hideIconInDock: function(){}, // Done
+		hideIconInDock: function(){}, // Buggy - window hides sometimes
 		quit: function(){}, // Done
 		
 		// window management
@@ -34,11 +34,17 @@
 		minimizeWindow: function(){}, // Done
 		unminimizeWindow: function(){}, // Done
 		centerWindow: function(){}, // Done
-		resizeWindow: function(){},
-		disableWindowResize: function(){},
-		enableWindowResize: function(){},
-		hideWindowTitlebar: function(){},
-		showWindowTitlebar: function(){},
+		resizeWindow: function(){}, // Done
+		setWindowX: function(){},
+		setWindowY: function(){},
+		setWindowWidth: function(){},
+		setWindowHeight: function(){},
+		disableWindowResize: function(){}, // Done
+		enableWindowResize: function(){}, // Done
+		hideWindowTitleBar: function(){}, // Done
+		showWindowTitleBar: function(){}, // Buggy - buttons dissapear
+		setWindowTitle: function(){}, // Done
+		getWindowTitle: function(){}, // Done
 
 		// status bar 
 		addStatusBarItem: function(){},
@@ -47,8 +53,8 @@
 		enableStatusBarItem: function(){},
 		checkStatusBarItem: function(){},
 		uncheckStatusBarItem: function(){},
-		setStatusBarIcon: function(){},
-		setStatusBarText: function(){},
+		setStatusBarIcon: function(){}, // Done
+		setStatusBarText: function(){}, // Done
 
 		// file access
 		readDir: function(){},

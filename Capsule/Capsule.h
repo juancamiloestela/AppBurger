@@ -11,6 +11,7 @@
 @interface Capsule : NSObject{
     NSWindow *appWindow;
     NSUserDefaults * userData;
+    NSStatusItem * appStatusBar;
 }
 
 /*- (NSString *) get:(NSString *) url;
@@ -20,4 +21,5 @@
 - (void) show;
 - (void) hide;
 - (void) setAppWindow:(NSWindow *) win;
+- (void) setAppStatusBar:(NSStatusItem *) statusItem;
 @end
