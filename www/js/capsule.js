@@ -6,13 +6,17 @@
 			return true;
 		},
 
+
+		loadPlugin: function(){}, // ??
+
 		// OSX SPECIFIC
 		
 
 		// App specific
-		showIconInDock: function(){}, // Done
-		hideIconInDock: function(){}, // Buggy - window hides sometimes
+		showDockIcon: function(){}, // Done
+		hideDockIcon: function(){}, // Buggy - window hides sometimes
 		quit: function(){}, // Done
+		setDockIcon: function(){},
 		
 		// window management
 		createNewWindow: function(){},
@@ -56,19 +60,24 @@
 		setStatusBarIcon: function(pathToIcon, pathToActiveIcon){}, // Done
 		setStatusBarLabel: function(label){}, // Done
 
+		// application menu
+		hideAppMenu: function(){},
+		showAppMenu: function(){},
+		addAppMenuItem: function(label,parent, callback){},
+
 		// file access
 		getCwd: function(){}, // Done
 		setCwd: function(path){}, // Done
 		isDir: function(path){}, // Done
 		isFile: function(path){}, // Done
 		readDir: function(path){}, // Done
-		makeDir: function(path){}, // to test
-		deleteDir: function(path){}, // to test
-		readFile: function(path){}, // to test
-		writeFile: function(path, data){}, // to test
-		deleteFile: function(path){}, // to test
-		copyFile: function(from, to){}, // to test
-		moveFile: function(from, to){} // to test
+		makeDir: function(path){}, // Done
+		deleteDir: function(path){}, // Done
+		readFile: function(path){}, // Done
+		writeFile: function(path, data, mode){}, // Done, pending mode
+		deleteFile: function(path){}, // Done
+		copyFile: function(from, to){}, // Done
+		moveFile: function(from, to){} // Done
 	};
 	
 

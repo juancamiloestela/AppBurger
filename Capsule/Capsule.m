@@ -36,10 +36,10 @@
         return @"getUserData";
     }else if(sel == @selector(isRunningOnBrowser:)){
         return @"isRunningOnBrowser";
-    }else if(sel == @selector(hideIconInDock:)){
-        return @"hideIconInDock";
-    }else if(sel == @selector(showIconInDock:)){
-        return @"showIconInDock";
+    }else if(sel == @selector(hideDockIcon:)){
+        return @"hideDockIcon";
+    }else if(sel == @selector(showDockIcon:)){
+        return @"showDockIcon";
     }else if(sel == @selector(quit:)){
         return @"quit";
     }else if(sel == @selector(hideCloseWindowButton:)){
@@ -106,7 +106,7 @@
         return @"deleteDir";
     }else if (sel == @selector(readFile:)){
         return @"readFile";
-    }else if (sel == @selector(writeFile:withContents:)){
+    }else if (sel == @selector(writeFile:withContents:andMode:)){
         return @"writeFile";
     }else if (sel == @selector(deleteFile:)){
         return @"deleteFile";
@@ -140,7 +140,7 @@
     return [userData stringForKey:key];
 }
 
-- (void) hideIconInDock{
+- (void) hideDockIcon{
     NSLog(@"hide icon dock");
     BOOL canHide = [appWindow canHide];
     [appWindow setCanHide:NO];
@@ -149,7 +149,7 @@
     [appWindow setCanHide:canHide];
 }
 
-- (void) showIconInDock{
+- (void) showDockIcon{
     NSLog(@"show icon dock");
     ProcessSerialNumber psn = { 0, kCurrentProcess };
 	TransformProcessType(&psn, kProcessTransformToForegroundApplication);
@@ -335,13 +335,25 @@
 - (BOOL) makeDir:(NSString *)path{
     path = [path stringByExpandingTildeInPath];
     NSError *error = nil;
-    return [fileManager createDirectoryAtPath: path withIntermediateDirectories:YES attributes: nil error:&error];
+    BOOL result = [fileManager createDirectoryAtPath: path withIntermediateDirectories:YES attributes: nil error:&error];
+    if (result){
+        NSLog(@"Created Dir: %@", path);
+    }else{
+        NSLog(@"Could not create Dir: %@", path);
+    }
+    return result;
 }
 
 - (BOOL) deleteDir:(NSString *)path{
     path = [path stringByExpandingTildeInPath];
     NSError *error = nil;
-    return [fileManager removeItemAtPath:path error:&error];
+    BOOL result = [fileManager removeItemAtPath:path error:&error];
+    if (result){
+        NSLog(@"Deleted Dir: %@", path);
+    }else{
+        NSLog(@"Could not delete Dir: %@", path);
+    }
+    return result;
 }
 
 - (NSString *)readFile:(NSString *)path{
@@ -354,7 +366,8 @@
     return @"";
 }
 
-- (BOOL) writeFile: (NSString *)path withContents:(NSString *)content{
+- (BOOL) writeFile: (NSString *)path withContents:(NSString *)content andMode:(NSString *)mode{
+    // TODO: implement mode
     path = [path stringByExpandingTildeInPath];
     NSError *error = nil;
     return [content writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
@@ -370,16 +383,26 @@
     path = [path stringByExpandingTildeInPath];
     targetPath = [targetPath stringByExpandingTildeInPath];
     NSError *error = nil;
-    [fileManager copyItemAtPath:path toPath:targetPath error:&error];
-    return NO;
+    BOOL result = [fileManager copyItemAtPath:path toPath:targetPath error:&error];
+    if (result){
+        NSLog(@"Copied file %@ to %@",path, targetPath);
+    }else{
+        NSLog(@"Could not copy file %@ to %@",path, targetPath);
+    }
+    return result;
 }
 
 - (BOOL) moveFile: (NSString *)path to:(NSString *)targetPath{
     path = [path stringByExpandingTildeInPath];
     targetPath = [targetPath stringByExpandingTildeInPath];
     NSError *error = nil;
-    [fileManager moveItemAtPath:path toPath:targetPath error:&error];
-    return NO;
+    BOOL result = [fileManager moveItemAtPath:path toPath:targetPath error:&error];
+    if (result){
+        NSLog(@"Moved file %@ to %@",path, targetPath);
+    }else{
+        NSLog(@"Could not move file %@ to %@",path, targetPath);
+    }
+    return result;
 }
 
 

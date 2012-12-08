@@ -39,24 +39,59 @@ document.addEventListener('capsuleready', function(){
 	}
 
 	
-	Capsule.hideIconInDock();
+	Capsule.hideDockIcon();
 	Capsule.hideCloseWindowButton();
 	Capsule.hideMinimizeWindowButton();
 	Capsule.hideZoomWindowButton();
 
 	setTimeout(function(){
 		console.log('showing');
-		Capsule.showIconInDock();
+		Capsule.showDockIcon();
 		Capsule.showCloseWindowButton();
 		Capsule.showMinimizeWindowButton();
 		Capsule.showZoomWindowButton();
 		Capsule.centerWindow();
 		Capsule.disableWindowResize();
-		Capsule.setStatusBarText('Juank');
+		Capsule.setStatusBarLabel('Juank');
 
-		var files = Capsule.readDir('/');
-		for (var i in files){
-			console.log(files[i] + ' isDir:' + Capsule.isDir('/'+files[i]) + ' isFile:' + Capsule.isFile('/'+files[i]));
+		if (Capsule.makeDir('~/CapsuleTestDir')){
+			
+			Capsule.makeDir('~/CapsuleTestDir/subDir/');
+			Capsule.makeDir('~/CapsuleTestDir/emptySubDirToDelete/');
+			Capsule.makeDir('~/CapsuleTestDir/subDirToDelete/');
+
+			if (Capsule.copyFile('~/colbon.jpg','~/CapsuleTestDir/testCopiedImage.jpg')){
+				console.log('copied image');
+			}else{
+				console.log('could not copy image');
+			}
+
+			var files = Capsule.readDir('~/CapsuleTestDir');
+			for (var i in files){
+				console.log(files[i] + ' isDir:' + Capsule.isDir('/'+files[i]) + ' isFile:' + Capsule.isFile('/'+files[i]));
+				if (Capsule.isFile('~/CapsuleTestDir/' + files[i])){
+					Capsule.copyFile('~/CapsuleTestDir/' + files[i], '~/CapsuleTestDir/subDirToDelete/' + files[i]);
+					Capsule.moveFile('~/CapsuleTestDir/' + files[i], '~/CapsuleTestDir/subDir/' + files[i]);
+				}
+			}
+
+			if (Capsule.deleteDir('~/CapsuleTestDir/subDirToDelete/')){
+				console.log('deleted /CapsuleTestDir/subDirToDelete/');
+			}else{
+				console.log('could not delete /CapsuleTestDir/subDirToDelete/');
+			}
+
+			if (Capsule.deleteDir('~/CapsuleTestDir/emptySubDirToDelete/')){
+				console.log('deleted /CapsuleTestDir/emptySubDirToDelete/');
+			}else{
+				console.log('could not delete /CapsuleTestDir/emptySubDirToDelete/');
+			}
+
+			Capsule.writeFile('~/CapsuleTestDir/testWrittenFile.txt','Hello World!');
+			var readContents = Capsule.readFile('~/CapsuleTestDir/testWrittenFile.txt');
+			console.log('Read File: ' + readContents);
+		}else{
+			console.log('could not make dir');
 		}
 
 		setTimeout( function(){
