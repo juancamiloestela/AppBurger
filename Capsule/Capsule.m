@@ -292,13 +292,12 @@
 }
 
 - (NSString *) getCwd{
-    // TODO: expand ~
     NSLog (@"Current directory is %@", [fileManager currentDirectoryPath]);
     return [fileManager currentDirectoryPath];
 }
 
 - (BOOL) setCwd:(NSString *) path{
-    // TODO: expand ~
+    path = [path stringByExpandingTildeInPath];
     if ([fileManager changeCurrentDirectoryPath: path]){
         NSLog (@"Current directory is %@", [fileManager currentDirectoryPath]);
         return YES;
@@ -309,7 +308,7 @@
 }
 
 - (BOOL) isDir:(NSString *)path{
-    // TODO: expand ~
+    path = [path stringByExpandingTildeInPath];
     BOOL isDir;
     BOOL fileExists = [fileManager fileExistsAtPath:path isDirectory:&isDir];
     if (fileExists){
@@ -319,12 +318,12 @@
 }
 
 - (BOOL) isFile:(NSString *)path{
-    // TODO: expand ~
+    path = [path stringByExpandingTildeInPath];
     return ![self isDir:path];
 }
 
 - (NSArray *) readDir:(NSString *)path{
-    // TODO: expand ~
+    path = [path stringByExpandingTildeInPath];
     NSLog(@"reading dir %@",path);
     NSError *error = nil;
     if ([self setCwd:path]){
@@ -334,19 +333,19 @@
 }
 
 - (BOOL) makeDir:(NSString *)path{
-    // TODO: expand ~
+    path = [path stringByExpandingTildeInPath];
     NSError *error = nil;
     return [fileManager createDirectoryAtPath: path withIntermediateDirectories:YES attributes: nil error:&error];
 }
 
 - (BOOL) deleteDir:(NSString *)path{
-    // TODO: expand ~
+    path = [path stringByExpandingTildeInPath];
     NSError *error = nil;
     return [fileManager removeItemAtPath:path error:&error];
 }
 
 - (NSString *)readFile:(NSString *)path{
-    // TODO: expand ~
+    path = [path stringByExpandingTildeInPath];
     if ([self isFile:path]){
         NSError *error = nil;
         NSString *str = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
@@ -356,26 +355,28 @@
 }
 
 - (BOOL) writeFile: (NSString *)path withContents:(NSString *)content{
-    // TODO: expand ~
+    path = [path stringByExpandingTildeInPath];
     NSError *error = nil;
     return [content writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
 }
 
 - (BOOL) deleteFile: (NSString *)path{
-    // TODO: expand ~
+    path = [path stringByExpandingTildeInPath];
     NSError *error = nil;
     return [fileManager removeItemAtPath:path error:&error];
 }
 
 - (BOOL) copyFile: (NSString *)path to:(NSString *)targetPath{
-    // TODO: expand ~
+    path = [path stringByExpandingTildeInPath];
+    targetPath = [targetPath stringByExpandingTildeInPath];
     NSError *error = nil;
     [fileManager copyItemAtPath:path toPath:targetPath error:&error];
     return NO;
 }
 
 - (BOOL) moveFile: (NSString *)path to:(NSString *)targetPath{
-    // TODO: expand ~
+    path = [path stringByExpandingTildeInPath];
+    targetPath = [targetPath stringByExpandingTildeInPath];
     NSError *error = nil;
     [fileManager moveItemAtPath:path toPath:targetPath error:&error];
     return NO;
