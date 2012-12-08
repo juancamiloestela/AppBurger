@@ -17,6 +17,10 @@
 		hideDockIcon: function(){}, // Buggy - window hides sometimes
 		quit: function(){}, // Done
 		setDockIcon: function(){},
+
+		// user data
+		getUserData: function(key){},
+		setUserData: function(key, value){},
 		
 		// window management
 		createNewWindow: function(){},
