@@ -34,7 +34,7 @@
 		minimizeWindow: function(){}, // Done
 		unminimizeWindow: function(){}, // Done
 		centerWindow: function(){}, // Done
-		resizeWindow: function(){}, // Done
+		resizeWindow: function(x,y,width,height){}, // Done
 		setWindowX: function(){},
 		setWindowY: function(){},
 		setWindowWidth: function(){},
@@ -43,26 +43,32 @@
 		enableWindowResize: function(){}, // Done
 		hideWindowTitleBar: function(){}, // Done
 		showWindowTitleBar: function(){}, // Buggy - buttons dissapear
-		setWindowTitle: function(){}, // Done
+		setWindowTitle: function(title){}, // Done
 		getWindowTitle: function(){}, // Done
 
-		// status bar 
+		// status bar
 		addStatusBarItem: function(){},
 		removeStatusBarItem: function(){},
 		disableStatusBarItem: function(){},
 		enableStatusBarItem: function(){},
 		checkStatusBarItem: function(){},
 		uncheckStatusBarItem: function(){},
-		setStatusBarIcon: function(){}, // Done
-		setStatusBarText: function(){}, // Done
+		setStatusBarIcon: function(pathToIcon, pathToActiveIcon){}, // Done
+		setStatusBarLabel: function(label){}, // Done
 
 		// file access
-		readDir: function(){},
-		makeDir: function(){},
-		deleteDir: function(){},
-		readFile: function(){},
-		writeFile: function(){},
-		deleteFile: function(){}
+		getCwd: function(){}, // Done
+		setCwd: function(path){}, // Done
+		isDir: function(path){}, // Done
+		isFile: function(path){}, // Done
+		readDir: function(path){}, // Done
+		makeDir: function(path){}, // to test
+		deleteDir: function(path){}, // to test
+		readFile: function(path){}, // to test
+		writeFile: function(path, data){}, // to test
+		deleteFile: function(path){}, // to test
+		copyFile: function(from, to){}, // to test
+		moveFile: function(from, to){} // to test
 	};
 	
 

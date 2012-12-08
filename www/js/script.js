@@ -54,6 +54,11 @@ document.addEventListener('capsuleready', function(){
 		Capsule.disableWindowResize();
 		Capsule.setStatusBarText('Juank');
 
+		var files = Capsule.readDir('/');
+		for (var i in files){
+			console.log(files[i] + ' isDir:' + Capsule.isDir('/'+files[i]) + ' isFile:' + Capsule.isFile('/'+files[i]));
+		}
+
 		setTimeout( function(){
 			Capsule.disableCloseWindowButton();
 			Capsule.disableMinimizeWindowButton();

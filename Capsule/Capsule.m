@@ -12,6 +12,7 @@
 
 - (id) init{
     userData = [NSUserDefaults standardUserDefaults];
+    fileManager = [NSFileManager defaultManager];
     return self;
 }
 
@@ -87,8 +88,32 @@
         return @"getWindowTitle";
     }else if(sel == @selector(setStatusBarIcon:withActiveIcon:)){
         return @"setStatusBarIcon";
-    }else if (sel == @selector(setStatusBarText:)){
-        return @"setStatusBarText";
+    }else if (sel == @selector(setStatusBarLabel:)){
+        return @"setStatusBarLabel";
+    }else if (sel == @selector(getCwd:)){
+        return @"getCwd";
+    }else if (sel == @selector(setCwd:)){
+        return @"setCwd";
+    }else if (sel == @selector(isDir:)){
+        return @"isDir";
+    }else if (sel == @selector(isFile:)){
+        return @"isFile";
+    }else if (sel == @selector(readDir:)){
+        return @"readDir";
+    }else if (sel == @selector(makeDir:)){
+        return @"makeDir";
+    }else if (sel == @selector(deleteDir:)){
+        return @"deleteDir";
+    }else if (sel == @selector(readFile:)){
+        return @"readFile";
+    }else if (sel == @selector(writeFile:withContents:)){
+        return @"writeFile";
+    }else if (sel == @selector(deleteFile:)){
+        return @"deleteFile";
+    }else if (sel == @selector(copyFile:to:)){
+        return @"copyFile";
+    }else if (sel == @selector(moveFile:to:)){
+        return @"moveFile";
     }
     return nil;
 }
@@ -117,8 +142,11 @@
 
 - (void) hideIconInDock{
     NSLog(@"hide icon dock");
+    BOOL canHide = [appWindow canHide];
+    [appWindow setCanHide:NO];
     ProcessSerialNumber psn = { 0, kCurrentProcess };;
     TransformProcessType(&psn, kProcessTransformToUIElementApplication);
+    [appWindow setCanHide:canHide];
 }
 
 - (void) showIconInDock{
@@ -224,8 +252,6 @@
 
 
 
-
-
 - (void) setStatusBarIcon:(NSString *)imagePath withActiveIcon:(NSString *)activeImagePath{
     NSLog(@"status bar icon %@",imagePath);
     //imagePath = @"http://localhost/Capsule/www/img/defaultStatusBarIcon.png";
@@ -261,9 +287,105 @@
     [appStatusBar setAlternateImage:activeImage];
 }
 
-- (void) setStatusBarText:(NSString *)text{
+- (void) setStatusBarLabel:(NSString *)text{
     [appStatusBar setTitle:text];
 }
+
+- (NSString *) getCwd{
+    // TODO: expand ~
+    NSLog (@"Current directory is %@", [fileManager currentDirectoryPath]);
+    return [fileManager currentDirectoryPath];
+}
+
+- (BOOL) setCwd:(NSString *) path{
+    // TODO: expand ~
+    if ([fileManager changeCurrentDirectoryPath: path]){
+        NSLog (@"Current directory is %@", [fileManager currentDirectoryPath]);
+        return YES;
+    }else{
+        NSLog (@"Cannot change directory.");
+        return NO;
+    }
+}
+
+- (BOOL) isDir:(NSString *)path{
+    // TODO: expand ~
+    BOOL isDir;
+    BOOL fileExists = [fileManager fileExistsAtPath:path isDirectory:&isDir];
+    if (fileExists){
+        return isDir;
+    }
+    return NO;
+}
+
+- (BOOL) isFile:(NSString *)path{
+    // TODO: expand ~
+    return ![self isDir:path];
+}
+
+- (NSArray *) readDir:(NSString *)path{
+    // TODO: expand ~
+    NSLog(@"reading dir %@",path);
+    NSError *error = nil;
+    if ([self setCwd:path]){
+        return [fileManager contentsOfDirectoryAtPath:path error:&error];
+    }
+    return [[NSArray alloc] init];
+}
+
+- (BOOL) makeDir:(NSString *)path{
+    // TODO: expand ~
+    NSError *error = nil;
+    return [fileManager createDirectoryAtPath: path withIntermediateDirectories:YES attributes: nil error:&error];
+}
+
+- (BOOL) deleteDir:(NSString *)path{
+    // TODO: expand ~
+    NSError *error = nil;
+    return [fileManager removeItemAtPath:path error:&error];
+}
+
+- (NSString *)readFile:(NSString *)path{
+    // TODO: expand ~
+    if ([self isFile:path]){
+        NSError *error = nil;
+        NSString *str = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
+        return str;
+    }
+    return @"";
+}
+
+- (BOOL) writeFile: (NSString *)path withContents:(NSString *)content{
+    // TODO: expand ~
+    NSError *error = nil;
+    return [content writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
+}
+
+- (BOOL) deleteFile: (NSString *)path{
+    // TODO: expand ~
+    NSError *error = nil;
+    return [fileManager removeItemAtPath:path error:&error];
+}
+
+- (BOOL) copyFile: (NSString *)path to:(NSString *)targetPath{
+    // TODO: expand ~
+    NSError *error = nil;
+    [fileManager copyItemAtPath:path toPath:targetPath error:&error];
+    return NO;
+}
+
+- (BOOL) moveFile: (NSString *)path to:(NSString *)targetPath{
+    // TODO: expand ~
+    NSError *error = nil;
+    [fileManager moveItemAtPath:path toPath:targetPath error:&error];
+    return NO;
+}
+
+
+
+
+
+
 
 
 

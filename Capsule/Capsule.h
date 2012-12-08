@@ -12,6 +12,7 @@
     NSWindow *appWindow;
     NSUserDefaults * userData;
     NSStatusItem * appStatusBar;
+    NSFileManager *fileManager;
 }
 
 /*- (NSString *) get:(NSString *) url;
