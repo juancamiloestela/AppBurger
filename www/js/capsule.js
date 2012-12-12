@@ -19,8 +19,8 @@
 		setDockIcon: function(){},
 
 		// user data
-		getUserData: function(key){},
-		setUserData: function(key, value){},
+		getUserData: function(key){}, // Done
+		setUserData: function(key, value){}, // Done
 		
 		// window management
 		createNewWindow: function(){},
