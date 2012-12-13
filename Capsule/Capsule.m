@@ -87,7 +87,7 @@
     }else if(sel == @selector(getWindowTitle:)){
         return @"getWindowTitle";
     }else if(sel == @selector(addStatusBarItem:withCallbackNamed:)){
-        return @"_addStatusBarItem";
+        return @"addStatusBarItem";
     }else if(sel == @selector(setStatusBarIcon:withActiveIcon:)){
         return @"setStatusBarIcon";
     }else if (sel == @selector(setStatusBarLabel:)){
@@ -253,8 +253,15 @@
 
 
 
-- (void) addStatusBarItem:(NSString *)label withCallbackNamed:(NSString *)callbackId{
-    NSLog(@"Added status bar item %@",label);
+- (BOOL) addStatusBarItem:(NSString *)label withCallbackNamed:(NSString *)callbackId{
+    NSLog(@"Added status bar item %@, %@",label,callbackId);
+    
+    // on action do:
+    NSString *js = [NSString stringWithFormat:@"Capsule._callbacks['%@']();",callbackId];
+    [appWebView stringByEvaluatingJavaScriptFromString:js];
+    // end on action
+    
+    return YES;
 }
 
 - (void) setStatusBarIcon:(NSString *)imagePath withActiveIcon:(NSString *)activeImagePath{
@@ -302,6 +309,7 @@
 }
 
 - (BOOL) setCwd:(NSString *) path{
+    NSLog(@"setCwd %@",path);    
     path = [path stringByExpandingTildeInPath];
     if ([fileManager changeCurrentDirectoryPath: path]){
         NSLog (@"Current directory is %@", [fileManager currentDirectoryPath]);
@@ -313,6 +321,7 @@
 }
 
 - (BOOL) isDir:(NSString *)path{
+    NSLog(@"isDir %@",path);    
     path = [path stringByExpandingTildeInPath];
     BOOL isDir;
     BOOL fileExists = [fileManager fileExistsAtPath:path isDirectory:&isDir];
@@ -323,11 +332,13 @@
 }
 
 - (BOOL) isFile:(NSString *)path{
+    NSLog(@"isFile %@",path);    
     path = [path stringByExpandingTildeInPath];
     return ![self isDir:path];
 }
 
 - (NSArray *) readDir:(NSString *)path{
+    NSLog(@"readDir %@",path);    
     path = [path stringByExpandingTildeInPath];
     NSLog(@"reading dir %@",path);
     NSError *error = nil;
@@ -338,6 +349,7 @@
 }
 
 - (BOOL) makeDir:(NSString *)path{
+    NSLog(@"makeDir %@",path);
     path = [path stringByExpandingTildeInPath];
     NSError *error = nil;
     BOOL result = [fileManager createDirectoryAtPath: path withIntermediateDirectories:YES attributes: nil error:&error];
@@ -350,6 +362,7 @@
 }
 
 - (BOOL) deleteDir:(NSString *)path{
+    NSLog(@"deleteDir %@",path);
     path = [path stringByExpandingTildeInPath];
     NSError *error = nil;
     BOOL result = [fileManager removeItemAtPath:path error:&error];
@@ -362,6 +375,7 @@
 }
 
 - (NSString *)readFile:(NSString *)path{
+    NSLog(@"readfile %@",path);
     path = [path stringByExpandingTildeInPath];
     if ([self isFile:path]){
         NSError *error = nil;
@@ -372,6 +386,7 @@
 }
 
 - (BOOL) writeFile: (NSString *)path withContents:(NSString *)content andMode:(NSString *)mode{
+    NSLog(@"write %@",path);
     // TODO: implement mode
     path = [path stringByExpandingTildeInPath];
     NSError *error = nil;
@@ -379,12 +394,14 @@
 }
 
 - (BOOL) deleteFile: (NSString *)path{
+    NSLog(@"deletefile %@",path);
     path = [path stringByExpandingTildeInPath];
     NSError *error = nil;
     return [fileManager removeItemAtPath:path error:&error];
 }
 
 - (BOOL) copyFile: (NSString *)path to:(NSString *)targetPath{
+    NSLog(@"copyfile %@",path);
     path = [path stringByExpandingTildeInPath];
     targetPath = [targetPath stringByExpandingTildeInPath];
     NSError *error = nil;
@@ -398,6 +415,7 @@
 }
 
 - (BOOL) moveFile: (NSString *)path to:(NSString *)targetPath{
+    NSLog(@"movefile %@",path);
     path = [path stringByExpandingTildeInPath];
     targetPath = [targetPath stringByExpandingTildeInPath];
     NSError *error = nil;
@@ -470,6 +488,10 @@
 
 - (void) setAppWindow:(NSWindow *) win{
     appWindow = win;
+}
+
+- (void) setAppWebView:(WebView *) webView{
+    appWebView = webView;
 }
 
 - (void) setAppStatusBar:(NSStatusItem *) statusItem{

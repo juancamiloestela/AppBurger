@@ -72,6 +72,7 @@ typedef struct
 }
 
 - (void) webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame{
+    [appInstance setAppWebView:sender];
     [sender stringByEvaluatingJavaScriptFromString:@"document.dispatchEvent(webviewReadyEvent);"];
 }
 
@@ -97,10 +98,18 @@ typedef struct
      'console'.  We can use this object in JavaScript by referencing the 'console'
      property of the 'window' object.   */
     [windowScriptObject setValue:consoleInstance forKey:@"console"];
-    [windowScriptObject setValue:appInstance forKey:@"Capsule"];
+    [windowScriptObject setValue:appInstance forKey:@"cCapsule"];
 }
 
+- (id)invokeDefaultMethodWithArguments:(NSArray *)args{
+    NSLog(@"invoke default method");    
+    return nil;
+}
 
+- (id)invokeUndefinedMethodFromWebScript:(NSString *)name withArguments:(NSArray *)args{
+    NSLog(@"invoke undefined method %@",name);
+    return nil;
+}
 
 
 

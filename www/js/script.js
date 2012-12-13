@@ -53,7 +53,7 @@ document.addEventListener('capsuleready', function(){
 		Capsule.centerWindow();
 		Capsule.disableWindowResize();
 
-		console.log(Capsule.addStatusBarItem);
+
 		Capsule.addStatusBarItem('status item label', function(){
 			console.log('status item label clicked!');
 		});
@@ -61,7 +61,6 @@ document.addEventListener('capsuleready', function(){
 		Capsule.setStatusBarLabel('Juank');
 
 		if (Capsule.makeDir('~/CapsuleTestDir')){
-			
 			Capsule.makeDir('~/CapsuleTestDir/subDir/');
 			Capsule.makeDir('~/CapsuleTestDir/emptySubDirToDelete/');
 			Capsule.makeDir('~/CapsuleTestDir/subDirToDelete/');

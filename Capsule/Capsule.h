@@ -7,12 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <WebKit/WebView.h>
 
 @interface Capsule : NSObject{
     NSWindow *appWindow;
     NSUserDefaults * userData;
     NSStatusItem * appStatusBar;
     NSFileManager *fileManager;
+    WebView *appWebView;
 }
 
 /*- (NSString *) get:(NSString *) url;
@@ -22,5 +24,6 @@
 - (void) show;
 - (void) hide;
 - (void) setAppWindow:(NSWindow *) win;
+- (void) setAppWebView:(WebView *) webView;
 - (void) setAppStatusBar:(NSStatusItem *) statusItem;
 @end
