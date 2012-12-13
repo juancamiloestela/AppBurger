@@ -86,6 +86,8 @@
         return @"setWindowTitle";
     }else if(sel == @selector(getWindowTitle:)){
         return @"getWindowTitle";
+    }else if(sel == @selector(addStatusBarItem:withCallbackNamed:)){
+        return @"_addStatusBarItem";
     }else if(sel == @selector(setStatusBarIcon:withActiveIcon:)){
         return @"setStatusBarIcon";
     }else if (sel == @selector(setStatusBarLabel:)){
@@ -251,6 +253,9 @@
 
 
 
+- (void) addStatusBarItem:(NSString *)label withCallbackNamed:(NSString *)callbackId{
+    NSLog(@"Added status bar item %@",label);
+}
 
 - (void) setStatusBarIcon:(NSString *)imagePath withActiveIcon:(NSString *)activeImagePath{
     NSLog(@"status bar icon %@",imagePath);

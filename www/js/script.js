@@ -52,6 +52,12 @@ document.addEventListener('capsuleready', function(){
 		Capsule.showZoomWindowButton();
 		Capsule.centerWindow();
 		Capsule.disableWindowResize();
+
+		console.log(Capsule.addStatusBarItem);
+		Capsule.addStatusBarItem('status item label', function(){
+			console.log('status item label clicked!');
+		});
+
 		Capsule.setStatusBarLabel('Juank');
 
 		if (Capsule.makeDir('~/CapsuleTestDir')){

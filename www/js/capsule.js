@@ -9,6 +9,31 @@
 
 		loadPlugin: function(){}, // ??
 
+		_basicHash: function(str){
+			str = 'C' + str.replace(/[^a-zA-Z0-9]/ig,'');
+			while (str.length < 32){
+				str += str;
+			}
+			var length = str.length,
+				segmentLength = Math.floor(length/32),
+				i = 0,
+				chars = [];
+
+			for (i = 0; i < length; i = i+segmentLength){
+				chars.push(str.charAt(i));
+			}
+			return chars.join('');
+		},
+		_callbacks:{},
+		_registerCallback: function(callback){
+			if (typeof callback === 'function'){
+				var callbackId = _Capsule._basicHash(callback.toString());
+				_Capsule._callbacks[callbackId] = callback;
+				return callbackId;
+			}
+			return false;
+		},
+
 		// OSX SPECIFIC
 		
 
@@ -55,7 +80,13 @@
 		getWindowTitle: function(){}, // Done
 
 		// status bar
-		addStatusBarItem: function(){},
+		addStatusBarItem: function(label, callback){
+			console.log('adding status bar item');
+			if (!Capsule.isRunningOnBrowser()){
+				var callbackId = Capsule._registerCallback(callback);
+				Capsule._addStatusBarItem(label, callbackId);
+			}
+		},
 		removeStatusBarItem: function(){},
 		disableStatusBarItem: function(){},
 		enableStatusBarItem: function(){},
@@ -108,6 +139,13 @@
 
 	document.addEventListener('webviewready', function(){
 		// do stuff before initialization
+		if (/\.app/.test(location.href)){
+			//Capsule.addStatusBarItem = _Capsule.addStatusBarItem;
+			console.log(Capsule);
+			for (var i in window){
+				console.log(i + ': ' + window[i]);
+			}
+		}
 		document.dispatchEvent(capsuleReadyEvent);
 	}, false);
 
