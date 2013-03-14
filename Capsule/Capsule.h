@@ -26,4 +26,5 @@
 - (void) setAppWindow:(NSWindow *) win;
 - (void) setAppWebView:(WebView *) webView;
 - (void) setAppStatusBar:(NSStatusItem *) statusItem;
+- (void) triggerCallback:(id)sender;
 @end

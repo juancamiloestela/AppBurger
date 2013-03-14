@@ -7,6 +7,7 @@
 //
 
 #import "Capsule.h"
+#import "CapsuleMenuItem.h"
 
 @implementation Capsule
 
@@ -256,12 +257,19 @@
 - (BOOL) addStatusBarItem:(NSString *)label withCallbackNamed:(NSString *)callbackId{
     NSLog(@"Added status bar item %@, %@",label,callbackId);
     
-    // on action do:
-    NSString *js = [NSString stringWithFormat:@"Capsule._callbacks['%@']();",callbackId];
-    [appWebView stringByEvaluatingJavaScriptFromString:js];
-    // end on action
-    
+    CapsuleMenuItem *menuItem = [[CapsuleMenuItem alloc] initWithTitle:label action:@selector(triggerCallback:) keyEquivalent:@""];
+    [menuItem setTarget:self];
+    [menuItem setCallbackId:callbackId];
+    [[appStatusBar menu] addItem:menuItem];
     return YES;
+}
+
+- (void) triggerCallback:(id)sender{
+    CapsuleMenuItem *menuItem = (CapsuleMenuItem *)sender;
+    NSLog(@"Triggering Callback %@", menuItem.callbackId);
+    
+    NSString *js = [NSString stringWithFormat:@"Capsule._callbacks['%@']();",menuItem.callbackId];
+    [appWebView stringByEvaluatingJavaScriptFromString:js];
 }
 
 - (void) setStatusBarIcon:(NSString *)imagePath withActiveIcon:(NSString *)activeImagePath{

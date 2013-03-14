@@ -17,6 +17,7 @@
 		4644FA15163F181F00742E7D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4644FA14163F181F00742E7D /* Cocoa.framework */; };
 		4644FA35163F203900742E7D /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4644FA34163F203900742E7D /* WebKit.framework */; };
 		464A60EC163F32DC0092AE1D /* www in Resources */ = {isa = PBXBuildFile; fileRef = 464A60EB163F32DC0092AE1D /* www */; };
+		46BFA8E016F25100001158B5 /* CapsuleMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BFA8DF16F25100001158B5 /* CapsuleMenuItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,8 @@
 		4644FA19163F181F00742E7D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4644FA34163F203900742E7D /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		464A60EB163F32DC0092AE1D /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
+		46BFA8DE16F25100001158B5 /* CapsuleMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapsuleMenuItem.h; sourceTree = "<group>"; };
+		46BFA8DF16F25100001158B5 /* CapsuleMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapsuleMenuItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +63,8 @@
 			children = (
 				4608CE8B16668FA900B5DD4A /* Capsule.h */,
 				4608CE8C16668FA900B5DD4A /* Capsule.m */,
+				46BFA8DE16F25100001158B5 /* CapsuleMenuItem.h */,
+				46BFA8DF16F25100001158B5 /* CapsuleMenuItem.m */,
 				4608CE8D16668FA900B5DD4A /* AppDelegate.h */,
 				4608CE8E16668FA900B5DD4A /* AppDelegate.m */,
 				4608CEA816668FBF00B5DD4A /* Supporting Files */,
@@ -190,6 +195,7 @@
 				4608CEA216668FA900B5DD4A /* Capsule.xcdatamodeld in Sources */,
 				4608CEA316668FA900B5DD4A /* Console.m in Sources */,
 				4608CEA716668FA900B5DD4A /* main.m in Sources */,
+				46BFA8E016F25100001158B5 /* CapsuleMenuItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

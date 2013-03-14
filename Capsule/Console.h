@@ -10,6 +10,4 @@
 
 @interface Console : NSObject
 
-
-
 @end

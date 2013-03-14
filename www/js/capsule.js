@@ -145,7 +145,7 @@
 			return cCapsule.showWindowTitleBar();
 		}, // Buggy - buttons dissapear
 		setWindowTitle: function(title){
-			return cCapsule.setWindowTitle();
+			return cCapsule.setWindowTitle(title);
 		}, // Done
 		getWindowTitle: function(){
 			return cCapsule.getWindowTitle();
