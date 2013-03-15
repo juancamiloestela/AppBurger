@@ -62,6 +62,17 @@ typedef struct
     
     [appInstance setAppWindow:[self window]];
     [appInstance setAppStatusBar:statusItem];
+    
+    
+    
+    /// test area
+    NSMenu* rootMenu = [NSApp mainMenu];
+    [rootMenu insertItemWithTitle:@"JUAN" action:@selector(openAppWindow:) keyEquivalent:@"" atIndex:4];
+    [rootMenu addItemWithTitle:@"Camilo" action:@selector(openAppWindow:) keyEquivalent:@""];
+    [NSMenu setMenuBarVisible:YES];
+
+    NSLog(@"item %@", [rootMenu itemAtIndex:4]);
+
 }
 
 - (IBAction)openAppWindow:(id)sender {

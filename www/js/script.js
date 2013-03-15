@@ -39,14 +39,14 @@ document.addEventListener('capsuleready', function(){
 	}
 
 	
-	Capsule.hideDockIcon();
+	//Capsule.hideDockIcon(); will hide mainMenu and will not show back
 	Capsule.hideCloseWindowButton();
 	Capsule.hideMinimizeWindowButton();
 	Capsule.hideZoomWindowButton();
 
 	setTimeout(function(){
 		console.log('showing');
-		Capsule.showDockIcon();
+		//Capsule.showDockIcon();
 		Capsule.showCloseWindowButton();
 		Capsule.showMinimizeWindowButton();
 		Capsule.showZoomWindowButton();
