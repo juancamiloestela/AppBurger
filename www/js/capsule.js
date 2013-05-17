@@ -212,6 +212,9 @@
 		}, // Done
         download: function(url, to){
             return cCapsule.download(url, to);
+        },
+        getAppSupportPath: function(){
+            return cCapsule.getAppSupportPath();
         }
 	};
 
@@ -327,8 +330,9 @@
 		copyFile: function(from, to){}, // Done
 		moveFile: function(from, to){}, // Done
  
-        // http
-        download: function(url, to){}
+        // ?
+        download: function(url, to){},
+        getAppSupportPath: function(){}
 	};
 	
 

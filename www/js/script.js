@@ -33,6 +33,7 @@ CapsuleConsole = function(){
 
 CapsuleApp = function(){
 
+
 	function generate(){
 
 	}
@@ -60,10 +61,13 @@ CapsuleApp = function(){
 
 App = (function(){
 	
-	var _capsuleConsole = new CapsuleConsole();	
+	var _capsuleConsole = new CapsuleConsole(),
+		_appSupportPath;
         
 	(function init(){
-		
+		_appSupportPath = Capsule.getAppSupportPath();
+
+		Capsule.download('https://github.com/juancamiloestela/Gear/archive/master.zip', _appSupportPath);
 	})();
 })();
 

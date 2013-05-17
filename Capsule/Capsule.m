@@ -9,11 +9,14 @@
 #import "Capsule.h"
 #import "CapsuleMenuItem.h"
 
+
+
 @implementation Capsule
 
 - (id) init{
     userData = [NSUserDefaults standardUserDefaults];
     fileManager = [NSFileManager defaultManager];
+    
     return self;
 }
 
@@ -119,6 +122,8 @@
         return @"moveFile";
     }else if (sel == @selector(download:to:)){
         return @"download";
+    }else if (sel == @selector(getAppSupportPath:)){
+        return @"getAppSupportPath";
     }
     return nil;
 }
@@ -440,8 +445,26 @@
 
 - (BOOL) download: (NSString *)url to:(NSString *)targetPath{
     NSLog(@"download %@ to %@",url,targetPath);
+    NSError* error = nil;
+    NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url] options:NSDataReadingUncached error:&error];
     
+    if (error) {
+        NSLog(@"%@", [error localizedDescription]);
+        [error release];
+    } else {
+        NSLog(@"Data has loaded successfully.");
+        // TODO get file name and extension, if no targetPath filename use same as source
+        [data writeToFile:targetPath atomically:YES];
+    }
     return true;
+}
+
+- (NSString *) getAppSupportPath{
+    NSArray *pathList = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory,
+                                                            NSUserDomainMask,
+                                                            YES);
+    
+    return [[pathList objectAtIndex:0] stringByAppendingPathComponent:@"Capsule"];
 }
 
 
