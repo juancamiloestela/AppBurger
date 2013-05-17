@@ -7,25 +7,20 @@
 
     	<h1>Capsule</h1>
 
-    	<div>
-    		<label>Show Alert</label>
-    		<button id="alert-button">Alert</button>
-    	</div>
-    	
-    	<div>
-    		<label>Do Console.log</label>
-    		<button id="console-log-button">Console.log</button>
-    	</div>
-
-    	<div>
-    		<label>Hide Capsule Window</label>
-    		<button id="hide-button">Hide</button>
-    	</div>
-
         <div>
             <label>Console</label>
             <textarea id="console-output"></textarea>
             <input type="text" id="console-input">
+        </div>
+        
+        <div>
+            <form>
+                <h2>Generate New App</h2>
+                <input type="text" id="new-app-name" placeholder="App Name" />
+                <input type="text" id="new-app-location" placeholder="Target Location" />
+            
+                <button type="submit">Generate</button>
+            </form>
         </div>
         
         <script type="text/javascript" src="js/jquery.min.1.8.2.js"></script>

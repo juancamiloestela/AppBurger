@@ -1,38 +1,83 @@
 
 
-var myApp = (function(){
+CapsuleConsole = function(){
+	
+	var _consoleInput,
+		_consoleOutput;
 
-	var myVar = '';
+	function onConsoleKeyDown(e){
+		var commandSource = false,
+			result = undefined;
 
-	function init(){
-		console.log('my app started!');
+		if (e.keyCode == 13){
+			commandSource = _consoleInput.value;
 
-		$('#console-input').keydown(function(e){
-			if (e.which == 13){
-				var src = $(this).val(),
-					result = '';
-
-				try{
-					result = eval(src);
-				}catch(error){
-					result = error.message;
-				}
-
-				$('#console-output').val($('#console-output').val() + result + "\n").scrollTop($('#console-output')[0].scrollHeight);
-
+			try{
+				result = eval(commandSource);
+			} catch (error){
+				result = error.message;
 			}
-		});
+
+			_consoleOutput.value = _consoleOutput.value + (result + "\n");
+			_consoleOutput.scrollTop = _consoleOutput.scrollHeight;
+		}
 	}
 
-	return{
-		init: init
+	(function init(){
+		_consoleInput = document.getElementById('console-input');
+		_consoleOutput = document.getElementById('console-output');
+		_consoleInput.addEventListener('keydown', onConsoleKeyDown, false);	
+	})();
+};
+
+
+CapsuleApp = function(){
+
+	function generate(){
+
+	}
+
+	function getLatestVersion(){
+
+	}
+
+	function download(){
+
+	}
+
+	function update(){
+
+	}
+
+	return {
+		update: update
 	};
+};
+
+
+
+
+
+App = (function(){
+	
+	var _capsuleConsole = new CapsuleConsole();	
+        
+	(function init(){
+		
+	})();
 })();
+
+
+
+
 
 
 document.addEventListener('capsuleready', function(){
 	// init app
-	if (Capsule.isRunningOnBrowser()){
+	App.init();
+
+
+	/*if (Capsule.isRunningOnBrowser()){
 		console.log('is running on browser');
 	}else{
 		console.log('is running on app');
@@ -107,12 +152,8 @@ document.addEventListener('capsuleready', function(){
 			Capsule.enableWindowResize();
 			Capsule.setStatusBarIcon('img/defaultStatusBarIcon.png','img/defaultActiveStatusBarIcon.png');
 		},3000);
-	},3000);
+	},3000);*/
 
 	//Capsule.quit();
 
-
-
-
-	myApp.init();
 }, false);

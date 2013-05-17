@@ -117,6 +117,8 @@
         return @"copyFile";
     }else if (sel == @selector(moveFile:to:)){
         return @"moveFile";
+    }else if (sel == @selector(download:to:)){
+        return @"download";
     }
     return nil;
 }
@@ -434,6 +436,12 @@
         NSLog(@"Could not move file %@ to %@",path, targetPath);
     }
     return result;
+}
+
+- (BOOL) download: (NSString *)url to:(NSString *)targetPath{
+    NSLog(@"download %@ to %@",url,targetPath);
+    
+    return true;
 }
 
 

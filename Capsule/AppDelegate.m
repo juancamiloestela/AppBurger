@@ -27,8 +27,6 @@
 {
     // Insert code here to initialize your application
     
-        
-
 }
 
 typedef struct

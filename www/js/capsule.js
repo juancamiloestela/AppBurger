@@ -209,7 +209,10 @@
 		}, // Done
 		moveFile: function(from, to){
 			return cCapsule.moveFile(from, to);
-		} // Done
+		}, // Done
+        download: function(url, to){
+            return cCapsule.download(url, to);
+        }
 	};
 
 
@@ -322,7 +325,10 @@
 		writeFile: function(path, data, mode){}, // Done, pending mode
 		deleteFile: function(path){}, // Done
 		copyFile: function(from, to){}, // Done
-		moveFile: function(from, to){} // Done
+		moveFile: function(from, to){}, // Done
+ 
+        // http
+        download: function(url, to){}
 	};
 	
 
