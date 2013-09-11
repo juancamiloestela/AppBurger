@@ -450,7 +450,7 @@
     
     if (error) {
         NSLog(@"%@", [error localizedDescription]);
-        [error release];
+        return false;
     } else {
         NSLog(@"Data has loaded successfully.");
         // TODO get file name and extension, if no targetPath filename use same as source
