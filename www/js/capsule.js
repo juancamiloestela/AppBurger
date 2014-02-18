@@ -52,6 +52,10 @@
 		setDockIcon: function(){
 
 		},
+		bounceDockIcon: function(type){
+			type = (type === undefined) ? 'informative' : type;
+			return cCapsule.bounceDockIcon(type);
+		}, // Done
 
 		// user data
 		getUserData: function(key){
@@ -217,13 +221,17 @@
 		}, // Done
         download: function(url, to){
             return cCapsule.download(url, to);
-        },
+        }, // Done
         unzip: function(source, to){
             return cCapsule.unzip(source, to);
-        },
+        }, // Done - Cannot overwrite!
         getAppSupportPath: function(){
             return cCapsule.getAppSupportPath();
-        }
+        }, // Done
+        sendNotification: function(title, message, sound){
+            sound = (sound === undefined) ? true : sound;
+            return cCapsule.sendNotification(title, message, sound);
+        } // Done
 	};
 
 
@@ -270,6 +278,7 @@
 		hideDockIcon: function(){}, // Buggy - window hides sometimes
 		quit: function(){}, // Done
 		setDockIcon: function(){},
+		bounceDockIcon: function(){},
 
 		// user data
 		getUserData: function(key){}, // Done
@@ -340,7 +349,8 @@
  
         // ?
         download: function(url, to){},
-        getAppSupportPath: function(){}
+        getAppSupportPath: function(){},
+        sendNotification: function(){},
 	};
 	
 

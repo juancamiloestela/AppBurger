@@ -11,7 +11,7 @@
 #import "Capsule.h"
 #import "Console.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate,NSXMLParserDelegate>{
+@interface AppDelegate : NSObject <NSApplicationDelegate,NSXMLParserDelegate, NSUserNotificationCenterDelegate>{
     IBOutlet NSMenu *statusMenu;
     IBOutlet NSMenu *appMenu;
     IBOutlet WebView *webView;

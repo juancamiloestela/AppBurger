@@ -26,7 +26,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
-    
+    [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
 }
 
 typedef struct
@@ -282,6 +282,12 @@ typedef struct
     }
 
     return NSTerminateNow;
+}
+
+- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center
+     shouldPresentNotification:(NSUserNotification *)notification
+{
+    return YES;
 }
 
 

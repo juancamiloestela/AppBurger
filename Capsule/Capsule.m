@@ -74,8 +74,8 @@
         return @"minimizeWindow";
     }else if(sel == @selector(unminimizeWindow:)){
         return @"unminimizeWindow";
-    }else if(sel == @selector(center:)){
-        return @"center";
+    }else if(sel == @selector(centerWindow:)){
+        return @"centerWindow";
     }else if(sel == @selector(resizeWindowAtX:andY:andWidth:andHeight:)){
         return @"resizeWindow";
     }else if(sel == @selector(setWindowX:)){
@@ -136,6 +136,10 @@
         return @"unzip";
     }else if (sel == @selector(getAppSupportPath:)){
         return @"getAppSupportPath";
+    }else if (sel == @selector(sendNotificationWithTitle:andMessage:withSound:)){
+        return @"sendNotification";
+    }else if (sel == @selector(bounceDockIcon:)){
+        return @"bounceDockIcon";
     }
     return nil;
 }
@@ -527,6 +531,35 @@
     
     return [[pathList objectAtIndex:0] stringByAppendingPathComponent:@"Capsule"];
 }
+
+- (void) sendNotificationWithTitle: (NSString *) title andMessage: (NSString *) message withSound: (BOOL) sound{
+    NSLog(@"sending notif");
+
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    [notification setTitle: title];
+    [notification setInformativeText: message];
+    //[notification setDeliveryDate:[NSDate dateWithTimeInterval:0 sinceDate:[NSDate date]]];
+    
+    if (sound){
+        [notification setSoundName:NSUserNotificationDefaultSoundName];
+    }else{
+        [notification setSoundName:nil];
+    }
+    
+    NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
+    [center deliverNotification:notification];
+}
+
+- (void) bounceDockIcon: (NSString *) type {
+    NSInteger *request = NSInformationalRequest;
+    
+    if ([type isEqualToString:@"critical"]){
+        request = NSCriticalRequest;
+    }
+    
+    [NSApp requestUserAttention:request];
+}
+
 
 
 
