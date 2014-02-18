@@ -12,6 +12,70 @@
             <textarea id="console-output"></textarea>
             <input type="text" id="console-input">
         </div>
+
+        <div>
+            <h2>API</h2>
+            <button onclick="Capsule.showDockIcon();">showDockIcon()</button>
+            <button onclick="Capsule.hideDockIcon();">hideDockIcon()</button>
+            <button onclick="Capsule.quit();">quit()</button>
+            <button onclick="Capsule.setDockIcon(PENDING);">setDockIcon(PENDING)</button>
+            <button onclick="Capsule.setUserData('myKey', 'hello');">setUserData()</button>
+            <button onclick="alert(Capsule.getUserData('myKey'));">getUserData()</button>
+            <button onclick="Capsule.createNewWindow();">createNewWindow()</button>
+            <button onclick="Capsule.closeWindow();">closeWindow()</button>
+            <button onclick="Capsule.hideWindow();">hideWindow()</button>
+            <button onclick="Capsule.showWindow();">showWindow()</button>
+            <button onclick="Capsule.disableCloseWindowButton();">disableCloseWindowButton()</button>
+            <button onclick="Capsule.enableCloseWindowButton();">enableCloseWindowButton()</button>
+            <button onclick="Capsule.disableMinimizeWindowButton();">disableMinimizeWindowButton()</button>
+            <button onclick="Capsule.enableMinimizeWindowButton();">enableMinimizeWindowButton()</button>
+            <button onclick="Capsule.disableZoomWindowButton();">disableZoomWindowButton()</button>
+            <button onclick="Capsule.enableZoomWindowButton();">enableZoomWindowButton()</button>
+            <button onclick="Capsule.hideCloseWindowButton();">hideCloseWindowButton()</button>
+            <button onclick="Capsule.showCloseWindowButton();">showCloseWindowButton()</button>
+            <button onclick="Capsule.hideMinimizeWindowButton();">hideMinimizeWindowButton()</button>
+            <button onclick="Capsule.showMinimizeWindowButton();">showMinimizeWindowButton()</button>
+            <button onclick="Capsule.hideZoomWindowButton();">hideZoomWindowButton()</button>
+            <button onclick="Capsule.showZoomWindowButton();">showZoomWindowButton()</button>
+            <button onclick="Capsule.minimizeWindow();">minimizeWindow()</button>
+            <button onclick="Capsule.unminimizeWindow();">unminimizeWindow()</button>
+            <button onclick="Capsule.centerWindow();">centerWindow()</button>
+            <button onclick="Capsule.resizeWindow(30,30,300,400);">resizeWindow(30,30,300,400)</button>
+            <button onclick="Capsule.setWindowX(PENDING);">setWindowX(PENDING)</button>
+            <button onclick="Capsule.setWindowY(PENDING);">setWindowY(PENDING)</button>
+            <button onclick="Capsule.setWindowWidth(PENDING);">setWindowWidth(PENDING)</button>
+            <button onclick="Capsule.setWindowHeight(PENDING);">setWindowHeight(PENDING)</button>
+            <button onclick="Capsule.disableWindowResize();">disableWindowResize()</button>
+            <button onclick="Capsule.enableWindowResize();">enableWindowResize()</button>
+            <button onclick="Capsule.hideWindowTitleBar();">hideWindowTitleBar()</button>
+            <button onclick="Capsule.showWindowTitleBar();">showWindowTitleBar()</button>
+            <button onclick="Capsule.setWindowTitle('hello world');">setWindowTitle('hello world')</button>
+            <button onclick="Capsule.getWindowTitle();">getWindowTitle()</button>
+            <button onclick="Capsule.addStatusBarItem('new item', function(){alert('clicked new item!')});">addStatusBarItem('new item', function(){...})</button>
+            <button onclick="Capsule.removeStatusBarItem();">removeStatusBarItem()</button>
+            <button onclick="Capsule.disableStatusBarItem();">disableStatusBarItem()</button>
+            <button onclick="Capsule.checkStatusBarItem();">checkStatusBarItem()</button>
+            <button onclick="Capsule.uncheckStatusBarItem();">uncheckStatusBarItem()</button>
+            <button onclick="Capsule.setStatusBarIcon();">setStatusBarIcon()</button>
+            <button onclick="Capsule.setStatusBarLabel('hello world');">setStatusBarLabel('hello world')</button>
+            <button onclick="Capsule.hideAppMenu();">hideAppMenu()</button>
+            <button onclick="Capsule.showAppMenu();">showAppMenu()</button>
+            <button onclick="Capsule.addAppMenuItem();">addAppMenuItem()</button>
+            <button onclick="alert(Capsule.getCwd());">getCwd()</button>
+            <button onclick="Capsule.setCwd();">setCwd()</button>
+            <button onclick="Capsule.isDir();">isDir()</button>
+            <button onclick="Capsule.isFile();">isFile()</button>
+            <button onclick="Capsule.readDir();">readDir()</button>
+            <button onclick="Capsule.makeDir();">makeDir()</button>
+            <button onclick="Capsule.deleteDir();">deleteDir()</button>
+            <button onclick="Capsule.readFile();">readFile()</button>
+            <button onclick="Capsule.writeFile();">writeFile()</button>
+            <button onclick="Capsule.deleteFile();">deleteFile()</button>
+            <button onclick="Capsule.copyFile();">copyFile()</button>
+            <button onclick="Capsule.moveFile();">moveFile()</button>
+            <button onclick="Capsule.download();">download()</button>
+            <button onclick="Capsule.getAppSupportPath();">getAppSupportPath()</button>
+        </div>
         
         <div>
             <form>

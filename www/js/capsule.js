@@ -42,13 +42,13 @@
 		// App specific
 		showDockIcon: function(){
 			return cCapsule.showDockIcon();
-		},
+		}, // Done
 		hideDockIcon: function(){
 			return cCapsule.hideDockIcon();
-		},
+		}, // Done
 		quit: function(){
 			return cCapsule.quit();
-		},
+		}, // Done
 		setDockIcon: function(){
 
 		},
@@ -56,8 +56,10 @@
 		// user data
 		getUserData: function(key){
 			return cCapsule.getUserData(key);
-		},
-		setUserData: function(key, value){}, // Done
+		}, // Done
+		setUserData: function(key, value){
+			return cCapsule.setUserData(key, value);
+		}, // Done
 		
 		// window management
 		createNewWindow: function(){
@@ -72,6 +74,7 @@
 		showWindow: function(){
 			return cCapsule.showWindow();
 		},
+
 		disableCloseWindowButton: function(){
 			return cCapsule.disableCloseWindowButton();
 		}, // Done
@@ -120,18 +123,18 @@
 		resizeWindow: function(x,y,width,height){
 			return cCapsule.resizeWindow(x,y,width,height);
 		}, // Done
-		setWindowX: function(){
-			return cCapsule.setWindowX();
-		},
-		setWindowY: function(){
-			return cCapsule.setWindowY();
-		},
-		setWindowWidth: function(){
-			return cCapsule.setWindowWidth();
-		},
-		setWindowHeight: function(){
-			return cCapsule.setWindowHeight();
-		},
+		setWindowX: function(x){
+			return cCapsule.setWindowX(x);
+		}, // Done
+		setWindowY: function(y){
+			return cCapsule.setWindowY(y);
+		}, // Done
+		setWindowWidth: function(w){
+			return cCapsule.setWindowWidth(w);
+		}, // Done
+		setWindowHeight: function(h){
+			return cCapsule.setWindowHeight(h);
+		}, // Done
 		disableWindowResize: function(){
 			return cCapsule.disableWindowResize();
 		}, // Done
@@ -155,8 +158,10 @@
 		addStatusBarItem: function(label, callback){
 			var callbackId = Capsule._registerCallback(callback);
 			return cCapsule.addStatusBarItem(label, callbackId);
+		}, // Done
+		removeStatusBarItem: function(label){
+			return cCapsule.removeStatusBarItem(label, callbackId);
 		},
-		removeStatusBarItem: function(){},
 		disableStatusBarItem: function(){},
 		enableStatusBarItem: function(){},
 		checkStatusBarItem: function(){},
@@ -212,6 +217,9 @@
 		}, // Done
         download: function(url, to){
             return cCapsule.download(url, to);
+        },
+        unzip: function(source, to){
+            return cCapsule.unzip(source, to);
         },
         getAppSupportPath: function(){
             return cCapsule.getAppSupportPath();

@@ -78,6 +78,14 @@
         return @"center";
     }else if(sel == @selector(resizeWindowAtX:andY:andWidth:andHeight:)){
         return @"resizeWindow";
+    }else if(sel == @selector(setWindowX:)){
+        return @"setWindowX";
+    }else if(sel == @selector(setWindowY:)){
+        return @"setWindowY";
+    }else if(sel == @selector(setWindowWidth:)){
+        return @"setWindowWidth";
+    }else if(sel == @selector(setWindowHeight:)){
+        return @"setWindowHeight";
     }else if(sel == @selector(disableWindowResize:)){
         return @"disableWindowResize";
     }else if(sel == @selector(enableWindowResize:)){
@@ -92,6 +100,8 @@
         return @"getWindowTitle";
     }else if(sel == @selector(addStatusBarItem:withCallbackNamed:)){
         return @"addStatusBarItem";
+    }else if(sel == @selector(removeStatusBarItem:)){
+        return @"removeStatusBarItem";
     }else if(sel == @selector(setStatusBarIcon:withActiveIcon:)){
         return @"setStatusBarIcon";
     }else if (sel == @selector(setStatusBarLabel:)){
@@ -122,6 +132,8 @@
         return @"moveFile";
     }else if (sel == @selector(download:to:)){
         return @"download";
+    }else if (sel == @selector(unzip:to:)){
+        return @"unzip";
     }else if (sel == @selector(getAppSupportPath:)){
         return @"getAppSupportPath";
     }
@@ -234,6 +246,26 @@
     [appWindow setFrame:NSMakeRect(x, y, width, height) display:YES animate:YES];
 }
 
+- (void) setWindowX:(float)x{
+    NSRect rect = NSMakeRect(x, [appWindow frame].origin.y, [appWindow frame].size.width, [appWindow frame].size.height);
+    [appWindow setFrame:rect display:YES animate:YES];
+}
+
+- (void) setWindowY:(float)y{
+    NSRect rect = NSMakeRect([appWindow frame].origin.x, y, [appWindow frame].size.width, [appWindow frame].size.height);
+    [appWindow setFrame:rect display:YES animate:YES];
+}
+
+- (void) setWindowWidth:(float)w{
+    NSRect rect = NSMakeRect([appWindow frame].origin.x, [appWindow frame].origin.y, w, [appWindow frame].size.height);
+    [appWindow setFrame:rect display:YES animate:YES];
+}
+
+- (void) setWindowHeight:(float)h{
+    NSRect rect = NSMakeRect([appWindow frame].origin.x, [appWindow frame].origin.y, [appWindow frame].size.width, h);
+    [appWindow setFrame:rect display:YES animate:YES];
+}
+
 - (void) disableWindowResize{
     [appWindow setStyleMask:[appWindow styleMask] & ~NSResizableWindowMask];
 }
@@ -247,7 +279,7 @@
 }
 
 - (void) showWindowTitleBar{
-    [appWindow setStyleMask:NSTitledWindowMask];
+    [appWindow setStyleMask:NSTitledWindowMask | NSClosableWindowMask | NSResizableWindowMask | NSMiniaturizableWindowMask];
 }
 
 - (void) setWindowTitle:(NSString *)title{
@@ -261,13 +293,18 @@
 
 
 
-- (BOOL) addStatusBarItem:(NSString *)label withCallbackNamed:(NSString *)callbackId{
+- (int) addStatusBarItem:(NSString *)label withCallbackNamed:(NSString *)callbackId{
     NSLog(@"Added status bar item %@, %@",label,callbackId);
     
     CapsuleMenuItem *menuItem = [[CapsuleMenuItem alloc] initWithTitle:label action:@selector(triggerCallback:) keyEquivalent:@""];
     [menuItem setTarget:self];
     [menuItem setCallbackId:callbackId];
     [[appStatusBar menu] addItem:menuItem];
+    return YES;
+}
+
+- (BOOL) removeStatusBarItem:(NSString *)label{
+
     return YES;
 }
 
@@ -454,9 +491,33 @@
     } else {
         NSLog(@"Data has loaded successfully.");
         // TODO get file name and extension, if no targetPath filename use same as source
-        [data writeToFile:targetPath atomically:YES];
+        
+        NSString *dirPath = [targetPath stringByDeletingLastPathComponent];
+
+        NSError *error = nil;
+        BOOL success = [fileManager createDirectoryAtPath:dirPath withIntermediateDirectories:YES attributes:nil error:&error];
+    
+        if (!success) {
+            NSLog(@"Failed to create directory with error: %@", [error description]);
+        }
+        
+        return [data writeToFile:targetPath atomically:YES];
     }
-    return true;
+}
+
+- (void) unzip: (NSString *)source to:(NSString *)targetFolder{
+    NSFileManager* fm = [NSFileManager defaultManager];
+    
+    [fm createDirectoryAtPath:targetFolder withIntermediateDirectories:NO
+                   attributes:nil error:NULL];
+
+    NSArray *arguments = [NSArray arrayWithObject:source];
+    NSTask *unzipTask = [[NSTask alloc] init];
+    [unzipTask setLaunchPath:@"/usr/bin/unzip"];
+    [unzipTask setCurrentDirectoryPath:targetFolder];
+    [unzipTask setArguments:arguments];
+    [unzipTask launch];
+    //[unzipTask waitUntilExit];
 }
 
 - (NSString *) getAppSupportPath{

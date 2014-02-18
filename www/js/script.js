@@ -31,43 +31,23 @@ CapsuleConsole = function(){
 };
 
 
-CapsuleApp = function(){
-
-
-	function generate(){
-
-	}
-
-	function getLatestVersion(){
-
-	}
-
-	function download(){
-
-	}
-
-	function update(){
-
-	}
-
-	return {
-		update: update
-	};
-};
-
-
-
 
 
 App = (function(){
 	
 	var _capsuleConsole = new CapsuleConsole(),
-		_appSupportPath;
+		_appSupportPath,
+		_downloadedFile;
         
 	(function init(){
-		_appSupportPath = Capsule.getAppSupportPath();
+		_appSupportPath = Capsule.getAppSupportPath() + '/';
+		_downloadedFile = _appSupportPath + 'tmp/download.zip';
 
-		Capsule.download('https://github.com/juancamiloestela/Gear/archive/master.zip', _appSupportPath);
+		if (Capsule.download('https://github.com/juancamiloestela/Capsule/archive/master.zip', _downloadedFile)){
+			Capsule.deleteDir(_appSupportPath + 'tmp/unzipped');
+			Capsule.unzip(_downloadedFile, _appSupportPath + 'tmp/unzipped');
+			Capsule.deleteFile(_downloadedFile);
+		}
 	})();
 })();
 
