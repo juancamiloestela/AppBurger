@@ -1,13 +1,19 @@
 
 App = (function(){
 
-	(function init(){
+	function init(){
 		Capsule.centerWindow();
-
 		setTimeout(function(){
-			
-		}, 2000);
-	})();
+			// useless but fancy boot up sequence delay
+			document.body.className = 'running';
+			document.querySelector('.status').innerHTML = 'All systems OK';
+		}, 1000);
+	};
+
+	return {
+		init: init
+	};
+
 })();
 
 

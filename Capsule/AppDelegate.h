@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <WebKit/WebView.h>
+#import <WebKit/WebKit.h>
 #import "Capsule.h"
 #import "Console.h"
 

@@ -81,6 +81,10 @@ typedef struct
 }
 
 - (void) webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame{
+    NSScrollView *mainScrollView = sender.mainFrame.frameView.documentView.enclosingScrollView;
+    [mainScrollView setVerticalScrollElasticity:NSScrollElasticityNone];
+    [mainScrollView setHorizontalScrollElasticity:NSScrollElasticityNone];
+    
     [appInstance setAppWebView:sender];
     [sender stringByEvaluatingJavaScriptFromString:@"document.dispatchEvent(webviewReadyEvent);"];
 }

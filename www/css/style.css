@@ -1,13 +1,53 @@
-body{
-	font-family: sans-serif;
-	color:#333;
-	font-size:14px;
+html{
+	height:100%;
 }
 
-#console-output{
-	width:100%;
-	height:70px;
+body{
+	height:100%;
+	font-family: sans-serif;
+	color:#FFF;
+	font-size:14px;
+	text-align:center;
+	background: #e74c3c;
+	margin:0;
+	padding:0;
 }
-#console-input{
-	width:100%;
+
+h1{
+	border: 3px solid #fff;
+	display: inline-block;
+	margin: 33% auto 0 auto;
+	padding: 0.3em 0.5em;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+}
+
+@-webkit-keyframes pulsate {
+  0% {
+  	background-color:#FFAF30;
+  	box-shadow: 0 0 9px #FFB43D;
+  }
+
+  100% {
+    background-color:#f39c12;
+    box-shadow: 0 0 0 #FFB43D;
+  }
+}
+
+.status{
+	color:#e0e0e0;
+	background-color: #a0a0a0;
+	width: 160px;
+	padding: 0.5em;
+	border-radius: 0.4em;
+	margin: 2em auto;
+}
+
+.running .status{
+	color:#fff;
+	background-color:#f39c12;
+	-webkit-animation-duration: 500ms;
+  	-webkit-animation-name: pulsate;
+  	-webkit-animation-iteration-count: infinite;
+  	-webkit-animation-direction: alternate;
 }
