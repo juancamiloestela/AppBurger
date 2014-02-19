@@ -1,17 +1,17 @@
 //
 //  App.m
-//  Capsule
+//  Burger
 //
 //  Created by Juan Camilo Estela on 11/23/12.
 //  Copyright (c) 2012 Juan Camilo Estela. All rights reserved.
 //
 
-#import "Capsule.h"
-#import "CapsuleMenuItem.h"
+#import "Burger.h"
+#import "BurgerMenuItem.h"
 
 
 
-@implementation Capsule
+@implementation Burger
 
 - (id) init{
     userData = [NSUserDefaults standardUserDefaults];
@@ -300,7 +300,7 @@
 - (int) addStatusBarItem:(NSString *)label withCallbackNamed:(NSString *)callbackId{
     NSLog(@"Added status bar item %@, %@",label,callbackId);
     
-    CapsuleMenuItem *menuItem = [[CapsuleMenuItem alloc] initWithTitle:label action:@selector(triggerCallback:) keyEquivalent:@""];
+    BurgerMenuItem *menuItem = [[BurgerMenuItem alloc] initWithTitle:label action:@selector(triggerCallback:) keyEquivalent:@""];
     [menuItem setTarget:self];
     [menuItem setCallbackId:callbackId];
     [[appStatusBar menu] addItem:menuItem];
@@ -313,16 +313,16 @@
 }
 
 - (void) triggerCallback:(id)sender{
-    CapsuleMenuItem *menuItem = (CapsuleMenuItem *)sender;
+    BurgerMenuItem *menuItem = (BurgerMenuItem *)sender;
     NSLog(@"Triggering Callback %@", menuItem.callbackId);
     
-    NSString *js = [NSString stringWithFormat:@"Capsule._callbacks['%@']();",menuItem.callbackId];
+    NSString *js = [NSString stringWithFormat:@"Burger._callbacks['%@']();",menuItem.callbackId];
     [appWebView stringByEvaluatingJavaScriptFromString:js];
 }
 
 - (void) setStatusBarIcon:(NSString *)imagePath withActiveIcon:(NSString *)activeImagePath{
     NSLog(@"status bar icon %@",imagePath);
-    //imagePath = @"http://localhost/Capsule/www/img/defaultStatusBarIcon.png";
+    //imagePath = @"http://localhost/Burger/www/img/defaultStatusBarIcon.png";
     //imagePath = @"/www/img/defaultStatusBarIcon.png";
 
     NSImage *image = nil;
@@ -529,7 +529,7 @@
                                                             NSUserDomainMask,
                                                             YES);
     
-    return [[pathList objectAtIndex:0] stringByAppendingPathComponent:@"Capsule"];
+    return [[pathList objectAtIndex:0] stringByAppendingPathComponent:@"Burger"];
 }
 
 - (void) sendNotificationWithTitle: (NSString *) title andMessage: (NSString *) message withSound: (BOOL) sound{

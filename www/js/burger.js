@@ -3,7 +3,7 @@
 
 (function(){
 
-	window.Capsule = {
+	window.Burger = {
 		
 		// Helpers
 		_basicHash: function(str){
@@ -24,8 +24,8 @@
 		_callbacks:{},
 		_registerCallback: function(callback){
 			if (typeof callback === 'function'){
-				var callbackId = Capsule._basicHash(callback.toString());
-				Capsule._callbacks[callbackId] = callback;
+				var callbackId = Burger._basicHash(callback.toString());
+				Burger._callbacks[callbackId] = callback;
 				return callbackId;
 			}
 			return false;
@@ -33,7 +33,7 @@
 
 		// Environment
 		isRunningOnBrowser: function(){
-			return cCapsule.isRunningOnBrowser();
+			return cBurger.isRunningOnBrowser();
 		},
 
 		// OSX SPECIFIC
@@ -41,140 +41,140 @@
 
 		// App specific
 		showDockIcon: function(){
-			return cCapsule.showDockIcon();
+			return cBurger.showDockIcon();
 		}, // Done
 		hideDockIcon: function(){
-			return cCapsule.hideDockIcon();
+			return cBurger.hideDockIcon();
 		}, // Done
 		quit: function(){
-			return cCapsule.quit();
+			return cBurger.quit();
 		}, // Done
 		setDockIcon: function(){
 
 		},
 		bounceDockIcon: function(type){
 			type = (type === undefined) ? 'informative' : type;
-			return cCapsule.bounceDockIcon(type);
+			return cBurger.bounceDockIcon(type);
 		}, // Done
 
 		// user data
 		getUserData: function(key){
-			return cCapsule.getUserData(key);
+			return cBurger.getUserData(key);
 		}, // Done
 		setUserData: function(key, value){
-			return cCapsule.setUserData(key, value);
+			return cBurger.setUserData(key, value);
 		}, // Done
 		
 		// window management
 		createNewWindow: function(){
-			return cCapsule.createNewWindow();
+			return cBurger.createNewWindow();
 		},
 		closeWindow: function(){
-			return cCapsule.closeWindow();
+			return cBurger.closeWindow();
 		},
 		hideWindow: function(){
-			return cCapsule.hideWindow();
+			return cBurger.hideWindow();
 		},
 		showWindow: function(){
-			return cCapsule.showWindow();
+			return cBurger.showWindow();
 		},
 
 		disableCloseWindowButton: function(){
-			return cCapsule.disableCloseWindowButton();
+			return cBurger.disableCloseWindowButton();
 		}, // Done
 		enableCloseWindowButton: function(){
-			return cCapsule.enableCloseWindowButton();
+			return cBurger.enableCloseWindowButton();
 		}, // Done
 		disableMinimizeWindowButton: function(){
-			return cCapsule.disableMinimizeWindowButton();
+			return cBurger.disableMinimizeWindowButton();
 		}, // Done
 		enableMinimizeWindowButton: function(){
-			return cCapsule.enableMinimizeWindowButton();
+			return cBurger.enableMinimizeWindowButton();
 		}, // Done
 		disableZoomWindowButton: function(){
-			return cCapsule.disableZoomWindowButton();
+			return cBurger.disableZoomWindowButton();
 		}, // Done
 		enableZoomWindowButton: function(){
-			return cCapsule.enableZoomWindowButton();
+			return cBurger.enableZoomWindowButton();
 		}, // Done
 		hideCloseWindowButton: function(){
-			return cCapsule.hideCloseWindowButton();
+			return cBurger.hideCloseWindowButton();
 		}, // Done
 		showCloseWindowButton: function(){
-			return cCapsule.showCloseWindowButton();
+			return cBurger.showCloseWindowButton();
 		}, // Done
 		hideMinimizeWindowButton: function(){
-			return cCapsule.hideMinimizeWindowButton();
+			return cBurger.hideMinimizeWindowButton();
 		}, // Done
 		showZoomWindowButton: function(){
-			return cCapsule.showZoomWindowButton();
+			return cBurger.showZoomWindowButton();
 		}, // Done
 		hideZoomWindowButton: function(){
-			return cCapsule.hideZoomWindowButton();
+			return cBurger.hideZoomWindowButton();
 		}, // Done
 		showMinimizeWindowButton: function(){
-			return cCapsule.showMinimizeWindowButton();
+			return cBurger.showMinimizeWindowButton();
 		}, // Done
 		minimizeWindow: function(){
-			return cCapsule.minimizeWindow();
+			return cBurger.minimizeWindow();
 		}, // Done
 		unminimizeWindow: function(){
-			return cCapsule.unminimizeWindow();
+			return cBurger.unminimizeWindow();
 		}, // Done
 		centerWindow: function(){
-			return cCapsule.centerWindow();
+			return cBurger.centerWindow();
 		}, // Done
 		resizeWindow: function(x,y,width,height){
-			return cCapsule.resizeWindow(x,y,width,height);
+			return cBurger.resizeWindow(x,y,width,height);
 		}, // Done
 		setWindowX: function(x){
-			return cCapsule.setWindowX(x);
+			return cBurger.setWindowX(x);
 		}, // Done
 		setWindowY: function(y){
-			return cCapsule.setWindowY(y);
+			return cBurger.setWindowY(y);
 		}, // Done
 		setWindowWidth: function(w){
-			return cCapsule.setWindowWidth(w);
+			return cBurger.setWindowWidth(w);
 		}, // Done
 		setWindowHeight: function(h){
-			return cCapsule.setWindowHeight(h);
+			return cBurger.setWindowHeight(h);
 		}, // Done
 		disableWindowResize: function(){
-			return cCapsule.disableWindowResize();
+			return cBurger.disableWindowResize();
 		}, // Done
 		enableWindowResize: function(){
-			return cCapsule.enableWindowResize();
+			return cBurger.enableWindowResize();
 		}, // Done
 		hideWindowTitleBar: function(){
-			return cCapsule.hideWindowTitleBar();
+			return cBurger.hideWindowTitleBar();
 		}, // Done
 		showWindowTitleBar: function(){
-			return cCapsule.showWindowTitleBar();
+			return cBurger.showWindowTitleBar();
 		}, // Buggy - buttons dissapear
 		setWindowTitle: function(title){
-			return cCapsule.setWindowTitle(title);
+			return cBurger.setWindowTitle(title);
 		}, // Done
 		getWindowTitle: function(){
-			return cCapsule.getWindowTitle();
+			return cBurger.getWindowTitle();
 		}, // Done
 
 		// status bar
 		addStatusBarItem: function(label, callback){
-			var callbackId = Capsule._registerCallback(callback);
-			return cCapsule.addStatusBarItem(label, callbackId);
+			var callbackId = Burger._registerCallback(callback);
+			return cBurger.addStatusBarItem(label, callbackId);
 		}, // Done
 		removeStatusBarItem: function(label){
-			return cCapsule.removeStatusBarItem(label, callbackId);
+			return cBurger.removeStatusBarItem(label, callbackId);
 		},
 		disableStatusBarItem: function(){},
 		enableStatusBarItem: function(){},
 		checkStatusBarItem: function(){},
 		uncheckStatusBarItem: function(){},
 		setStatusBarIcon: function(pathToIcon, pathToActiveIcon){
-			return cCapsule.setStatusBarIcon(pathToIcon, pathToActiveIcon);
+			return cBurger.setStatusBarIcon(pathToIcon, pathToActiveIcon);
 		}, // Done
 		setStatusBarLabel: function(label){
-			return cCapsule.setStatusBarLabel(label);
+			return cBurger.setStatusBarLabel(label);
 		}, // Done
 
 		// application menu
@@ -184,60 +184,60 @@
 
 		// file access
 		getCwd: function(){
-			return cCapsule.getCwd();
+			return cBurger.getCwd();
 		}, // Done
 		setCwd: function(path){
-			return cCapsule.setCwd(path);
+			return cBurger.setCwd(path);
 		}, // Done
 		isDir: function(path){
-			return cCapsule.isDir(path);
+			return cBurger.isDir(path);
 		}, // Done
 		isFile: function(path){
-			return cCapsule.isFile(path);
+			return cBurger.isFile(path);
 		}, // Done
 		readDir: function(path){
-			return cCapsule.readDir(path);
+			return cBurger.readDir(path);
 		}, // Done
 		makeDir: function(path){
-			return cCapsule.makeDir(path);
+			return cBurger.makeDir(path);
 		}, // Done
 		deleteDir: function(path){
-			return cCapsule.deleteDir(path);
+			return cBurger.deleteDir(path);
 		}, // Done
 		readFile: function(path){
-			return cCapsule.readFile(path);
+			return cBurger.readFile(path);
 		}, // Done
 		writeFile: function(path, data, mode){
-			return cCapsule.writeFile(path, data, mode);
+			return cBurger.writeFile(path, data, mode);
 		}, // Done, pending mode
 		deleteFile: function(path){
-			return cCapsule.deleteFile(path);
+			return cBurger.deleteFile(path);
 		}, // Done
 		copyFile: function(from, to){
-			return cCapsule.copyFile(from, to);
+			return cBurger.copyFile(from, to);
 		}, // Done
 		moveFile: function(from, to){
-			return cCapsule.moveFile(from, to);
+			return cBurger.moveFile(from, to);
 		}, // Done
         download: function(url, to){
-            return cCapsule.download(url, to);
+            return cBurger.download(url, to);
         }, // Done
         unzip: function(source, to){
-            return cCapsule.unzip(source, to);
+            return cBurger.unzip(source, to);
         }, // Done - Cannot overwrite!
         getAppSupportPath: function(){
-            return cCapsule.getAppSupportPath();
+            return cBurger.getAppSupportPath();
         }, // Done
         sendNotification: function(title, message, sound){
             sound = (sound === undefined) ? true : sound;
-            return cCapsule.sendNotification(title, message, sound);
+            return cBurger.sendNotification(title, message, sound);
         } // Done
 	};
 
 
 
 
-	var jsCapsule = {
+	var jsBurger = {
 		isRunningOnBrowser: function(){
 			return true;
 		},
@@ -263,8 +263,8 @@
 		_callbacks:{},
 		_registerCallback: function(callback){
 			if (typeof callback === 'function'){
-				var callbackId = jsCapsule._basicHash(callback.toString());
-				jsCapsule._callbacks[callbackId] = callback;
+				var callbackId = jsBurger._basicHash(callback.toString());
+				jsBurger._callbacks[callbackId] = callback;
 				return callbackId;
 			}
 			return false;
@@ -354,8 +354,8 @@
 	};
 	
 
-	window.capsuleReadyEvent = document.createEvent('Events');
-	capsuleReadyEvent.initEvent('capsuleready',true,false);
+	window.BurgerReadyEvent = document.createEvent('Events');
+	BurgerReadyEvent.initEvent('burgerready',true,false);
 
 	window.webviewReadyEvent = document.createEvent('Events');
 	webviewReadyEvent.initEvent('webviewready',true,false);
@@ -363,24 +363,29 @@
     if (!/\.app/.test(location.href)){
 		// is running in browser
 		try {
-			if (cCapsule){
-				// merge with jsCapsule
+			if (cBurger){
+				// merge with jsBurger
 			}
 		}catch(e){
-			window.Capsule = jsCapsule;
+			window.Burger = jsBurger;
 		}
 
 		window.addEventListener('load', function(){
 			document.dispatchEvent(webviewReadyEvent);
 		}, false);
 	}
-
+ try{
+ if (cBurger){
+ alert('has cBurger');
+ }
+ }catch(e){
+ alert('has no cBurger');
+ }
 	document.addEventListener('webviewready', function(){
 		// do stuff before initialization
-		document.dispatchEvent(capsuleReadyEvent);
+		document.dispatchEvent(BurgerReadyEvent);
 	}, false);
 
 })();
-
 
 

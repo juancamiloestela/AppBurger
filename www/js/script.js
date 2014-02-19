@@ -2,13 +2,13 @@
 App = (function(){
 
 	function init(){
-		Capsule.centerWindow();
+		Burger.centerWindow();
 		setTimeout(function(){
 			// useless but fancy boot up sequence delay
 			document.body.className = 'running';
-			document.querySelector('.status').innerHTML = 'All systems OK';
+			document.querySelector('.status').innerHTML = 'Ready to eat!';
 		}, 1000);
-	};
+	}
 
 	return {
 		init: init
@@ -17,7 +17,7 @@ App = (function(){
 })();
 
 
-document.addEventListener('capsuleready', function(){
+document.addEventListener('burgerready', function(){
 	// init app
 	App.init();
 }, false);

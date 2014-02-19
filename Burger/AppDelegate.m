@@ -1,6 +1,6 @@
 //
 //  AppDelegate.m
-//  Capsule
+//  Burger
 //
 //  Created by Juan Camilo Estela on 10/29/12.
 //  Copyright (c) 2012 Juan Camilo Estela. All rights reserved.
@@ -43,7 +43,7 @@ typedef struct
 -(void)awakeFromNib{
     statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
     [statusItem setMenu:statusMenu];
-    [statusItem setTitle:@"Capsule"];
+    [statusItem setTitle:@"Burger"];
     [statusItem setHighlightMode:YES];
     
     NSString *indexPath = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"www"];
@@ -55,7 +55,7 @@ typedef struct
     [webView setFrameLoadDelegate:self];
 	[webView setUIDelegate: self];
     
-    appInstance = [[Capsule alloc] init];
+    appInstance = [[Burger alloc] init];
     consoleInstance = [[Console alloc] init];
     
     [appInstance setAppWindow:[self window]];
@@ -111,7 +111,7 @@ typedef struct
      'console'.  We can use this object in JavaScript by referencing the 'console'
      property of the 'window' object.   */
     [windowScriptObject setValue:consoleInstance forKey:@"console"];
-    [windowScriptObject setValue:appInstance forKey:@"cCapsule"];
+    [windowScriptObject setValue:appInstance forKey:@"cBurger"];
 }
 
 - (id)invokeDefaultMethodWithArguments:(NSArray *)args{
@@ -132,7 +132,7 @@ typedef struct
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSURL *appSupportURL = [[fileManager URLsForDirectory:NSApplicationSupportDirectory inDomains:NSUserDomainMask] lastObject];
-    return [appSupportURL URLByAppendingPathComponent:@"com.mecannical.Capsule"];
+    return [appSupportURL URLByAppendingPathComponent:@"com.revolution.Burger"];
 }
 
 // Creates if necessary and returns the managed object model for the application.
@@ -142,7 +142,7 @@ typedef struct
         return _managedObjectModel;
     }
 	
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"Capsule" withExtension:@"momd"];
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"Burger" withExtension:@"momd"];
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return _managedObjectModel;
 }
@@ -189,7 +189,7 @@ typedef struct
         }
     }
     
-    NSURL *url = [applicationFilesDirectory URLByAppendingPathComponent:@"Capsule.storedata"];
+    NSURL *url = [applicationFilesDirectory URLByAppendingPathComponent:@"Burger.storedata"];
     NSPersistentStoreCoordinator *coordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:mom] autorelease];
     if (![coordinator addPersistentStoreWithType:NSXMLStoreType configuration:nil URL:url options:nil error:&error]) {
         [[NSApplication sharedApplication] presentError:error];

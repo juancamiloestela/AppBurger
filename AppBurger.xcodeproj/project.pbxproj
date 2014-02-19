@@ -7,42 +7,43 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4608CE9E16668FA900B5DD4A /* Capsule.m in Sources */ = {isa = PBXBuildFile; fileRef = 4608CE8C16668FA900B5DD4A /* Capsule.m */; };
 		4608CE9F16668FA900B5DD4A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4608CE8E16668FA900B5DD4A /* AppDelegate.m */; };
-		4608CEA216668FA900B5DD4A /* Capsule.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4608CE9316668FA900B5DD4A /* Capsule.xcdatamodeld */; };
+		4608CEA216668FA900B5DD4A /* Burrito.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4608CE9316668FA900B5DD4A /* Burrito.xcdatamodeld */; };
 		4608CEA316668FA900B5DD4A /* Console.m in Sources */ = {isa = PBXBuildFile; fileRef = 4608CE9616668FA900B5DD4A /* Console.m */; };
-		4608CEA416668FA900B5DD4A /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4608CE9716668FA900B5DD4A /* Credits.rtf */; };
-		4608CEA616668FA900B5DD4A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4608CE9B16668FA900B5DD4A /* MainMenu.xib */; };
 		4608CEA716668FA900B5DD4A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4608CE9D16668FA900B5DD4A /* main.m */; };
 		4644FA15163F181F00742E7D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4644FA14163F181F00742E7D /* Cocoa.framework */; };
 		4644FA35163F203900742E7D /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4644FA34163F203900742E7D /* WebKit.framework */; };
 		464A60EC163F32DC0092AE1D /* www in Resources */ = {isa = PBXBuildFile; fileRef = 464A60EB163F32DC0092AE1D /* www */; };
-		46BFA8E016F25100001158B5 /* CapsuleMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BFA8DF16F25100001158B5 /* CapsuleMenuItem.m */; };
+		46BFA8E016F25100001158B5 /* BurgerMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BFA8DF16F25100001158B5 /* BurgerMenuItem.m */; };
+		ADFE52C618B45876000D1E2D /* Burger.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFE52C518B45876000D1E2D /* Burger.m */; };
+		ADFE52CD18B45DA2000D1E2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADFE52C718B45DA2000D1E2D /* MainMenu.xib */; };
+		ADFE52CE18B45DA2000D1E2D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = ADFE52C918B45DA2000D1E2D /* Credits.rtf */; };
+		ADFE52CF18B45DA2000D1E2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ADFE52CB18B45DA2000D1E2D /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4608CE8B16668FA900B5DD4A /* Capsule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Capsule.h; sourceTree = "<group>"; };
-		4608CE8C16668FA900B5DD4A /* Capsule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Capsule.m; sourceTree = "<group>"; };
+		4608CE8B16668FA900B5DD4A /* Burger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Burger.h; sourceTree = "<group>"; };
 		4608CE8D16668FA900B5DD4A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4608CE8E16668FA900B5DD4A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		4608CE9116668FA900B5DD4A /* Capsule-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Capsule-Info.plist"; sourceTree = "<group>"; };
-		4608CE9216668FA900B5DD4A /* Capsule-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Capsule-Prefix.pch"; sourceTree = "<group>"; };
-		4608CE9416668FA900B5DD4A /* Capsule.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Capsule.xcdatamodel; sourceTree = "<group>"; };
+		4608CE9116668FA900B5DD4A /* AppBurger-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AppBurger-Info.plist"; sourceTree = "<group>"; };
+		4608CE9216668FA900B5DD4A /* AppBurger-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppBurger-Prefix.pch"; sourceTree = "<group>"; };
+		4608CE9416668FA900B5DD4A /* Burrito.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Burrito.xcdatamodel; sourceTree = "<group>"; };
 		4608CE9516668FA900B5DD4A /* Console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Console.h; sourceTree = "<group>"; };
 		4608CE9616668FA900B5DD4A /* Console.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Console.m; sourceTree = "<group>"; };
-		4608CE9816668FA900B5DD4A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		4608CE9A16668FA900B5DD4A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		4608CE9C16668FA900B5DD4A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		4608CE9D16668FA900B5DD4A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		4644FA10163F181F00742E7D /* Capsule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Capsule.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4644FA10163F181F00742E7D /* AppBurger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppBurger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4644FA14163F181F00742E7D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		4644FA17163F181F00742E7D /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		4644FA18163F181F00742E7D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		4644FA19163F181F00742E7D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4644FA34163F203900742E7D /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		464A60EB163F32DC0092AE1D /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
-		46BFA8DE16F25100001158B5 /* CapsuleMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapsuleMenuItem.h; sourceTree = "<group>"; };
-		46BFA8DF16F25100001158B5 /* CapsuleMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapsuleMenuItem.m; sourceTree = "<group>"; };
+		46BFA8DE16F25100001158B5 /* BurgerMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurgerMenuItem.h; sourceTree = "<group>"; };
+		46BFA8DF16F25100001158B5 /* BurgerMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BurgerMenuItem.m; sourceTree = "<group>"; };
+		ADFE52C518B45876000D1E2D /* Burger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Burger.m; sourceTree = "<group>"; };
+		ADFE52C818B45DA2000D1E2D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = Burger/en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		ADFE52CA18B45DA2000D1E2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = Burger/en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		ADFE52CC18B45DA2000D1E2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Burger/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,31 +59,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4608CE8A16668FA900B5DD4A /* Capsule */ = {
+		4608CE8A16668FA900B5DD4A /* AppBurger */ = {
 			isa = PBXGroup;
 			children = (
-				4608CE8B16668FA900B5DD4A /* Capsule.h */,
-				4608CE8C16668FA900B5DD4A /* Capsule.m */,
-				46BFA8DE16F25100001158B5 /* CapsuleMenuItem.h */,
-				46BFA8DF16F25100001158B5 /* CapsuleMenuItem.m */,
+				4608CE8B16668FA900B5DD4A /* Burger.h */,
+				ADFE52C518B45876000D1E2D /* Burger.m */,
+				46BFA8DE16F25100001158B5 /* BurgerMenuItem.h */,
+				46BFA8DF16F25100001158B5 /* BurgerMenuItem.m */,
 				4608CE8D16668FA900B5DD4A /* AppDelegate.h */,
 				4608CE8E16668FA900B5DD4A /* AppDelegate.m */,
 				4608CEA816668FBF00B5DD4A /* Supporting Files */,
-				4608CE9316668FA900B5DD4A /* Capsule.xcdatamodeld */,
+				4608CE9316668FA900B5DD4A /* Burrito.xcdatamodeld */,
 				4608CE9516668FA900B5DD4A /* Console.h */,
 				4608CE9616668FA900B5DD4A /* Console.m */,
-				4608CE9B16668FA900B5DD4A /* MainMenu.xib */,
+				ADFE52C718B45DA2000D1E2D /* MainMenu.xib */,
 			);
-			path = Capsule;
+			name = AppBurger;
+			path = Burger;
 			sourceTree = "<group>";
 		};
 		4608CEA816668FBF00B5DD4A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				4608CE9116668FA900B5DD4A /* Capsule-Info.plist */,
-				4608CE9216668FA900B5DD4A /* Capsule-Prefix.pch */,
-				4608CE9716668FA900B5DD4A /* Credits.rtf */,
-				4608CE9916668FA900B5DD4A /* InfoPlist.strings */,
+				4608CE9116668FA900B5DD4A /* AppBurger-Info.plist */,
+				4608CE9216668FA900B5DD4A /* AppBurger-Prefix.pch */,
+				ADFE52C918B45DA2000D1E2D /* Credits.rtf */,
+				ADFE52CB18B45DA2000D1E2D /* InfoPlist.strings */,
 				4608CE9D16668FA900B5DD4A /* main.m */,
 			);
 			name = "Supporting Files";
@@ -91,7 +93,7 @@
 		4644FA05163F181F00742E7D = {
 			isa = PBXGroup;
 			children = (
-				4608CE8A16668FA900B5DD4A /* Capsule */,
+				4608CE8A16668FA900B5DD4A /* AppBurger */,
 				464A60EB163F32DC0092AE1D /* www */,
 				4644FA13163F181F00742E7D /* Frameworks */,
 				4644FA11163F181F00742E7D /* Products */,
@@ -101,7 +103,7 @@
 		4644FA11163F181F00742E7D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4644FA10163F181F00742E7D /* Capsule.app */,
+				4644FA10163F181F00742E7D /* AppBurger.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -129,9 +131,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4644FA0F163F181F00742E7D /* Capsule */ = {
+		4644FA0F163F181F00742E7D /* AppBurger */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4644FA31163F181F00742E7D /* Build configuration list for PBXNativeTarget "Capsule" */;
+			buildConfigurationList = 4644FA31163F181F00742E7D /* Build configuration list for PBXNativeTarget "AppBurger" */;
 			buildPhases = (
 				4644FA0C163F181F00742E7D /* Sources */,
 				4644FA0D163F181F00742E7D /* Frameworks */,
@@ -141,9 +143,9 @@
 			);
 			dependencies = (
 			);
-			name = Capsule;
+			name = AppBurger;
 			productName = Capsule;
-			productReference = 4644FA10163F181F00742E7D /* Capsule.app */;
+			productReference = 4644FA10163F181F00742E7D /* AppBurger.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -152,10 +154,10 @@
 		4644FA07163F181F00742E7D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
-				ORGANIZATIONNAME = "Juan Estela";
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Juan Camilo Estela";
 			};
-			buildConfigurationList = 4644FA0A163F181F00742E7D /* Build configuration list for PBXProject "Capsule" */;
+			buildConfigurationList = 4644FA0A163F181F00742E7D /* Build configuration list for PBXProject "AppBurger" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -167,7 +169,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4644FA0F163F181F00742E7D /* Capsule */,
+				4644FA0F163F181F00742E7D /* AppBurger */,
 			);
 		};
 /* End PBXProject section */
@@ -178,8 +180,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				464A60EC163F32DC0092AE1D /* www in Resources */,
-				4608CEA416668FA900B5DD4A /* Credits.rtf in Resources */,
-				4608CEA616668FA900B5DD4A /* MainMenu.xib in Resources */,
+				ADFE52CF18B45DA2000D1E2D /* InfoPlist.strings in Resources */,
+				ADFE52CE18B45DA2000D1E2D /* Credits.rtf in Resources */,
+				ADFE52CD18B45DA2000D1E2D /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,40 +193,43 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4608CE9E16668FA900B5DD4A /* Capsule.m in Sources */,
 				4608CE9F16668FA900B5DD4A /* AppDelegate.m in Sources */,
-				4608CEA216668FA900B5DD4A /* Capsule.xcdatamodeld in Sources */,
+				4608CEA216668FA900B5DD4A /* Burrito.xcdatamodeld in Sources */,
 				4608CEA316668FA900B5DD4A /* Console.m in Sources */,
+				ADFE52C618B45876000D1E2D /* Burger.m in Sources */,
 				4608CEA716668FA900B5DD4A /* main.m in Sources */,
-				46BFA8E016F25100001158B5 /* CapsuleMenuItem.m in Sources */,
+				46BFA8E016F25100001158B5 /* BurgerMenuItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		4608CE9716668FA900B5DD4A /* Credits.rtf */ = {
+		ADFE52C718B45DA2000D1E2D /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				4608CE9816668FA900B5DD4A /* en */,
-			);
-			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
-		4608CE9916668FA900B5DD4A /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4608CE9A16668FA900B5DD4A /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		4608CE9B16668FA900B5DD4A /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4608CE9C16668FA900B5DD4A /* en */,
+				ADFE52C818B45DA2000D1E2D /* en */,
 			);
 			name = MainMenu.xib;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		ADFE52C918B45DA2000D1E2D /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ADFE52CA18B45DA2000D1E2D /* en */,
+			);
+			name = Credits.rtf;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		ADFE52CB18B45DA2000D1E2D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ADFE52CC18B45DA2000D1E2D /* en */,
+			);
+			name = InfoPlist.strings;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -233,7 +239,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
@@ -260,7 +265,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
@@ -279,11 +283,12 @@
 		4644FA32163F181F00742E7D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Capsule/Capsule-Prefix.pch";
-				INFOPLIST_FILE = "$(SRCROOT)/Capsule/Capsule-Info.plist";
-				PRODUCT_NAME = Capsule;
+				GCC_PREFIX_HEADER = "Burger/AppBurger-Prefix.pch";
+				INFOPLIST_FILE = "Burger/AppBurger-Info.plist";
+				PRODUCT_NAME = AppBurger;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -291,11 +296,12 @@
 		4644FA33163F181F00742E7D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Capsule/Capsule-Prefix.pch";
-				INFOPLIST_FILE = "$(SRCROOT)/Capsule/Capsule-Info.plist";
-				PRODUCT_NAME = Capsule;
+				GCC_PREFIX_HEADER = "Burger/AppBurger-Prefix.pch";
+				INFOPLIST_FILE = "Burger/AppBurger-Info.plist";
+				PRODUCT_NAME = AppBurger;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -303,7 +309,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4644FA0A163F181F00742E7D /* Build configuration list for PBXProject "Capsule" */ = {
+		4644FA0A163F181F00742E7D /* Build configuration list for PBXProject "AppBurger" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4644FA2F163F181F00742E7D /* Debug */,
@@ -312,7 +318,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4644FA31163F181F00742E7D /* Build configuration list for PBXNativeTarget "Capsule" */ = {
+		4644FA31163F181F00742E7D /* Build configuration list for PBXNativeTarget "AppBurger" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4644FA32163F181F00742E7D /* Debug */,
@@ -324,13 +330,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		4608CE9316668FA900B5DD4A /* Capsule.xcdatamodeld */ = {
+		4608CE9316668FA900B5DD4A /* Burrito.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				4608CE9416668FA900B5DD4A /* Capsule.xcdatamodel */,
+				4608CE9416668FA900B5DD4A /* Burrito.xcdatamodel */,
 			);
-			currentVersion = 4608CE9416668FA900B5DD4A /* Capsule.xcdatamodel */;
-			path = Capsule.xcdatamodeld;
+			currentVersion = 4608CE9416668FA900B5DD4A /* Burrito.xcdatamodel */;
+			path = Burrito.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
