@@ -6,7 +6,6 @@ App = (function(){
 		setTimeout(function(){
 			// useless but fancy boot up sequence delay
 			document.body.className = 'running';
-			document.querySelector('.status').innerHTML = 'Ready to eat!';
 		}, 1000);
 	}
 

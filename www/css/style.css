@@ -15,12 +15,47 @@ body{
 
 h1{
 	border: 3px solid #fff;
-	display: inline-block;
-	margin: 33% auto 0 auto;
+	margin: 0.35em auto;
 	padding: 0.3em 0.5em;
 	text-transform: uppercase;
 	letter-spacing: 0.1em;
+	width:200px;
+	-webkit-transform: translate3d(0, -1000px, 0) rotateZ(20deg);
+	-webkit-transition: all 1000ms cubic-bezier(.89,.38,.89,1.21) 250ms;
 }
+
+.bun{
+	background-color:#FFBE4D;
+	margin: 0 auto;
+	padding: 0.3em 0.5em;
+	width:200px;
+	height:1em;
+}
+	.bun.top{
+		height:2.5em;
+		border-radius:3em 3em 0 0;
+		-webkit-transform: translate3d(0, -1000px, 0) rotateZ(50deg);
+		-webkit-transition: all 1000ms cubic-bezier(.89,.38,.89,1.21) 500ms;
+	}
+	.bun.bottom{
+		border-radius:0 0 1em 1em;
+		-webkit-transform: translate3d(0, -1000px, 0) rotateZ(-40deg);
+		-webkit-transition: all 1000ms cubic-bezier(.89,.38,.89,1.21) 0ms;
+	}
+
+
+.running .bun.top{
+	-webkit-transform: translate3d(0, 150px, 0) rotateZ(0deg);
+}
+
+.running h1{
+	-webkit-transform: translate3d(0, 150px, 0) rotateZ(0deg);
+}
+
+.running .bun.bottom{
+	-webkit-transform: translate3d(0, 150px, 0) rotateZ(0deg);
+}
+
 
 @-webkit-keyframes pulsate {
   0% {
