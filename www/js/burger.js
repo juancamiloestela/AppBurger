@@ -374,13 +374,7 @@
 			document.dispatchEvent(webviewReadyEvent);
 		}, false);
 	}
- try{
- if (cBurger){
- alert('has cBurger');
- }
- }catch(e){
- alert('has no cBurger');
- }
+
 	document.addEventListener('webviewready', function(){
 		// do stuff before initialization
 		document.dispatchEvent(BurgerReadyEvent);

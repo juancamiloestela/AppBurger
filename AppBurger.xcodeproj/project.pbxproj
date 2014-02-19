@@ -144,7 +144,7 @@
 			dependencies = (
 			);
 			name = AppBurger;
-			productName = Capsule;
+			productName = AppBurger;
 			productReference = 4644FA10163F181F00742E7D /* AppBurger.app */;
 			productType = "com.apple.product-type.application";
 		};
