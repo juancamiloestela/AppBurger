@@ -183,15 +183,6 @@
 		addAppMenuItem: function(label,parent, callback){},
 
 		// file access
-		getWebRootPath: function(){
-			return cBurger.getWebRootPath();
-		},
-		getResourcePath: function(){
-			return cBurger.getResourcePath();
-		},
-		getAppPath: function(){
-			return cBurger.getAppPath();
-		},
 		getCwd: function(){
 			return cBurger.getCwd();
 		}, // Done
@@ -343,9 +334,6 @@
 		addAppMenuItem: function(label,parent, callback){},
 
 		// file access
-		getWebRootPath: function(){},
-		getResourcePath: function(){},
-		getAppPath: function(){}, // Done
 		getCwd: function(){}, // Done
 		setCwd: function(path){}, // Done
 		isDir: function(path){}, // Done

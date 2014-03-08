@@ -106,12 +106,6 @@
         return @"setStatusBarIcon";
     }else if (sel == @selector(setStatusBarLabel:)){
         return @"setStatusBarLabel";
-    }else if (sel == @selector(getAppPath:)){
-        return @"getAppPath";
-    }else if (sel == @selector(getResourcePath:)){
-        return @"getResourcePath";
-    }else if (sel == @selector(getWebRootPath:)){
-        return @"getWebRootPath";
     }else if (sel == @selector(getCwd:)){
         return @"getCwd";
     }else if (sel == @selector(setCwd:)){
@@ -365,22 +359,6 @@
     [appStatusBar setTitle:text];
 }
 
-
-- (NSString *) getWebRootPath{
-    NSBundle *mainBundle = [NSBundle mainBundle];
-    return [[mainBundle resourcePath] stringByAppendingString:@"/www"];
-}
-
-- (NSString *) getResourcePath{
-    NSBundle *mainBundle = [NSBundle mainBundle];
-    return [mainBundle resourcePath];
-}
-
-- (NSString *) getAppPath{
-    NSBundle *mainBundle = [NSBundle mainBundle];
-    return [mainBundle bundlePath];
-}
-
 - (NSString *) getCwd{
     NSLog (@"Current directory is %@", [fileManager currentDirectoryPath]);
     return [fileManager currentDirectoryPath];
@@ -403,6 +381,7 @@
     path = [path stringByExpandingTildeInPath];
     BOOL isDir;
     BOOL fileExists = [fileManager fileExistsAtPath:path isDirectory:&isDir];
+    NSLog(@"is dir: %c", fileExists);
     if (fileExists){
         return isDir;
     }
