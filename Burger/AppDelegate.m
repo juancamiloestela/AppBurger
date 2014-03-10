@@ -55,6 +55,7 @@ typedef struct
 
     [webView setFrameLoadDelegate:self];
 	[webView setUIDelegate: self];
+    [webView setPolicyDelegate:self];
     
     appInstance = [[Burger alloc] init];
     consoleInstance = [[Console alloc] init];
@@ -97,15 +98,25 @@ typedef struct
     [alert runModal];
 }
 
-- (void)webView:(WebView *)webView decidePolicyForNavigationAction:(NSDictionary *)actionInformation
-        request:(NSURLRequest *)request frame:(WebFrame *)frame decisionListener:(id < WebPolicyDecisionListener >)listener
+
+- (void)webView:(WebView *)webView
+decidePolicyForNavigationAction:(NSDictionary *)actionInformation
+        request:(NSURLRequest *)request
+          frame:(WebFrame *)frame
+decisionListener:(id <WebPolicyDecisionListener>)listener
 {
-    NSString *host = [[request URL] host];
-    NSLog(@"Link %@", host);
-    if (host) {
+    NSLog(@"Navigating to %@", [request URL]);
+    [listener use];
+}
+
+- (void)webView:(WebView *)webView
+decidePolicyForNewWindowAction:(NSDictionary *)actionInformation
+        request:(NSURLRequest *)request
+   newFrameName:(NSString *)frameName
+decisionListener:(id < WebPolicyDecisionListener >)listener {
+    if ([actionInformation objectForKey:WebActionElementKey]) {
+        NSLog(@"Opening in browser %@", [request URL]);
         [[NSWorkspace sharedWorkspace] openURL:[request URL]];
-    } else {
-        [listener use];
     }
 }
 

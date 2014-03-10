@@ -185,6 +185,8 @@
     NSLog(@"show icon dock");
     ProcessSerialNumber psn = { 0, kCurrentProcess };
 	TransformProcessType(&psn, kProcessTransformToForegroundApplication);
+    
+    [[NSApplication sharedApplication] dockTile] setBadgeLabel:]
 }
 
 - (void) quit{
