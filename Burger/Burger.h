@@ -17,10 +17,6 @@
     WebView *appWebView;
 }
 
-/*- (NSString *) get:(NSString *) url;
-- (NSString *) post:(NSString *) url withXMLDataString: (NSString *) xmlString;*/
-
-
 - (void) show;
 - (void) hide;
 - (void) setAppWindow:(NSWindow *) win;

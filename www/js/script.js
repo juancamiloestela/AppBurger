@@ -65,6 +65,7 @@ App = (function() {
 	}
 
 	function init() {
+		Burger.setWindowHeight(500);
 		Burger.centerWindow();
 		addEventListeners();
 		// wait for it...

@@ -65,12 +65,12 @@ typedef struct
     
     
     /// test area
-    NSMenu* rootMenu = [NSApp mainMenu];
+    /*NSMenu* rootMenu = [NSApp mainMenu];
     [rootMenu insertItemWithTitle:@"JUAN" action:@selector(openAppWindow:) keyEquivalent:@"" atIndex:4];
     [rootMenu addItemWithTitle:@"Camilo" action:@selector(openAppWindow:) keyEquivalent:@""];
     [NSMenu setMenuBarVisible:YES];
 
-    NSLog(@"item %@", [rootMenu itemAtIndex:4]);
+    NSLog(@"item %@", [rootMenu itemAtIndex:4]);*/
 
 }
 
@@ -95,6 +95,18 @@ typedef struct
     NSAlert *alert = [[[NSAlert alloc] init] autorelease];
     [alert setMessageText:message];
     [alert runModal];
+}
+
+- (void)webView:(WebView *)webView decidePolicyForNavigationAction:(NSDictionary *)actionInformation
+        request:(NSURLRequest *)request frame:(WebFrame *)frame decisionListener:(id < WebPolicyDecisionListener >)listener
+{
+    NSString *host = [[request URL] host];
+    NSLog(@"Link %@", host);
+    if (host) {
+        [[NSWorkspace sharedWorkspace] openURL:[request URL]];
+    } else {
+        [listener use];
+    }
 }
 
 

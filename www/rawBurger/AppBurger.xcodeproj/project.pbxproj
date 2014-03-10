@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4608CE9F16668FA900B5DD4A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4608CE8E16668FA900B5DD4A /* AppDelegate.m */; };
-		4608CEA216668FA900B5DD4A /* Burrito.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4608CE9316668FA900B5DD4A /* Burrito.xcdatamodeld */; };
 		4608CEA316668FA900B5DD4A /* Console.m in Sources */ = {isa = PBXBuildFile; fileRef = 4608CE9616668FA900B5DD4A /* Console.m */; };
 		4608CEA716668FA900B5DD4A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4608CE9D16668FA900B5DD4A /* main.m */; };
 		4644FA15163F181F00742E7D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4644FA14163F181F00742E7D /* Cocoa.framework */; };
@@ -27,7 +26,6 @@
 		4608CE8E16668FA900B5DD4A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4608CE9116668FA900B5DD4A /* AppBurger-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AppBurger-Info.plist"; sourceTree = "<group>"; };
 		4608CE9216668FA900B5DD4A /* AppBurger-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppBurger-Prefix.pch"; sourceTree = "<group>"; };
-		4608CE9416668FA900B5DD4A /* Burrito.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Burrito.xcdatamodel; sourceTree = "<group>"; };
 		4608CE9516668FA900B5DD4A /* Console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Console.h; sourceTree = "<group>"; };
 		4608CE9616668FA900B5DD4A /* Console.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Console.m; sourceTree = "<group>"; };
 		4608CE9D16668FA900B5DD4A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -69,7 +67,6 @@
 				4608CE8D16668FA900B5DD4A /* AppDelegate.h */,
 				4608CE8E16668FA900B5DD4A /* AppDelegate.m */,
 				4608CEA816668FBF00B5DD4A /* Supporting Files */,
-				4608CE9316668FA900B5DD4A /* Burrito.xcdatamodeld */,
 				4608CE9516668FA900B5DD4A /* Console.h */,
 				4608CE9616668FA900B5DD4A /* Console.m */,
 				ADFE52C718B45DA2000D1E2D /* MainMenu.xib */,
@@ -194,7 +191,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4608CE9F16668FA900B5DD4A /* AppDelegate.m in Sources */,
-				4608CEA216668FA900B5DD4A /* Burrito.xcdatamodeld in Sources */,
 				4608CEA316668FA900B5DD4A /* Console.m in Sources */,
 				ADFE52C618B45876000D1E2D /* Burger.m in Sources */,
 				4608CEA716668FA900B5DD4A /* main.m in Sources */,
@@ -329,18 +325,6 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCVersionGroup section */
-		4608CE9316668FA900B5DD4A /* Burrito.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				4608CE9416668FA900B5DD4A /* Burrito.xcdatamodel */,
-			);
-			currentVersion = 4608CE9416668FA900B5DD4A /* Burrito.xcdatamodel */;
-			path = Burrito.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 4644FA07163F181F00742E7D /* Project object */;
 }
