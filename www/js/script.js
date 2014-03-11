@@ -81,6 +81,7 @@ App = (function() {
 		Burger.setStatusBarIcon('img/statusBarIcon.png', 'img/statusBarIconActive.png');
 		Burger.setWindowHeight(500);
 		Burger.centerWindow();
+		addEventListeners();
 		// wait for it...
 		setTimeout(function() {
 			// useless but fancy boot up sequence delay
