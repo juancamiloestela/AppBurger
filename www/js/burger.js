@@ -49,8 +49,8 @@
 		quit: function(){
 			return cBurger.quit();
 		}, // Done
-		setDockIcon: function(){
-
+		setDockIcon: function(iconPath){
+            return cBurger.setDockIcon(iconPath);
 		},
 		bounceDockIcon: function(type){
 			type = (type === undefined) ? 'informative' : type;

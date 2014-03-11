@@ -8,6 +8,10 @@ App = (function() {
 			appDestination = document.getElementById('app-destination').value,
 			appIdentifier = document.getElementById('app-identifier').value;
 
+		if (appName === '' || appDestination === '' || appIdentifier === ''){
+			return false;
+		}
+
 		Burger.copyFile(Burger.getWebRootPath() + '/rawBurger', appDestination);
 
 		setAppName(appDestination, appName);
@@ -65,6 +69,8 @@ App = (function() {
 	}
 
 	function init() {
+		Burger.setDockIcon('img/icon.png');
+		Burger.setStatusBarIcon('img/statusBarIcon.png', 'img/statusBarIconActive.png');
 		Burger.setWindowHeight(500);
 		Burger.centerWindow();
 		addEventListeners();
