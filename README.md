@@ -1,6 +1,6 @@
 #AppBurger
 
-##Native Mac Apps in HTML, CSS and Javascript
+Native Mac Apps in HTML, CSS and Javascript
 
 ```
 // A Cheese burger coming up!
@@ -23,3 +23,11 @@ document.addEventListener('burgerready', function() {
 ```
 
 See docs in http://juancamiloestela.github.io/AppBurger
+
+## Todos and requested features
+
+- Always on front mode
+- Fullscreen mode for kiosks
+- Success/error message after new app is generated
+- Multi window support
+- Explore data storage mechanisms (sqllite)
