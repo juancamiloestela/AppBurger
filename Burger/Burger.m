@@ -208,7 +208,6 @@
 }
 
 - (void) setDockIcon: (NSString *) imagePath{
-    //NSImage *image = [NSImage imageNamed: @"ChangedIcon"];
     [NSApp setApplicationIconImage: [self getImage:imagePath]];
 }
 

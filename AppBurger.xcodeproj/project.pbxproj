@@ -39,7 +39,7 @@
 		464A60EB163F32DC0092AE1D /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 		46BFA8DE16F25100001158B5 /* BurgerMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurgerMenuItem.h; sourceTree = "<group>"; };
 		46BFA8DF16F25100001158B5 /* BurgerMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BurgerMenuItem.m; sourceTree = "<group>"; };
-		AD10502A18CEBDA700018AE7 /* appBurgerIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = appBurgerIcon.icns; path = ../appBurgerIcon.icns; sourceTree = "<group>"; };
+		AD10502A18CEBDA700018AE7 /* appBurgerIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = appBurgerIcon.icns; sourceTree = "<group>"; };
 		ADFE52C518B45876000D1E2D /* Burger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Burger.m; sourceTree = "<group>"; };
 		ADFE52C818B45DA2000D1E2D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = Burger/en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		ADFE52CA18B45DA2000D1E2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = Burger/en.lproj/Credits.rtf; sourceTree = "<group>"; };
@@ -68,7 +68,6 @@
 				46BFA8DF16F25100001158B5 /* BurgerMenuItem.m */,
 				4608CE8D16668FA900B5DD4A /* AppDelegate.h */,
 				4608CE8E16668FA900B5DD4A /* AppDelegate.m */,
-				AD10502A18CEBDA700018AE7 /* appBurgerIcon.icns */,
 				4608CEA816668FBF00B5DD4A /* Supporting Files */,
 				4608CE9516668FA900B5DD4A /* Console.h */,
 				4608CE9616668FA900B5DD4A /* Console.m */,
@@ -93,6 +92,7 @@
 		4644FA05163F181F00742E7D = {
 			isa = PBXGroup;
 			children = (
+				AD10502A18CEBDA700018AE7 /* appBurgerIcon.icns */,
 				4608CE8A16668FA900B5DD4A /* AppBurger */,
 				464A60EB163F32DC0092AE1D /* www */,
 				4644FA13163F181F00742E7D /* Frameworks */,
