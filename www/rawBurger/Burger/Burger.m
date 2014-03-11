@@ -44,6 +44,8 @@
         return @"hideDockIcon";
     }else if(sel == @selector(showDockIcon:)){
         return @"showDockIcon";
+    }else if(sel == @selector(setDockIcon:)){
+        return @"setDockIcon";
     }else if(sel == @selector(quit:)){
         return @"quit";
     }else if(sel == @selector(hideCloseWindowButton:)){
@@ -162,6 +164,24 @@
     return NO;
 }
 
+- (NSImage *) getImage: (NSString *)imagePath{
+    NSImage *image = nil;
+    
+    if ([imagePath hasPrefix:@"http"]){
+        image = [[NSImage alloc] initByReferencingURL:[[NSURL alloc] initWithString:imagePath]];
+    }else{
+        NSString *resourceName = [[imagePath lastPathComponent] stringByDeletingPathExtension];
+        NSString *resourceExt = [imagePath pathExtension];
+        NSString *resourcePath = [imagePath stringByDeletingLastPathComponent];
+        NSString *rootPath = @"www/";
+        
+        imagePath = [[NSBundle mainBundle] pathForResource:resourceName ofType:resourceExt inDirectory: [NSString stringWithFormat:@"%@%@/",rootPath,resourcePath]];
+        image = [[NSImage alloc] initByReferencingFile:imagePath];
+    }
+    
+    return image;
+}
+
 - (void) setUserDataWithKey:(NSString *)key andValue:(NSString *) value{
     NSLog(@"setting user data %@: %@",key,value);
     [userData setObject:value forKey:key];
@@ -185,6 +205,10 @@
     NSLog(@"show icon dock");
     ProcessSerialNumber psn = { 0, kCurrentProcess };
 	TransformProcessType(&psn, kProcessTransformToForegroundApplication);
+}
+
+- (void) setDockIcon: (NSString *) imagePath{
+    [NSApp setApplicationIconImage: [self getImage:imagePath]];
 }
 
 - (void) quit{
@@ -327,38 +351,8 @@
 }
 
 - (void) setStatusBarIcon:(NSString *)imagePath withActiveIcon:(NSString *)activeImagePath{
-    NSLog(@"status bar icon %@",imagePath);
-    //imagePath = @"http://localhost/Burger/www/img/defaultStatusBarIcon.png";
-    //imagePath = @"/www/img/defaultStatusBarIcon.png";
-
-    NSImage *image = nil;
-    
-    if ([imagePath hasPrefix:@"http"]){
-        image = [[NSImage alloc] initByReferencingURL:[[NSURL alloc] initWithString:imagePath]];
-    }else{
-        NSArray *parts = [imagePath componentsSeparatedByString:@"."];
-        NSString *resourceName = [parts objectAtIndex:0];
-        NSString *resourceExt = [parts objectAtIndex:1];
-
-        imagePath = [[NSBundle mainBundle] pathForResource:resourceName ofType:resourceExt inDirectory:@"www/"];
-        image = [[NSImage alloc] initByReferencingFile:imagePath];
-    }
-    
-    NSImage *activeImage = nil;
-    
-    if ([activeImagePath hasPrefix:@"http"]){
-        image = [[NSImage alloc] initByReferencingURL:[[NSURL alloc] initWithString:activeImagePath]];
-    }else{
-        NSArray *parts = [activeImagePath componentsSeparatedByString:@"."];
-        NSString *resourceName = [parts objectAtIndex:0];
-        NSString *resourceExt = [parts objectAtIndex:1];
-        
-        activeImagePath = [[NSBundle mainBundle] pathForResource:resourceName ofType:resourceExt inDirectory:@"www/"];
-        activeImage = [[NSImage alloc] initByReferencingFile:activeImagePath];
-    }
-    
-    [appStatusBar setImage:image];
-    [appStatusBar setAlternateImage:activeImage];
+    [appStatusBar setImage:[self getImage:imagePath]];
+    [appStatusBar setAlternateImage:[self getImage:activeImagePath]];
 }
 
 - (void) setStatusBarLabel:(NSString *)text{

@@ -55,6 +55,7 @@ typedef struct
 
     [webView setFrameLoadDelegate:self];
 	[webView setUIDelegate: self];
+    [webView setPolicyDelegate:self];
     
     appInstance = [[Burger alloc] init];
     consoleInstance = [[Console alloc] init];
@@ -65,12 +66,12 @@ typedef struct
     
     
     /// test area
-    NSMenu* rootMenu = [NSApp mainMenu];
+    /*NSMenu* rootMenu = [NSApp mainMenu];
     [rootMenu insertItemWithTitle:@"JUAN" action:@selector(openAppWindow:) keyEquivalent:@"" atIndex:4];
     [rootMenu addItemWithTitle:@"Camilo" action:@selector(openAppWindow:) keyEquivalent:@""];
     [NSMenu setMenuBarVisible:YES];
 
-    NSLog(@"item %@", [rootMenu itemAtIndex:4]);
+    NSLog(@"item %@", [rootMenu itemAtIndex:4]);*/
 
 }
 
@@ -95,6 +96,28 @@ typedef struct
     NSAlert *alert = [[[NSAlert alloc] init] autorelease];
     [alert setMessageText:message];
     [alert runModal];
+}
+
+
+- (void)webView:(WebView *)webView
+decidePolicyForNavigationAction:(NSDictionary *)actionInformation
+        request:(NSURLRequest *)request
+          frame:(WebFrame *)frame
+decisionListener:(id <WebPolicyDecisionListener>)listener
+{
+    NSLog(@"Navigating to %@", [request URL]);
+    [listener use];
+}
+
+- (void)webView:(WebView *)webView
+decidePolicyForNewWindowAction:(NSDictionary *)actionInformation
+        request:(NSURLRequest *)request
+   newFrameName:(NSString *)frameName
+decisionListener:(id < WebPolicyDecisionListener >)listener {
+    if ([actionInformation objectForKey:WebActionElementKey]) {
+        NSLog(@"Opening in browser %@", [request URL]);
+        [[NSWorkspace sharedWorkspace] openURL:[request URL]];
+    }
 }
 
 

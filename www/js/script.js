@@ -1,3 +1,11 @@
+/**
+ * AppBurger Generator
+ * An app made with AppBurger to generate new
+ * AppBurger apps.
+ * @author  Juan Camilo Estela
+ * @version  0.1
+ */
+
 App = (function() {
 
 	function generateApp(e) {
@@ -73,7 +81,6 @@ App = (function() {
 		Burger.setStatusBarIcon('img/statusBarIcon.png', 'img/statusBarIconActive.png');
 		Burger.setWindowHeight(500);
 		Burger.centerWindow();
-		addEventListeners();
 		// wait for it...
 		setTimeout(function() {
 			// useless but fancy boot up sequence delay

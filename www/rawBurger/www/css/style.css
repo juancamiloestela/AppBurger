@@ -13,6 +13,10 @@ body{
 	padding:0;
 }
 
+a{
+	color:#FFBE4D;
+}
+
 h1{
 	border: 3px solid #fff;
 	margin: 0.35em auto;
@@ -43,58 +47,16 @@ h1{
 		-webkit-transition: all 1000ms cubic-bezier(.89,.38,.89,1.21) 0ms;
 	}
 
-.generate-app-form{
-	-webkit-transition: opacity 500ms cubic-bezier(.89,.38,.89,1.21) 2000ms;
-	opacity:0;
-	position: absolute;
-	bottom: 0;
-	text-align: center;
-	width: 100%;
-}
 
 .running .bun.top{
-	-webkit-transform: translate3d(0, 150px, 0) rotateZ(0deg);
+	-webkit-transform: translate3d(0, 100px, 0) rotateZ(0deg);
 }
 
 .running h1{
-	-webkit-transform: translate3d(0, 150px, 0) rotateZ(0deg);
+	-webkit-transform: translate3d(0, 100px, 0) rotateZ(0deg);
 }
 
 .running .bun.bottom{
-	-webkit-transform: translate3d(0, 150px, 0) rotateZ(0deg);
+	-webkit-transform: translate3d(0, 100px, 0) rotateZ(0deg);
 }
 
-.running .generate-app-form{
-	opacity:1;
-}
-
-
-@-webkit-keyframes pulsate {
-  0% {
-  	background-color:#FFAF30;
-  	box-shadow: 0 0 9px #FFB43D;
-  }
-
-  100% {
-    background-color:#f39c12;
-    box-shadow: 0 0 0 #FFB43D;
-  }
-}
-
-.status{
-	color:#e0e0e0;
-	background-color: #a0a0a0;
-	width: 160px;
-	padding: 0.5em;
-	border-radius: 0.4em;
-	margin: 2em auto;
-}
-
-.running .status{
-	color:#fff;
-	background-color:#f39c12;
-	-webkit-animation-duration: 500ms;
-  	-webkit-animation-name: pulsate;
-  	-webkit-animation-iteration-count: infinite;
-  	-webkit-animation-direction: alternate;
-}

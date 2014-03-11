@@ -1,8 +1,19 @@
-
+/**
+ * Burger.js
+ * Javascript api for AppBurger
+ * @author Juan Camilo Estela
+ * @version  0.1
+ */
 
 
 (function(){
 
+	/**
+	 * Burger Object
+	 * This object has the functions that call 
+	 * obj-c methods. Only used when obj-c is
+	 * available
+	 */
 	window.Burger = {
 		
 		// Helpers
@@ -186,7 +197,7 @@
 		getWebRootPath: function(){
 			return cBurger.getWebRootPath();
 		},
-		getResourcePath: function(){
+		getResourcePath: function(){ // TODO delete this, is alias of appPath
 			return cBurger.getResourcePath();
 		},
 		getAppPath: function(){
@@ -245,14 +256,17 @@
 
 
 
-
+	/**
+	 * jsBurger Object
+	 * This object is executed on the browser when no
+	 * obj c wrapper is present
+	 */
 	var jsBurger = {
 		isRunningOnBrowser: function(){
 			return true;
 		},
 
-
-		loadPlugin: function(){}, // ??
+		loadPlugin: function(){}, // Pending
 
 		_basicHash: function(str){
 			str = 'C' + str.replace(/[^a-zA-Z0-9]/ig,'');
@@ -280,14 +294,13 @@
 		},
 
 		// OSX SPECIFIC
-		
 
 		// App specific
 		showDockIcon: function(){}, // Done
 		hideDockIcon: function(){}, // Buggy - window hides sometimes
 		quit: function(){}, // Done
-		setDockIcon: function(){},
-		bounceDockIcon: function(){},
+		setDockIcon: function(){}, // Done
+		bounceDockIcon: function(){}, // Done
 
 		// user data
 		getUserData: function(key){}, // Done
@@ -314,10 +327,10 @@
 		unminimizeWindow: function(){}, // Done
 		centerWindow: function(){}, // Done
 		resizeWindow: function(x,y,width,height){}, // Done
-		setWindowX: function(){},
-		setWindowY: function(){},
-		setWindowWidth: function(){},
-		setWindowHeight: function(){},
+		setWindowX: function(){}, // Done
+		setWindowY: function(){}, // Done
+		setWindowWidth: function(){}, // Done
+		setWindowHeight: function(){}, // Done
 		disableWindowResize: function(){}, // Done
 		enableWindowResize: function(){}, // Done
 		hideWindowTitleBar: function(){}, // Done
@@ -328,8 +341,8 @@
 		// status bar
 		addStatusBarItem: function(label, callback){
 			console.log('adding status bar item on browser');
-		},
-		removeStatusBarItem: function(){},
+		}, // Done
+		removeStatusBarItem: function(){}, // Done
 		disableStatusBarItem: function(){},
 		enableStatusBarItem: function(){},
 		checkStatusBarItem: function(){},
@@ -343,9 +356,10 @@
 		addAppMenuItem: function(label,parent, callback){},
 
 		// file access
-		getWebRootPath: function(){},
-		getResourcePath: function(){},
+		getWebRootPath: function(){}, // Done
+		getResourcePath: function(){}, // Done
 		getAppPath: function(){}, // Done
+		getAppSupportPath: function(){}, // Done
 		getCwd: function(){}, // Done
 		setCwd: function(path){}, // Done
 		isDir: function(path){}, // Done
@@ -358,11 +372,10 @@
 		deleteFile: function(path){}, // Done
 		copyFile: function(from, to){}, // Done
 		moveFile: function(from, to){}, // Done
- 
-        // ?
-        download: function(url, to){},
-        getAppSupportPath: function(){},
-        sendNotification: function(){},
+
+		// misc
+		download: function(url, to){}, // Done
+		sendNotification: function(){}, // Done
 	};
 	
 
@@ -371,12 +384,12 @@
 
 	window.webviewReadyEvent = document.createEvent('Events');
 	webviewReadyEvent.initEvent('webviewready',true,false);
- 
-    if (!/\.app/.test(location.href)){
+
+	if (!/\.app/.test(location.href)){
 		// is running in browser
 		try {
 			if (cBurger){
-				// merge with jsBurger
+				// dont remember what I planned to do here...
 			}
 		}catch(e){
 			window.Burger = jsBurger;
