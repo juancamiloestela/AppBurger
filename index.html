@@ -13,6 +13,7 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
         <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Cardo:400,400italic' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/style.css">
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
@@ -30,25 +31,829 @@
         <div class="container">
             <h2>Native Mac Apps in HTML, CSS and Javascript</h2>
 
-            <p>Lorem ipsum dolor sit amet and more features right here</p>
+            <p>Develop and test on the browser, deploy as a mac app. It's your web app on steroids, with cheese and bacon. Using AppBurger you wrap your existing code in a native mac app and do stuff like this:</p>
 <pre>
-Burger.setDockIcon('img/icon.png');
+// A Cheese burger coming up!
+document.addEventListener('burgerready', function() {
+    // Order no. 1 is ready!
+    Burger.setDockIcon('img/icon.png');
+    Burger.setWindowHeight(500);
+    Burger.centerWindow();
+    Burger.setWindowTitle('Hello Cheese Burger!');
+    
+    var data;
+    if (Burger.isRunningOnBrowser()){
+        data = Burger.readFile('config.txt');
+    }else{
+        data = callSomeApiViaAjax();
+    }
+
+    eatData(data);
+}, false);
 </pre>
 
+            <p>AppBurger has access to the file system so this app has the ability to generate itself. With it you get apps like this:</p>
+
+            <img src="img/app.png" />
+
             <h3>Installation</h3>
-            <p><a href="">Download</a></p>
+            <p>To install AppBurger fork the <a href="https://github.com/juancamiloestela/AppBurger">repo</a> or <a href="https://github.com/juancamiloestela/AppBurger/archive/master.zip">download</a> it. Run the project on xcode and any mac 10.7+. That's it, you now have the AppBurgerGenerator app which you will use to generate your app.</p>
 
             <h3>Generate Your App</h3>
-            <p></p>
+            <p>Once you have the AppBurgerGenerator running simply put your app name, bundle identifier and destination folder and press generate. That's it, go to the destination directory and open the generated project on xcode and start developing (while you eat a delicious burger). AppBurger is an app that can reproduce itself, it's an AppBurger invasion!</p>
 
-            <h3>Code Your Burger</h3>
-            <p></p>
-            <h4></h4>
+            <h3>Burger API Menu</h3>
+            
+            <h4><a name="OnLoad"></a>OnLoad<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>To capture the <em>burgerready</em> event, set up a listener for that event. This event is triggered once the native app architecture is ready.</p>
+                </div>
+                <div class="col">
+<pre>
+document.addEventListener('burgerready', function() {
+    // your burger is ready
+}, false);
+</pre>
+                </div>
+            </div>
 
-            <a href="">Download</a>
+
+            <h4><a name="isRunningOnBrowser"></a>isRunningOnBrowser()<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>This method returns true if the AppBurger instance is running on the browser, false otherwise. This delicious feature is useful to have the same codebase working on the app and on the browser which promotes code reusability and makes debugging easier.</p>
+                </div>
+                <div class="col">
+<pre>
+if (Burger.isRunningOnBrowser()){
+    // do browser stuff
+}else{
+    // do native app stuff
+}
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="quit"></a>quit()<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Calling this method quits the app.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.quit(); // you quitter...
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="showDockIcon"></a>showDockIcon()<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Calling this method shows the app icon on the dock.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.showDockIcon();
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="hideDockIcon"></a>hideDockIcon()<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Calling this method hides the app icon on the dock.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.hideDockIcon();
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="setDockIcon"></a>setDockIcon(iconPath)<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Calling this method sets the app icon to the png image specified on <em>iconPath</em>.</p>
+                </div>
+                <div class="col">
+<pre>
+// set an icon to an image inside /www
+Burger.setDockIcon('img/icon.png');
+
+// set an icon to an image from the web
+Burger.setDockIcon('http://www.cool.com/image.png');
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="bounceDockIcon"></a>bounceDockIcon()<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Calling this method bounces the icon on the dock calling the user's attention (Use with care).</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.bounceDockIcon();
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="getUserData"></a>getUserData(key)<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Get data stored in <em>NSUserDefaults</em> corresponding to <em>key</em>.</p>
+                </div>
+                <div class="col">
+<pre>
+var storedName = Burger.getUserData('name');
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="setUserData"></a>setUserData(key, value)<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Set data stored in NSUserDefaults corresponding to <em>key</em> with <em>value</em>.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.setUserData('name', 'AppBurger');
+</pre>
+                </div>
+            </div>
+
+
+
+            <h4><a name="disableCloseWindowButton"></a>disableCloseWindowButton()<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Disables the close window button.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.disableCloseWindowButton();
+</pre>
+                </div>
+            </div>
+
+
+
+            <h4><a name="enableCloseWindowButton"></a>enableCloseWindowButton()<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Enables the close window button.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.enableCloseWindowButton();
+</pre>
+                </div>
+            </div>
+
+
+
+            <h4><a name="disableMinimizeWindowButton"></a>disableMinimizeWindowButton()<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Disables the minimize window button.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.disableMinimizeWindowButton();
+</pre>
+                </div>
+            </div>
+
+
+
+            <h4><a name="enableMinimizeWindowButton"></a>enableMinimizeWindowButton()<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Enables the minimize window button.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.enableMinimizeWindowButton();
+</pre>
+                </div>
+            </div>
+
+
+
+            <h4><a name="disableZoomWindowButton"></a>disableZoomWindowButton()<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Disables the zoom window button.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.disableZoomWindowButton();
+</pre>
+                </div>
+            </div>
+
+
+
+            <h4><a name="enableZoomWindowButton"></a>enableZoomWindowButton()<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Enables the zoom window button.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.enableZoomWindowButton();
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="hideCloseWindowButton"></a>hideCloseWindowButton()<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Hides the close window button.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.hideCloseWindowButton();
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="showCloseWindowButton"></a>showCloseWindowButton()<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Shows the close window button.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.showCloseWindowButton();
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="hideMinimizeWindowButton"></a>hideMinimizeWindowButton()<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Hides the minimize window button.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.hideMinimizeWindowButton();
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="showMinimizeWindowButton"></a>showMinimizeWindowButton()<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Shows the minimize window button.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.showMinimizeWindowButton();
+</pre>
+                </div>
+            </div>
+
+
+
+            <h4><a name="hideZoomWindowButton"></a>hideZoomWindowButton()<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Hides the zoom window button.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.hideZoomWindowButton();
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="showZoomWindowButton"></a>showZoomWindowButton()<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Shows the zoom window button.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.showZoomWindowButton();
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="minimizeWindow"></a>minimizeWindow()<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Minimizes the window.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.minimizeWindow();
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="unminimizeWindow"></a>unminimizeWindow()<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Unminimizes the window.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.unminimizeWindow();
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="centerWindow"></a>centerWindow()<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Centers the window on screen.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.centerWindow();
+</pre>
+                </div>
+            </div>
+
+
+
+            <h4><a name="resizeWindow"></a>resizeWindow(x, y, width, height)<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Resizes the window with all dimensions in pixels.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.resizeWindow(30,20, 400, 550);
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="setWindowX"></a>setWindowX(x)<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Sets the window x position.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.setWindowX(30);
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="setWindowY"></a>setWindowY(y)<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Sets the window y position.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.setWindowY(30);
+</pre>
+                </div>
+            </div>
+
+
+
+            <h4><a name="setWindowWidth"></a>setWindowWidth(w)<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Sets the window width.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.setWindowWidth(300);
+</pre>
+                </div>
+            </div>
+
+
+
+            <h4><a name="setWindowHeight"></a>setWindowHeight(h)<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Sets the window height.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.setWindowHeight(600);
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="disableWindowResize"></a>disableWindowResize()<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Locks the window size and disables resize by the user.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.disableWindowResize();
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="enableWindowResize"></a>enableWindowResize()<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Unlocks the window size and enables resize by the user.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.enableWindowResize();
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="hideWindowTitleBar"></a>hideWindowTitleBar()<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Hides the window titlebar, with this you can achieve chromeless windows.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.hideWindowTitleBar();
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="showWindowTitleBar"></a>showWindowTitleBar()<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Shows the window titlebar.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.showWindowTitleBar();
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="setWindowTitle"></a>setWindowTitle(title)<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Sets the window title.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.setWindowTitle('Hello AppBurger!');
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="getWindowTitle"></a>getWindowTitle(title)<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Gets the window title.</p>
+                </div>
+                <div class="col">
+<pre>
+var title = Burger.getWindowTitle();
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="addStatusBarItem"></a>addStatusBarItem(label, callback)<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>By default, all AppBurger apps place a menu on the status bar. With this method you can add menu items that call javascript callbacks.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.addStatusBarItem('click me', function(){
+    alert('You clicked me');
+});
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="removeStatusBarItem"></a>removeStatusBarItem(label)<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Removes a status bar menu item identified by it's label.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.removeStatusBarItem('click me');
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="setStatusBarIcon"></a>setStatusBarIcon(iconPath, activeIconPath)<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Sets the icon for the status bar menu beside the clock.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.setStatusBarIcon('img/statusIcon.png', 'img/active.png');
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="setStatusBarLabel"></a>setStatusBarLabel(label)<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Sets the label for the status bar menu beside the clock.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.setStatusBarLabel('My Burger');
+</pre>
+                </div>
+            </div>
+
+
+
+            <h4><a name="getWebRootPath"></a>getWebRootPath()<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Gets the path to the <em>www/</em> folder of your app.</p>
+                </div>
+                <div class="col">
+<pre>
+var rootPath = Burger.getWebRootPath();
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="getAppPath"></a>getAppPath()<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Gets the path to the <em>NSBundle</em> folder of your app.</p>
+                </div>
+                <div class="col">
+<pre>
+var bundlePath = Burger.getAppPath();
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="getAppSupportPath"></a>getAppSupportPath()<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Gets the path to the <em>Application Support</em> folder of your app.</p>
+                </div>
+                <div class="col">
+<pre>
+var appFilesPath = Burger.getAppSupportPath();
+</pre>
+                </div>
+            </div>
+
+
+
+            <h4><a name="getCwd"></a>getCwd()<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Gets the current working directory of your app.</p>
+                </div>
+                <div class="col">
+<pre>
+var currentDir = Burger.getCwd();
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="setCwd"></a>setCwd(path)<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Sets the current working directory of your app.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.setCwd('/Users/burger/Documents/');
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="isDir"></a>isDir(path)<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Checks if the specified path is a directory.</p>
+                </div>
+                <div class="col">
+<pre>
+if (Burger.isDir('/Users/burger/Documents/')){
+    // do stuff in dir
+}
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="isFile"></a>isFile(path)<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Checks if the specified path is a file.</p>
+                </div>
+                <div class="col">
+<pre>
+if (Burger.isFile('/Users/burger/Documents/recipe.txt')){
+    // do stuff with file
+}
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="readDir"></a>readDir(path)<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Iterates over the files inside the specified directory.</p>
+                </div>
+                <div class="col">
+<pre>
+var files = Burger.readDir('/Users/burger/Documents/');
+for (var i in files){
+    console.log(i + ': ' + files[i]);
+}
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="makeDir"></a>makeDir(path)<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Makes the requested directory with intermediate directories.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.makeDir('Path/to/new/dir');
+// if to/ and new/ don't exist, they will also be created
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="deleteDir"></a>deleteDir(path)<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Deletes the requested directory.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.deleteDir('Path/to/new/dir');
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="readFile"></a>readFile(path)<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Reads the file's content.</p>
+                </div>
+                <div class="col">
+<pre>
+var content = Burger.readFile('/Users/burger/Documents/recipe.txt');
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="writeFile"></a>writeFile(path, data)<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Writes a file. Existing files will be replaced.</p>
+                </div>
+                <div class="col">
+<pre>
+var recipe = 'Bread, meat, lettuce, tomato and ketchup';
+Burger.writeFile('/Users/burger/Documents/recipe.txt', recipe);
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="deleteFile"></a>deleteFile(path)<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Deletes a file.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.deleteFile('/Users/burger/Documents/recipe.txt');
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="copyFile"></a>copyFile(from, to)<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Copy a file.</p>
+                </div>
+                <div class="col">
+<pre>
+var from = '/Users/burger/Downloads/recipe.txt',
+    to = '/Users/burger/Documents/recipe.txt';
+Burger.copyFile(from, to);
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="move"></a>move(from, to)<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Move a file.</p>
+                </div>
+                <div class="col">
+<pre>
+var from = '/Users/burger/Downloads/recipe.txt',
+    to = '/Users/burger/Documents/recipe.txt';
+Burger.move(from, to);
+</pre>
+                </div>
+            </div>
+
+
+
+            <h4><a name="download"></a>download(url, to)<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Downloads a file.</p>
+                </div>
+                <div class="col">
+<pre>
+var url = 'http://www.site.com/file.zip',
+    to = '/Users/burger/Downloads/recipe.zip';
+Burger.download(url, to);
+</pre>
+                </div>
+            </div>
+
+
+
+            <h4><a name="unzip"></a>unzip(source, to)<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Unzips a file.</p>
+                </div>
+                <div class="col">
+<pre>
+var source = '/Users/burger/Downloads/recipe.zip',
+    to = '/Users/burger/Documents/recipe';
+Burger.copyFile(source, to);
+</pre>
+                </div>
+            </div>
+
+
+            <h4><a name="sendNotification"></a>sendNotification(title, message, sound)<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Sends a notification to the user.</p>
+                </div>
+                <div class="col">
+<pre>
+Burger.sendNotification('hello', 'meeting at 10', true);
+</pre>
+                </div>
+            </div>
+
+            
+
+            <h3>Hungry?</h3>
+            <a class="button" href="https://github.com/juancamiloestela/AppBurger/archive/master.zip">Download your Burger now! (v 0.1)</a>
 
             <h3>About</h3>
-            <p></p>
+            <p class="about">AppBurger is a version 0.1 experiment by <a href="http://www.mecannical.com">Juan Camilo Estela</a></p>
         </div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -62,7 +867,7 @@ Burger.setDockIcon('img/icon.png');
             e=o.createElement(i);r=o.getElementsByTagName(i)[0];
             e.src='//www.google-analytics.com/analytics.js';
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X');ga('send','pageview');
+            ga('create','UA-48890753-1');ga('send','pageview');
         </script>
     </body>
 </html>

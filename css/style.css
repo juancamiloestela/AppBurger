@@ -4,9 +4,10 @@ html{
 
 body{
 	height:100%;
-	font-family: Georgia, serif;
+	font-family: Cardo, Georgia, serif;
 	color:#FFF;
-	font-size:14px;
+	font-size:20px;
+	line-height: 1.4em;
 	text-align:center;
 	background: #e74c3c;
 	margin:0;
@@ -30,13 +31,81 @@ h1{
 	letter-spacing: 0.1em;
 	width:200px;
 	-webkit-transform: translate3d(0, -1000px, 0) rotateZ(20deg);
+	-moz-transform: translate3d(0, -1000px, 0) rotateZ(20deg);
+	-ms-transform: translate3d(0, -1000px, 0) rotateZ(20deg);
+	transform: translate3d(0, -1000px, 0) rotateZ(20deg);
 	-webkit-transition: all 1000ms cubic-bezier(.89,.38,.89,1.21) 250ms;
+	-moz-transition: all 1000ms cubic-bezier(.89,.38,.89,1.21) 250ms;
+	-ms-transition: all 1000ms cubic-bezier(.89,.38,.89,1.21) 250ms;
+	transition: all 1000ms cubic-bezier(.89,.38,.89,1.21) 250ms;
+	font-size:1.4em;
+}
+
+h3{
+	margin-top:2.5em;
+}
+
+h4{
+	width:100%;
+	text-align: left;
+	border-bottom: 1px dotted #fff;
+	margin-top:2em;
+	color:#FFBE4D;
 }
 
 pre{
 	background-color:#9F2D21;
 	box-sizing:border-box;
 	padding:1em 3em;
+	font-family:Menlo, Monaco, Consolas, monospace;
+	text-align:left;
+	font-size:0.8em;
+	line-height: 1.2em;
+}
+
+p{
+	text-align:left;
+}
+
+em{
+	font-family: Menlo, Monaco, Consolas, monospace;
+	font-style: normal;
+	font-size: 0.7em;
+	background-color:#FFA9A9;
+	padding:0.2em;
+	color:#555;
+	border-radius:3px;
+}
+
+.row{
+	overflow: hidden;
+}
+	.col{
+		width:60%;
+		box-sizing:border-box;
+		float:left;
+	}
+	.col-left{
+		width:40%;
+		padding-right:1.5em;
+	}
+	.col pre{
+		font-size:0.7em;
+		line-height: 1.5em;
+		padding:1em;
+	}
+
+h4 span{
+	float:right;
+	font-family: Cardo, Georgia, sans-serif;
+	font-style: italic;
+	font-weight: normal;
+	color:#fff;
+}
+
+p.about{
+	text-align: center;
+	margin-bottom:5em;
 }
 
 .bun{
@@ -50,42 +119,68 @@ pre{
 		height:2.5em;
 		border-radius:3em 3em 0 0;
 		-webkit-transform: translate3d(0, -1000px, 0) rotateZ(50deg);
+		-moz-transform: translate3d(0, -1000px, 0) rotateZ(50deg);
+		-ms-transform: translate3d(0, -1000px, 0) rotateZ(50deg);
+		transform: translate3d(0, -1000px, 0) rotateZ(50deg);
 		-webkit-transition: all 1000ms cubic-bezier(.89,.38,.89,1.21) 500ms;
+		-moz-transition: all 1000ms cubic-bezier(.89,.38,.89,1.21) 500ms;
+		-ms-transition: all 1000ms cubic-bezier(.89,.38,.89,1.21) 500ms;
+		transition: all 1000ms cubic-bezier(.89,.38,.89,1.21) 500ms;
+		margin-top: 30px;
 	}
 	.bun.bottom{
 		border-radius:0 0 1em 1em;
 		-webkit-transform: translate3d(0, -1000px, 0) rotateZ(-40deg);
+		-moz-transform: translate3d(0, -1000px, 0) rotateZ(-40deg);
+		-ms-transform: translate3d(0, -1000px, 0) rotateZ(-40deg);
+		transform: translate3d(0, -1000px, 0) rotateZ(-40deg);
 		-webkit-transition: all 1000ms cubic-bezier(.89,.38,.89,1.21) 0ms;
+		-moz-transition: all 1000ms cubic-bezier(.89,.38,.89,1.21) 0ms;
+		-ms-transition: all 1000ms cubic-bezier(.89,.38,.89,1.21) 0ms;
+		transition: all 1000ms cubic-bezier(.89,.38,.89,1.21) 0ms;
 	}
 
 .container{
 	margin:40px auto 0 auto;
 	width:80%;
+	max-width: 40em;
 }
-	a,
+	a.button,
 	button{
 		cursor:pointer;
-		width:80%;
-		display:block;
+		display:inline-block;
 		margin:0.3em auto;
 		border:0;
 		font-size: 1em;
-		padding: 0.3em 0.4em;
+		padding: 0.7em 0.9em;
 		color: #FFF;
 		background-color:#FFBE4D;
 		border-radius: 0.3em;
 		font-family: 'Montserrat', sans-serif;
 		text-decoration: none;
 	}
+		a.button:hover,
+		button:hover{
+			background-color: #EBA731;
+		}
 
 .running .bun.top{
-	-webkit-transform: translate3d(0, 20px, 0) rotateZ(0deg);
+	-webkit-transform: translate3d(0, 0, 0) rotateZ(0deg);
+	-moz-transform: translate3d(0, 0, 0) rotateZ(0deg);
+	-ms-transform: translate3d(0, 0, 0) rotateZ(0deg);
+	transform: translate3d(0, 0, 0) rotateZ(0deg);
 }
 
 .running h1{
-	-webkit-transform: translate3d(0, 20px, 0) rotateZ(0deg);
+	-webkit-transform: translate3d(0, 0, 0) rotateZ(0deg);
+	-moz-transform: translate3d(0, 0, 0) rotateZ(0deg);
+	-ms-transform: translate3d(0, 0, 0) rotateZ(0deg);
+	transform: translate3d(0, 0, 0) rotateZ(0deg);
 }
 
 .running .bun.bottom{
-	-webkit-transform: translate3d(0, 20px, 0) rotateZ(0deg);
+	-webkit-transform: translate3d(0, 0, 0) rotateZ(0deg);
+	-moz-transform: translate3d(0, 0, 0) rotateZ(0deg);
+	-ms-transform: translate3d(0, 0, 0) rotateZ(0deg);
+	transform: translate3d(0, 0, 0) rotateZ(0deg);
 }
