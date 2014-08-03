@@ -34,7 +34,7 @@
             <p>Develop and test on the browser, deploy as a mac app. It's your web app on steroids, with cheese and bacon. Using AppBurger you wrap your existing code in a native mac app and do stuff like this:</p>
 <pre>
 // A Cheese burger coming up!
-document.addEventListener('burgerready', function() {
+document.addEventListener('load', function() {
     // Order no. 1 is ready!
     Burger.setDockIcon('img/icon.png');
     Burger.setWindowHeight(500);
@@ -67,12 +67,16 @@ document.addEventListener('burgerready', function() {
             <h4><a name="OnLoad"></a>OnLoad<span>$Free</span></h4>
             <div class="row">
                 <div class="col col-left">
-                    <p>To capture the <em>burgerready</em> event, set up a listener for that event. This event is triggered once the native app architecture is ready.</p>
+                    <p>To capture the <em>burgerready</em> event, set up a listener for that event. This event is triggered once the native app architecture is ready. Keep in mind that you can also use the standard DOM <em>load</em> event.</p>
                 </div>
                 <div class="col">
 <pre>
 document.addEventListener('burgerready', function() {
     // your burger is ready
+}, false);
+
+document.addEventListener('load', function() {
+    // DOM is ready
 }, false);
 </pre>
                 </div>
@@ -850,10 +854,10 @@ Burger.sendNotification('hello', 'meeting at 10', true);
             
 
             <h3>Hungry?</h3>
-            <a class="button" href="https://github.com/juancamiloestela/AppBurger/archive/master.zip">Download your Burger now! (v 0.1)</a>
+            <a class="button" href="https://github.com/juancamiloestela/AppBurger/archive/master.zip">Download your Burger now! (v 0.2)</a>
 
             <h3>About</h3>
-            <p class="about">AppBurger is a version 0.1 experiment by <a href="http://www.mecannical.com">Juan Camilo Estela</a></p>
+            <p class="about">AppBurger is a version 0.2 experiment by <a href="http://www.mecannical.com">Juan Camilo Estela</a></p>
         </div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
