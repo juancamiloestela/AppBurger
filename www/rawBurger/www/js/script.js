@@ -3,7 +3,7 @@
  * An app made with AppBurger to generate new
  * AppBurger apps.
  * @author  Juan Camilo Estela
- * @version  0.1
+ * @version  0.2
  */
 
 App = (function() {
@@ -27,7 +27,7 @@ App = (function() {
 })();
 
 
-document.addEventListener('burgerready', function() {
+window.addEventListener('load', function(){
 	// init app
 	App.init();
 }, false);

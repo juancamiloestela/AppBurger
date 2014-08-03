@@ -2,11 +2,14 @@
  * Burger.js
  * Javascript api for AppBurger
  * @author Juan Camilo Estela
- * @version  0.1
+ * @version  0.2
  */
 
 
 (function(){
+ 
+    window.BurgerReadyEvent = document.createEvent('Events');
+    BurgerReadyEvent.initEvent('burgerready', false, false);
 
 	/**
 	 * Burger Object
@@ -168,6 +171,12 @@
 		getWindowTitle: function(){
 			return cBurger.getWindowTitle();
 		}, // Done
+		allowWebkitDebug: function(){
+			return cBurger.allowWebkitDebug();
+		}, // Done
+        getCurrentUsername: function(){
+            return cBurger.getCurrentUsername();
+        }, // Done
 
 		// status bar
 		addStatusBarItem: function(label, callback){
@@ -337,6 +346,8 @@
 		showWindowTitleBar: function(){}, // Buggy - buttons dissapear
 		setWindowTitle: function(title){}, // Done
 		getWindowTitle: function(){}, // Done
+		allowWebkitDebug: function(){}, // Done
+        getCurrentUsername: function(){}, // Done
 
 		// status bar
 		addStatusBarItem: function(label, callback){
@@ -379,31 +390,14 @@
 	};
 	
 
-	window.BurgerReadyEvent = document.createEvent('Events');
-	BurgerReadyEvent.initEvent('burgerready',true,false);
-
-	window.webviewReadyEvent = document.createEvent('Events');
-	webviewReadyEvent.initEvent('webviewready',true,false);
-
-	if (!/\.app/.test(location.href)){
-		// is running in browser
-		try {
-			if (cBurger){
-				// dont remember what I planned to do here...
-			}
-		}catch(e){
-			window.Burger = jsBurger;
+	try {
+		if (cBurger){
+			
 		}
-
-		window.addEventListener('load', function(){
-			document.dispatchEvent(webviewReadyEvent);
-		}, false);
+	}catch(e){
+		// set burger to an empty function set
+		window.Burger = jsBurger;
 	}
-
-	document.addEventListener('webviewready', function(){
-		// do stuff before initialization
-		document.dispatchEvent(BurgerReadyEvent);
-	}, false);
 
 })();
 

@@ -19,6 +19,8 @@
     NSStatusItem *statusItem;
     Burger *appInstance;
     Console *consoleInstance;
+    NSDictionary *configData;
+    NSImageView *splashImageView;
 }
 
 @property (assign) IBOutlet NSWindow *window;

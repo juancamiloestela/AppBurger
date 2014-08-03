@@ -3,7 +3,7 @@
  * An app made with AppBurger to generate new
  * AppBurger apps.
  * @author  Juan Camilo Estela
- * @version  0.1
+ * @version  0.2
  */
 
 App = (function() {
@@ -17,22 +17,28 @@ App = (function() {
 			appIdentifier = document.getElementById('app-identifier').value;
 
 		if (appName === '' || appDestination === '' || appIdentifier === ''){
+            alert('Please fill all the fields...');
 			return false;
 		}
 
-		Burger.copyFile(Burger.getWebRootPath() + '/rawBurger', appDestination);
+       
+       try{
+            Burger.copyFile(Burger.getWebRootPath() + '/rawBurger', appDestination);
 
-		setAppName(appDestination, appName);
-		setAppIdentifier(appDestination, appIdentifier);
-		setAppFilenames(appDestination, appName);
+            setAppName(appDestination, appName);
+            setAppIdentifier(appDestination, appIdentifier);
+            setAppFilenames(appDestination, appName);
+            alert('done!');
+       }catch(e){
+            alert('There seems to have been an error, please check destination folder is writeable');
+       }
 	}
 
 	function setAppName(appDestination, appName) {
 		var filesToReplace = [
 			'AppBurger.xcodeproj/project.pbxproj',
-			'AppBurger.xcodeproj/project.xcworkspace/contents.xcworkspacedata',
-			'AppBurger.xcodeproj/xcuserdata/juanestela.xcuserdatad/xcschemes/AppBurger.xcscheme',
-			'AppBurger.xcodeproj/xcuserdata/juanestela.xcuserdatad/xcschemes/xcschememanagement.plist',
+			'AppBurger.xcodeproj/xcuserdata/USERNAME.xcuserdatad/xcschemes/AppBurger.xcscheme',
+			'AppBurger.xcodeproj/xcuserdata/USERNAME.xcuserdatad/xcschemes/xcschememanagement.plist',
 			'Burger/en.lproj/MainMenu.xib'
 		];
 
@@ -60,14 +66,26 @@ App = (function() {
 
 	function setAppFilenames(appDestination, appName) {
 		var filesToRename = [
-			'AppBurger.xcodeproj',
+            'AppBurger.xcodeproj/xcuserdata/USERNAME.xcuserdatad/xcschemes/AppBurger.xcscheme',
+            'AppBurger.xcodeproj/xcuserdata/USERNAME.xcuserdatad',
+            'AppBurger.xcodeproj',
 			'Burger/AppBurger-Info.plist',
 			'Burger/AppBurger-Prefix.pch'
 		];
 
-		var renamed = '';
+		var renamed = '',
+            segments = [],
+            filename = '',
+            username = Burger.getCurrentUsername();
+
 		for (i in filesToRename) {
-			renamed = filesToRename[i].replace('AppBurger', appName);
+            //filesToRename[i] = filesToRename[i].replace('PREVIOUS', renamed);
+            segments = filesToRename[i].split('/');
+            filename = segments.pop();
+            filename = filename.replace(/AppBurger/g, appName).replace(/USERNAME/g, username);
+            //renamed = filesToRename[i].replace(/AppBurger/g, appName).replace(/USERNAME/g, username);
+            segments.push(filename);
+            renamed = segments.join('/');
 			Burger.moveFile(appDestination + '/' + filesToRename[i], appDestination + '/' + renamed);
 		}
 	}
@@ -96,7 +114,7 @@ App = (function() {
 })();
 
 
-document.addEventListener('burgerready', function() {
+window.addEventListener('load', function(){
 	// init app
 	App.init();
 }, false);

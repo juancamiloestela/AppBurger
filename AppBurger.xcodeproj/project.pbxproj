@@ -15,6 +15,7 @@
 		464A60EC163F32DC0092AE1D /* www in Resources */ = {isa = PBXBuildFile; fileRef = 464A60EB163F32DC0092AE1D /* www */; };
 		46BFA8E016F25100001158B5 /* BurgerMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BFA8DF16F25100001158B5 /* BurgerMenuItem.m */; };
 		AD10502B18CEBDA700018AE7 /* appBurgerIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = AD10502A18CEBDA700018AE7 /* appBurgerIcon.icns */; };
+		ADB9A5FE198BEC870009C039 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADB9A5FD198BEC870009C039 /* config.plist */; };
 		ADFE52C618B45876000D1E2D /* Burger.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFE52C518B45876000D1E2D /* Burger.m */; };
 		ADFE52CD18B45DA2000D1E2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADFE52C718B45DA2000D1E2D /* MainMenu.xib */; };
 		ADFE52CE18B45DA2000D1E2D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = ADFE52C918B45DA2000D1E2D /* Credits.rtf */; };
@@ -40,6 +41,7 @@
 		46BFA8DE16F25100001158B5 /* BurgerMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurgerMenuItem.h; sourceTree = "<group>"; };
 		46BFA8DF16F25100001158B5 /* BurgerMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BurgerMenuItem.m; sourceTree = "<group>"; };
 		AD10502A18CEBDA700018AE7 /* appBurgerIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = appBurgerIcon.icns; sourceTree = "<group>"; };
+		ADB9A5FD198BEC870009C039 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
 		ADFE52C518B45876000D1E2D /* Burger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Burger.m; sourceTree = "<group>"; };
 		ADFE52C818B45DA2000D1E2D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = Burger/en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		ADFE52CA18B45DA2000D1E2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = Burger/en.lproj/Credits.rtf; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 		4644FA05163F181F00742E7D = {
 			isa = PBXGroup;
 			children = (
+				ADB9A5FD198BEC870009C039 /* config.plist */,
 				AD10502A18CEBDA700018AE7 /* appBurgerIcon.icns */,
 				4608CE8A16668FA900B5DD4A /* AppBurger */,
 				464A60EB163F32DC0092AE1D /* www */,
@@ -154,7 +157,7 @@
 		4644FA07163F181F00742E7D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Juan Camilo Estela";
 			};
 			buildConfigurationList = 4644FA0A163F181F00742E7D /* Build configuration list for PBXProject "AppBurger" */;
@@ -181,6 +184,7 @@
 			files = (
 				464A60EC163F32DC0092AE1D /* www in Resources */,
 				ADFE52CF18B45DA2000D1E2D /* InfoPlist.strings in Resources */,
+				ADB9A5FE198BEC870009C039 /* config.plist in Resources */,
 				ADFE52CE18B45DA2000D1E2D /* Credits.rtf in Resources */,
 				ADFE52CD18B45DA2000D1E2D /* MainMenu.xib in Resources */,
 				AD10502B18CEBDA700018AE7 /* appBurgerIcon.icns in Resources */,
@@ -283,7 +287,6 @@
 		4644FA32163F181F00742E7D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Burger/AppBurger-Prefix.pch";
@@ -296,7 +299,6 @@
 		4644FA33163F181F00742E7D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Burger/AppBurger-Prefix.pch";

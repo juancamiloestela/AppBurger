@@ -41,18 +41,57 @@ typedef struct
 
 
 -(void)awakeFromNib{
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"config" ofType:@"plist"];
+    configData = [[NSDictionary dictionaryWithContentsOfFile:path] retain];
+    
+    if ([[configData objectForKey:@"allowWebkitDebug"] boolValue]){
+        [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:@"WebKitDeveloperExtras"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }else{
+        [[NSUserDefaults standardUserDefaults] setBool:FALSE forKey:@"WebKitDeveloperExtras"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
+    NSString *hex = [configData objectForKey:@"splashBackgroundColor"] ? : @"#ffffff";
+    hex = [hex substringWithRange:NSMakeRange(1, [hex length] - 1)];
+	unsigned int colorCode = 0;
+	if (hex) {
+		NSScanner *scanner = [NSScanner scannerWithString:hex];
+		(void)[scanner scanHexInt:&colorCode];
+	}
+
+    NSColor *backgroundColor = [NSColor colorWithDeviceRed:((colorCode>>16)&0xFF)/255.0 green:((colorCode>>8)&0xFF)/255.0 blue:((colorCode)&0xFF)/255.0 alpha:1.0];
+    [self.window setBackgroundColor: backgroundColor];
+    
+    NSImage *splashImage = [NSImage imageNamed:([configData objectForKey:@"splashScreenImage"] ? : @"splash-screen.png")];
+    if (splashImage){
+        splashImageView = [[NSImageView alloc] initWithFrame:[[[self window] contentView] frame]];
+        [splashImageView setWantsLayer: YES];
+        [splashImageView.layer setBackgroundColor: backgroundColor.CGColor];
+        splashImageView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+        [splashImageView setImage:splashImage];
+        [[[self window] contentView] addSubview:splashImageView];
+    }
+
     statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
     [statusItem setMenu:statusMenu];
     [statusItem setTitle:@"Burger"];
     [statusItem setHighlightMode:YES];
     
-    NSString *indexPath = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"www"];
-    //NSString *indexPath = @"http://www.revolutiondynamics.co";
+    NSString *startPage = [configData objectForKey:@"startPage"] ? : @"index.html";
+    NSString *indexPath;
+    if ([startPage hasPrefix:@"http://"]){
+        // is external
+        indexPath = startPage;
+    }else{
+        NSString *resourceName = [startPage stringByDeletingPathExtension];
+        indexPath = [[NSBundle mainBundle] pathForResource:resourceName ofType:@"html" inDirectory:@"www"];
+    }
+    
     //webView = [[AppWebView alloc] initWithFrame:[[[self window] contentView] bounds]];
     [webView setMainFrameURL:indexPath];
     [[[self window] contentView] addSubview:webView];
     
-
     [webView setFrameLoadDelegate:self];
 	[webView setUIDelegate: self];
     [webView setPolicyDelegate:self];
@@ -62,17 +101,6 @@ typedef struct
     
     [appInstance setAppWindow:[self window]];
     [appInstance setAppStatusBar:statusItem];
-    
-    
-    
-    /// test area
-    /*NSMenu* rootMenu = [NSApp mainMenu];
-    [rootMenu insertItemWithTitle:@"JUAN" action:@selector(openAppWindow:) keyEquivalent:@"" atIndex:4];
-    [rootMenu addItemWithTitle:@"Camilo" action:@selector(openAppWindow:) keyEquivalent:@""];
-    [NSMenu setMenuBarVisible:YES];
-
-    NSLog(@"item %@", [rootMenu itemAtIndex:4]);*/
-
 }
 
 - (IBAction)openAppWindow:(id)sender {
@@ -88,7 +116,8 @@ typedef struct
     [mainScrollView setHorizontalScrollElasticity:NSScrollElasticityNone];
     
     [appInstance setAppWebView:sender];
-    [sender stringByEvaluatingJavaScriptFromString:@"document.dispatchEvent(webviewReadyEvent);"];
+    [sender stringByEvaluatingJavaScriptFromString:@"document.dispatchEvent(BurgerReadyEvent);"];
+    [splashImageView removeFromSuperview];
 }
 
 
@@ -156,7 +185,7 @@ decisionListener:(id < WebPolicyDecisionListener >)listener {
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSURL *appSupportURL = [[fileManager URLsForDirectory:NSApplicationSupportDirectory inDomains:NSUserDomainMask] lastObject];
-    return [appSupportURL URLByAppendingPathComponent:@"com.revolution.Burger"];
+    return [appSupportURL URLByAppendingPathComponent:[[NSBundle mainBundle] bundleIdentifier]];
 }
 
 // Creates if necessary and returns the managed object model for the application.

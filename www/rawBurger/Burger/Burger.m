@@ -100,6 +100,10 @@
         return @"setWindowTitle";
     }else if(sel == @selector(getWindowTitle:)){
         return @"getWindowTitle";
+    }else if(sel == @selector(allowWebkitDebug:)){
+        return @"allowWebkitDebug";
+    }else if(sel == @selector(getCurrentUsername:)){
+        return @"getCurrentUsername";
     }else if(sel == @selector(addStatusBarItem:withCallbackNamed:)){
         return @"addStatusBarItem";
     }else if(sel == @selector(removeStatusBarItem:)){
@@ -324,6 +328,15 @@
     return [appWindow title];
 }
 
+- (void) allowWebkitDebug{
+    [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:@"WebKitDeveloperExtras"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSString *) getCurrentUsername{
+    return NSUserName();
+}
+
 
 
 
@@ -452,8 +465,12 @@
     if ([self isFile:path]){
         NSError *error = nil;
         NSString *str = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
+        if (error){
+            NSLog(@"Error reading file!!");
+        }
         return str;
     }
+    NSLog(@"Could not read file %@\n", path);
     return @"";
 }
 
@@ -462,7 +479,13 @@
     // TODO: implement mode
     path = [path stringByExpandingTildeInPath];
     NSError *error = nil;
-    return [content writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    BOOL result = [content writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    if (result){
+        NSLog(@"Wrote file %@\n",path);
+    }else{
+        NSLog(@"Could not write file %@\n",path);
+    }
+    return result;
 }
 
 - (BOOL) deleteFile: (NSString *)path{
@@ -479,9 +502,9 @@
     NSError *error = nil;
     BOOL result = [fileManager copyItemAtPath:path toPath:targetPath error:&error];
     if (result){
-        NSLog(@"Copied file %@ to %@",path, targetPath);
+        NSLog(@"Copied file %@ to %@\n",path, targetPath);
     }else{
-        NSLog(@"Could not copy file %@ to %@",path, targetPath);
+        NSLog(@"Could not copy file %@ to %@\n",path, targetPath);
     }
     return result;
 }
@@ -493,9 +516,9 @@
     NSError *error = nil;
     BOOL result = [fileManager moveItemAtPath:path toPath:targetPath error:&error];
     if (result){
-        NSLog(@"Moved file %@ to %@",path, targetPath);
+        NSLog(@"Moved file %@ to %@\n",path, targetPath);
     }else{
-        NSLog(@"Could not move file %@ to %@",path, targetPath);
+        NSLog(@"Could not move file %@ to %@\n",path, targetPath);
     }
     return result;
 }
