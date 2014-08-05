@@ -36,9 +36,7 @@ App = (function() {
 
 	function setAppName(appDestination, appName) {
 		var filesToReplace = [
-			'AppBurger.xcodeproj/project.pbxproj',
-			'AppBurger.xcodeproj/xcuserdata/USERNAME.xcuserdatad/xcschemes/AppBurger.xcscheme',
-			'AppBurger.xcodeproj/xcuserdata/USERNAME.xcuserdatad/xcschemes/xcschememanagement.plist',
+			'AppBurger.rawproject/project.pbxproj',
 			'Burger/en.lproj/MainMenu.xib'
 		];
 
@@ -66,9 +64,7 @@ App = (function() {
 
 	function setAppFilenames(appDestination, appName) {
 		var filesToRename = [
-            'AppBurger.xcodeproj/xcuserdata/USERNAME.xcuserdatad/xcschemes/AppBurger.xcscheme',
-            'AppBurger.xcodeproj/xcuserdata/USERNAME.xcuserdatad',
-            'AppBurger.xcodeproj',
+            'AppBurger.rawproject',
 			'Burger/AppBurger-Info.plist',
 			'Burger/AppBurger-Prefix.pch'
 		];
@@ -79,11 +75,9 @@ App = (function() {
             username = Burger.getCurrentUsername();
 
 		for (i in filesToRename) {
-            //filesToRename[i] = filesToRename[i].replace('PREVIOUS', renamed);
             segments = filesToRename[i].split('/');
             filename = segments.pop();
-            filename = filename.replace(/AppBurger/g, appName).replace(/USERNAME/g, username);
-            //renamed = filesToRename[i].replace(/AppBurger/g, appName).replace(/USERNAME/g, username);
+            filename = filename.replace(/AppBurger/g, appName).replace(/USERNAME/g, username).replace('.rawproject', '.xcodeproj');
             segments.push(filename);
             renamed = segments.join('/');
 			Burger.moveFile(appDestination + '/' + filesToRename[i], appDestination + '/' + renamed);
