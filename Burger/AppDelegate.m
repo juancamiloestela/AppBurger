@@ -44,6 +44,13 @@ typedef struct
     NSString *path = [[NSBundle mainBundle] pathForResource:@"config" ofType:@"plist"];
     configData = [[NSDictionary dictionaryWithContentsOfFile:path] retain];
     
+    NSRect frame = [self.window frame];
+    frame.origin.y -= frame.size.height; // remove the old height
+    frame.origin.y += [[configData objectForKey:@"startHeight"] intValue]; // add the new height
+    frame.size.height = [[configData objectForKey:@"startHeight"] intValue];
+    frame.size.width = [[configData objectForKey:@"startWidth"] intValue];
+    [self.window setFrame: frame display: YES];
+    
     if ([[configData objectForKey:@"allowWebkitDebug"] boolValue]){
         [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:@"WebKitDeveloperExtras"];
         [[NSUserDefaults standardUserDefaults] synchronize];
