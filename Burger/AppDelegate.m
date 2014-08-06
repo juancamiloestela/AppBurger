@@ -101,6 +101,68 @@ typedef struct
     
     [appInstance setAppWindow:[self window]];
     [appInstance setAppStatusBar:statusItem];
+    
+    
+/*    NSSavePanel * savePanel = [NSSavePanel savePanel];
+    // Restrict the file type to whatever you like
+    [savePanel setAllowedFileTypes:@[@"txt"]];
+    // Set the starting directory
+    //[savePanel setDirectoryURL:someURL];
+    // Perform other setup
+    // Use a completion handler -- this is a block which takes one argument
+    // which corresponds to the button that was clicked
+    [savePanel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result){
+        if (result == NSFileHandlingPanelOKButton) {
+            // Close panel before handling errors
+            [savePanel orderOut:self];
+            // Do what you need to do with the selected path
+        }
+    }];*/
+    
+    /*NSString *name = @"filename";
+    
+    // Set the default name for the file and show the panel.
+    NSSavePanel *savePanel = [NSSavePanel savePanel];
+    [savePanel setNameFieldStringValue:name];
+    [savePanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result){
+        if (result == NSFileHandlingPanelOKButton)
+        {
+            NSLog(@"Saving %@", [savePanel URL]);
+            // Write the contents in the new format.
+        }
+    }];*/
+    
+    
+    
+    
+    // create an open documet panel
+    /*NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+    [openPanel setCanChooseDirectories:YES];
+    [openPanel setCanChooseFiles:YES];
+    [openPanel setMessage:@"Import one or more files or directories."];*/
+    
+    // display the panel
+    /*[panel beginWithCompletionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelOKButton) {
+            
+            NSLog(@"Selected %@", [panel URLs]);
+            
+            // grab a reference to what has been selected
+            NSURL *theDocument = [[panel URLs] objectAtIndex:0];
+            
+            // write our file name to a label
+            NSString *theString = [NSString stringWithFormat:@"%@", theDocument];
+            NSLog(@"Opened %@", theString);
+            
+        }
+    }];*/
+    
+    /*[openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result){
+        if (result == NSFileHandlingPanelOKButton) {
+            NSLog(@"Selected %@", [openPanel URLs]);
+        }
+        
+    }];*/
 }
 
 - (IBAction)openAppWindow:(id)sender {

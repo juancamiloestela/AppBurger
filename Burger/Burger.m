@@ -152,6 +152,12 @@
         return @"sendNotification";
     }else if (sel == @selector(bounceDockIcon:)){
         return @"bounceDockIcon";
+    }else if (sel == @selector(showSaveDialog:)){
+        return @"showSaveDialog";
+    }else if (sel == @selector(showOpenDialog:canChooseDirectories:canChooseFiles:allowsMultipleSelection:withMessage:)){
+        return @"showOpenDialog";
+    }else if (sel == @selector(showSaveDialog:withFilename:)){
+        return @"showSaveDialog";
     }
     return nil;
 }
@@ -359,7 +365,7 @@
     BurgerMenuItem *menuItem = (BurgerMenuItem *)sender;
     NSLog(@"Triggering Callback %@", menuItem.callbackId);
     
-    NSString *js = [NSString stringWithFormat:@"Burger._callbacks['%@']();",menuItem.callbackId];
+    NSString *js = [NSString stringWithFormat:@"Burger._triggerCallback('%@');", menuItem.callbackId];
     [appWebView stringByEvaluatingJavaScriptFromString:js];
 }
 
@@ -609,7 +615,41 @@
     [NSApp requestUserAttention:request];
 }
 
+- (void) showSaveDialog:(NSString *) callbackId withFilename:(NSString *) filename {
+    NSSavePanel *savePanel = [NSSavePanel savePanel];
+    [savePanel setNameFieldStringValue:filename];
+    [savePanel beginSheetModalForWindow:appWindow completionHandler:^(NSInteger result){
+        if (result == NSFileHandlingPanelOKButton)
+        {
+            NSLog(@"Saving %@", [savePanel URL]);
+            NSString *js = @"";
+            if (result == NSFileHandlingPanelOKButton) {
+                js = [NSString stringWithFormat:@"Burger._triggerCallback('%@', '%@');", callbackId, [savePanel URL].path ];
+            }else{
+                js = [NSString stringWithFormat:@"Burger._triggerCallback('%@', false);", callbackId];
+            }
+            [appWebView stringByEvaluatingJavaScriptFromString:js];
+        }
+    }];
+}
 
+- (void) showOpenDialog: (NSString *) callbackId canChooseDirectories: (BOOL)d canChooseFiles: (BOOL) f allowsMultipleSelection: (BOOL) m withMessage: (NSString *) message{
+    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+    [openPanel setCanChooseDirectories:d];
+    [openPanel setCanChooseFiles:f];
+    [openPanel setAllowsMultipleSelection:m];
+    [openPanel setMessage:message];
+
+    [openPanel beginSheetModalForWindow:appWindow completionHandler:^(NSInteger result){
+        NSString *js = @"";
+        if (result == NSFileHandlingPanelOKButton) {
+            js = [NSString stringWithFormat:@"Burger._triggerCallback('%@', ['%@']);", callbackId, [[[openPanel URLs] valueForKey:@"path"] componentsJoinedByString:@"','"]];
+        }else{
+            js = [NSString stringWithFormat:@"Burger._triggerCallback('%@', false);", callbackId];
+        }
+        [appWebView stringByEvaluatingJavaScriptFromString:js];
+    }];
+}
 
 
 

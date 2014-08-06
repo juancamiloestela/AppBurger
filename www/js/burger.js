@@ -36,14 +36,19 @@
 			return chars.join('');
 		},
 		_callbacks:{},
-		_registerCallback: function(callback){
+		_registerCallback: function(callback, callbackId){
 			if (typeof callback === 'function'){
-				var callbackId = Burger._basicHash(callback.toString());
+				var callbackId = callbackId || Burger._basicHash(callback.toString());
 				Burger._callbacks[callbackId] = callback;
 				return callbackId;
 			}
 			return false;
 		},
+        _triggerCallback: function(callbackId, args){
+            if (Burger._callbacks[callbackId]){
+                Burger._callbacks[callbackId].call(Burger._callbacks[callbackId], args);
+            }
+        },
 
 		// Environment
 		isRunningOnBrowser: function(){
@@ -260,7 +265,20 @@
         sendNotification: function(title, message, sound){
             sound = (sound === undefined) ? true : sound;
             return cBurger.sendNotification(title, message, sound);
-        } // Done
+        }, // Done
+        showOpenDialog: function(callback, allowDirs, allowFiles, allowMultiple, message){
+            var callbackId = Burger._registerCallback(callback, 'openDialogCallback');
+            allowDirs = allowDirs || false;
+            allowFiles = allowFiles || true;
+            allowMultiple = allowMultiple || false;
+            message = message || '';
+            return cBurger.showOpenDialog(callbackId, allowDirs, allowFiles, allowMultiple, message);
+        }, // Done
+        showSaveDialog: function(callback, filename){
+            var callbackId = Burger._registerCallback(callback, 'saveDialogCallback');
+            filename = filename || '';
+            return cBurger.showSaveDialog(callbackId, filename);
+        }
 	};
 
 
@@ -276,31 +294,6 @@
 		},
 
 		loadPlugin: function(){}, // Pending
-
-		_basicHash: function(str){
-			str = 'C' + str.replace(/[^a-zA-Z0-9]/ig,'');
-			while (str.length < 32){
-				str += str;
-			}
-			var length = str.length,
-				segmentLength = Math.floor(length/32),
-				i = 0,
-				chars = [];
-
-			for (i = 0; i < length; i = i+segmentLength){
-				chars.push(str.charAt(i));
-			}
-			return chars.join('');
-		},
-		_callbacks:{},
-		_registerCallback: function(callback){
-			if (typeof callback === 'function'){
-				var callbackId = jsBurger._basicHash(callback.toString());
-				jsBurger._callbacks[callbackId] = callback;
-				return callbackId;
-			}
-			return false;
-		},
 
 		// OSX SPECIFIC
 
@@ -350,9 +343,7 @@
         getCurrentUsername: function(){}, // Done
 
 		// status bar
-		addStatusBarItem: function(label, callback){
-			console.log('adding status bar item on browser');
-		}, // Done
+		addStatusBarItem: function(label, callback){}, // Done
 		removeStatusBarItem: function(){}, // Done
 		disableStatusBarItem: function(){},
 		enableStatusBarItem: function(){},
@@ -387,6 +378,8 @@
 		// misc
 		download: function(url, to){}, // Done
 		sendNotification: function(){}, // Done
+        showOpenDialog: function(){}, // Done
+        showSaveDialog: function(){} // Done
 	};
 	
 
@@ -396,7 +389,9 @@
 		}
 	}catch(e){
 		// set burger to an empty function set
-		window.Burger = jsBurger;
+        for (var i in jsBurger){
+            window.Burger[i] = jsBurger[i];
+        }
 	}
 
 })();

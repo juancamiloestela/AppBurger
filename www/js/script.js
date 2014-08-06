@@ -98,6 +98,16 @@ App = (function() {
 		setTimeout(function() {
 			// useless but fancy boot up sequence delay
 			document.body.className = 'running';
+            Burger.addStatusBarItem('open file', function(){
+                Burger.showOpenDialog(function(files){
+                    console.log('opening ' + files.join(','));
+                }, true, true, true, 'Choose it!');
+            });
+                   Burger.addStatusBarItem('save file', function(){
+                                           Burger.showSaveDialog(function(path){
+                                                                 console.log('saving ' + path);
+                                                                 }, 'filename.txt');
+                                           });
 		}, 1000);
 	}
 
