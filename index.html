@@ -15,6 +15,7 @@
         <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Cardo:400,400italic' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/prism.css">
         <link rel="stylesheet" href="css/style.css">
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
@@ -28,11 +29,14 @@
         <h1>AppBurger</h1>
         <div class="bun bottom"></div>
 
+
+        <a href="https://github.com/juancamiloestela/AppBurger"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
         <div class="container">
             <h2>Native Mac Apps in HTML, CSS and Javascript</h2>
 
             <p>Develop and test on the browser, deploy as a mac app. It's your web app on steroids, with cheese and bacon. Using AppBurger you wrap your existing code in a native mac app and do stuff like this:</p>
-<pre>
+<pre><code class="language-javascript">
 // A Cheese burger coming up!
 document.addEventListener('load', function() {
     // Order no. 1 is ready!
@@ -43,14 +47,22 @@ document.addEventListener('load', function() {
     
     var data;
     if (Burger.isRunningOnBrowser()){
-        data = Burger.readFile('config.txt');
+        alert('Welcome, can I take your order?');
+        Burger.showOpenDialog(function(files){
+            if (files){
+                order = Burger.readFile(files[0]);
+                cookBurger(order);
+                Burger.sendNotification('Order', 'Coming up!');
+            }
+        });
     }else{
         data = callSomeApiViaAjax();
     }
-
-    eatData(data);
 }, false);
-</pre>
+</code></pre>
+
+            <h3>Hungry?</h3>
+            <a class="button" href="https://github.com/juancamiloestela/AppBurger/archive/master.zip">Download your Burger now! (v 0.3)</a>
 
             <p>AppBurger has access to the file system so this app has the ability to generate itself. With it you get apps like this:</p>
 
@@ -64,13 +76,29 @@ document.addEventListener('load', function() {
 
             <h3>Burger API Menu</h3>
             
+            <h4><a name="Config"></a>Config<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>AppBurger has several configuration settings which you can tweak on <em>config.plist</em>. These are:</p>
+                </div>
+                <div class="col">
+<pre><code class="language-javascript">
+    - allowWebkitDebug[YES, NO]: Shows "Inspect element" menu on right click
+    - splashScreenImage[path/to/file]: Image used as splash screen while webview is loading
+    - splashBackgroundColor[#RRGGBB]: No need to explain this one
+    - startPage[path, url]: Path used as start up page, defaults to index.html
+</code></pre>
+                </div>
+            </div>
+
+
             <h4><a name="OnLoad"></a>OnLoad<span>$Free</span></h4>
             <div class="row">
                 <div class="col col-left">
-                    <p>To capture the <em>burgerready</em> event, set up a listener for that event. This event is triggered once the native app architecture is ready. Keep in mind that you can also use the standard DOM <em>load</em> event.</p>
+                    <p>To capture the <em>burgerready</em> event, set up a listener for that event. This event is triggered once the native app architecture is ready. Keep in mind that you can also use the standard DOM <em>load</em> event which is recommended to avoid cross device compatibility headaches.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 document.addEventListener('burgerready', function() {
     // your burger is ready
 }, false);
@@ -78,7 +106,7 @@ document.addEventListener('burgerready', function() {
 document.addEventListener('load', function() {
     // DOM is ready
 }, false);
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -89,13 +117,13 @@ document.addEventListener('load', function() {
                     <p>This method returns true if the AppBurger instance is running on the browser, false otherwise. This delicious feature is useful to have the same codebase working on the app and on the browser which promotes code reusability and makes debugging easier.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 if (Burger.isRunningOnBrowser()){
     // do browser stuff
 }else{
     // do native app stuff
 }
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -106,9 +134,9 @@ if (Burger.isRunningOnBrowser()){
                     <p>Calling this method quits the app.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.quit(); // you quitter...
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -119,9 +147,9 @@ Burger.quit(); // you quitter...
                     <p>Calling this method shows the app icon on the dock.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.showDockIcon();
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -132,9 +160,9 @@ Burger.showDockIcon();
                     <p>Calling this method hides the app icon on the dock.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.hideDockIcon();
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -145,13 +173,13 @@ Burger.hideDockIcon();
                     <p>Calling this method sets the app icon to the png image specified on <em>iconPath</em>.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 // set an icon to an image inside /www
 Burger.setDockIcon('img/icon.png');
 
 // set an icon to an image from the web
 Burger.setDockIcon('http://www.cool.com/image.png');
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -162,9 +190,9 @@ Burger.setDockIcon('http://www.cool.com/image.png');
                     <p>Calling this method bounces the icon on the dock calling the user's attention (Use with care).</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.bounceDockIcon();
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -175,9 +203,9 @@ Burger.bounceDockIcon();
                     <p>Get data stored in <em>NSUserDefaults</em> corresponding to <em>key</em>.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 var storedName = Burger.getUserData('name');
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -188,9 +216,9 @@ var storedName = Burger.getUserData('name');
                     <p>Set data stored in NSUserDefaults corresponding to <em>key</em> with <em>value</em>.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.setUserData('name', 'AppBurger');
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -202,9 +230,9 @@ Burger.setUserData('name', 'AppBurger');
                     <p>Disables the close window button.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.disableCloseWindowButton();
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -216,9 +244,9 @@ Burger.disableCloseWindowButton();
                     <p>Enables the close window button.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.enableCloseWindowButton();
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -230,9 +258,9 @@ Burger.enableCloseWindowButton();
                     <p>Disables the minimize window button.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.disableMinimizeWindowButton();
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -244,9 +272,9 @@ Burger.disableMinimizeWindowButton();
                     <p>Enables the minimize window button.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.enableMinimizeWindowButton();
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -258,9 +286,9 @@ Burger.enableMinimizeWindowButton();
                     <p>Disables the zoom window button.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.disableZoomWindowButton();
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -272,9 +300,9 @@ Burger.disableZoomWindowButton();
                     <p>Enables the zoom window button.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.enableZoomWindowButton();
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -285,9 +313,9 @@ Burger.enableZoomWindowButton();
                     <p>Hides the close window button.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.hideCloseWindowButton();
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -298,9 +326,9 @@ Burger.hideCloseWindowButton();
                     <p>Shows the close window button.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.showCloseWindowButton();
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -311,9 +339,9 @@ Burger.showCloseWindowButton();
                     <p>Hides the minimize window button.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.hideMinimizeWindowButton();
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -324,9 +352,9 @@ Burger.hideMinimizeWindowButton();
                     <p>Shows the minimize window button.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.showMinimizeWindowButton();
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -338,9 +366,9 @@ Burger.showMinimizeWindowButton();
                     <p>Hides the zoom window button.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.hideZoomWindowButton();
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -351,9 +379,9 @@ Burger.hideZoomWindowButton();
                     <p>Shows the zoom window button.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.showZoomWindowButton();
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -364,9 +392,9 @@ Burger.showZoomWindowButton();
                     <p>Minimizes the window.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.minimizeWindow();
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -377,9 +405,9 @@ Burger.minimizeWindow();
                     <p>Unminimizes the window.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.unminimizeWindow();
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -390,9 +418,9 @@ Burger.unminimizeWindow();
                     <p>Centers the window on screen.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.centerWindow();
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -404,9 +432,9 @@ Burger.centerWindow();
                     <p>Resizes the window with all dimensions in pixels.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.resizeWindow(30,20, 400, 550);
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -417,9 +445,9 @@ Burger.resizeWindow(30,20, 400, 550);
                     <p>Sets the window x position.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.setWindowX(30);
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -430,9 +458,9 @@ Burger.setWindowX(30);
                     <p>Sets the window y position.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.setWindowY(30);
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -444,9 +472,9 @@ Burger.setWindowY(30);
                     <p>Sets the window width.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.setWindowWidth(300);
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -458,9 +486,9 @@ Burger.setWindowWidth(300);
                     <p>Sets the window height.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.setWindowHeight(600);
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -471,9 +499,9 @@ Burger.setWindowHeight(600);
                     <p>Locks the window size and disables resize by the user.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.disableWindowResize();
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -484,9 +512,9 @@ Burger.disableWindowResize();
                     <p>Unlocks the window size and enables resize by the user.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.enableWindowResize();
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -497,9 +525,9 @@ Burger.enableWindowResize();
                     <p>Hides the window titlebar, with this you can achieve chromeless windows.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.hideWindowTitleBar();
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -510,9 +538,9 @@ Burger.hideWindowTitleBar();
                     <p>Shows the window titlebar.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.showWindowTitleBar();
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -523,9 +551,9 @@ Burger.showWindowTitleBar();
                     <p>Sets the window title.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.setWindowTitle('Hello AppBurger!');
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -536,9 +564,9 @@ Burger.setWindowTitle('Hello AppBurger!');
                     <p>Gets the window title.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 var title = Burger.getWindowTitle();
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -549,11 +577,11 @@ var title = Burger.getWindowTitle();
                     <p>By default, all AppBurger apps place a menu on the status bar. With this method you can add menu items that call javascript callbacks.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.addStatusBarItem('click me', function(){
     alert('You clicked me');
 });
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -564,9 +592,9 @@ Burger.addStatusBarItem('click me', function(){
                     <p>Removes a status bar menu item identified by it's label.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.removeStatusBarItem('click me');
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -577,9 +605,9 @@ Burger.removeStatusBarItem('click me');
                     <p>Sets the icon for the status bar menu beside the clock.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.setStatusBarIcon('img/statusIcon.png', 'img/active.png');
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -590,9 +618,9 @@ Burger.setStatusBarIcon('img/statusIcon.png', 'img/active.png');
                     <p>Sets the label for the status bar menu beside the clock.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.setStatusBarLabel('My Burger');
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -604,9 +632,9 @@ Burger.setStatusBarLabel('My Burger');
                     <p>Gets the path to the <em>www/</em> folder of your app.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 var rootPath = Burger.getWebRootPath();
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -617,9 +645,9 @@ var rootPath = Burger.getWebRootPath();
                     <p>Gets the path to the <em>NSBundle</em> folder of your app.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 var bundlePath = Burger.getAppPath();
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -630,9 +658,9 @@ var bundlePath = Burger.getAppPath();
                     <p>Gets the path to the <em>Application Support</em> folder of your app.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 var appFilesPath = Burger.getAppSupportPath();
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -644,9 +672,9 @@ var appFilesPath = Burger.getAppSupportPath();
                     <p>Gets the current working directory of your app.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 var currentDir = Burger.getCwd();
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -657,9 +685,9 @@ var currentDir = Burger.getCwd();
                     <p>Sets the current working directory of your app.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.setCwd('/Users/burger/Documents/');
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -670,11 +698,11 @@ Burger.setCwd('/Users/burger/Documents/');
                     <p>Checks if the specified path is a directory.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 if (Burger.isDir('/Users/burger/Documents/')){
     // do stuff in dir
 }
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -685,11 +713,11 @@ if (Burger.isDir('/Users/burger/Documents/')){
                     <p>Checks if the specified path is a file.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 if (Burger.isFile('/Users/burger/Documents/recipe.txt')){
     // do stuff with file
 }
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -700,12 +728,12 @@ if (Burger.isFile('/Users/burger/Documents/recipe.txt')){
                     <p>Iterates over the files inside the specified directory.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 var files = Burger.readDir('/Users/burger/Documents/');
 for (var i in files){
     console.log(i + ': ' + files[i]);
 }
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -716,10 +744,10 @@ for (var i in files){
                     <p>Makes the requested directory with intermediate directories.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.makeDir('Path/to/new/dir');
 // if to/ and new/ don't exist, they will also be created
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -730,9 +758,9 @@ Burger.makeDir('Path/to/new/dir');
                     <p>Deletes the requested directory.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.deleteDir('Path/to/new/dir');
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -743,9 +771,9 @@ Burger.deleteDir('Path/to/new/dir');
                     <p>Reads the file's content.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 var content = Burger.readFile('/Users/burger/Documents/recipe.txt');
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -756,10 +784,10 @@ var content = Burger.readFile('/Users/burger/Documents/recipe.txt');
                     <p>Writes a file. Existing files will be replaced.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 var recipe = 'Bread, meat, lettuce, tomato and ketchup';
 Burger.writeFile('/Users/burger/Documents/recipe.txt', recipe);
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -770,9 +798,9 @@ Burger.writeFile('/Users/burger/Documents/recipe.txt', recipe);
                     <p>Deletes a file.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.deleteFile('/Users/burger/Documents/recipe.txt');
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -783,11 +811,11 @@ Burger.deleteFile('/Users/burger/Documents/recipe.txt');
                     <p>Copy a file.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 var from = '/Users/burger/Downloads/recipe.txt',
     to = '/Users/burger/Documents/recipe.txt';
 Burger.copyFile(from, to);
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -798,11 +826,11 @@ Burger.copyFile(from, to);
                     <p>Move a file.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 var from = '/Users/burger/Downloads/recipe.txt',
     to = '/Users/burger/Documents/recipe.txt';
 Burger.move(from, to);
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -814,11 +842,11 @@ Burger.move(from, to);
                     <p>Downloads a file.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 var url = 'http://www.site.com/file.zip',
     to = '/Users/burger/Downloads/recipe.zip';
 Burger.download(url, to);
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -830,11 +858,11 @@ Burger.download(url, to);
                     <p>Unzips a file.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 var source = '/Users/burger/Downloads/recipe.zip',
     to = '/Users/burger/Documents/recipe';
 Burger.copyFile(source, to);
-</pre>
+</code></pre>
                 </div>
             </div>
 
@@ -845,23 +873,58 @@ Burger.copyFile(source, to);
                     <p>Sends a notification to the user.</p>
                 </div>
                 <div class="col">
-<pre>
+<pre><code class="language-javascript">
 Burger.sendNotification('hello', 'meeting at 10', true);
-</pre>
+</code></pre>
+                </div>
+            </div>
+
+
+            <h4><a name="showSaveDialog"></a>showSaveDialog(callback, filename)<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Opens the save file dialog panel.</p>
+                </div>
+                <div class="col">
+<pre><code class="language-javascript">
+Burger.showSaveDialog(function(path){
+    if (path){
+        Burger.writeFile(path, 'your recipe...');
+    }
+}, 'recipe.txt');
+</code></pre>
+                </div>
+            </div>
+
+
+            <h4><a name="showOpenDialog"></a>showOpenDialog(callback, allowDirs, allowFiles, allowMultiple)<span>$Free</span></h4>
+            <div class="row">
+                <div class="col col-left">
+                    <p>Opens the open file dialog panel.</p>
+                </div>
+                <div class="col">
+<pre><code class="language-javascript">
+Burger.showOpenDialog(function(files){
+    if (files){
+        var txt = Burger.readFile(files[0]);
+    }
+}, false, true, false);
+</code></pre>
                 </div>
             </div>
 
             
 
-            <h3>Hungry?</h3>
-            <a class="button" href="https://github.com/juancamiloestela/AppBurger/archive/master.zip">Download your Burger now! (v 0.2)</a>
+            <h3>Still Hungry?</h3>
+            <a class="button" href="https://github.com/juancamiloestela/AppBurger/archive/master.zip">Download your Burger now! (v 0.3)</a>
 
             <h3>About</h3>
-            <p class="about">AppBurger is a version 0.2 experiment by <a href="http://www.mecannical.com">Juan Camilo Estela</a></p>
+            <p class="about">AppBurger is a version 0.3 experiment by <a href="http://www.mecannical.com">Juan Camilo Estela</a></p>
         </div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+        <script src="js/vendor/prism.js"></script>
         <script src="js/script.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
