@@ -121,10 +121,62 @@ typedef struct
 }
 
 
-- (void)webView:(WebView *)sender runJavaScriptAlertPanelWithMessage:(NSString *)message {
+- (void)webView:(WebView *)sender runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WebFrame *)frame{
     NSAlert *alert = [[[NSAlert alloc] init] autorelease];
     [alert setMessageText:message];
     [alert runModal];
+}
+
+- (void)cancel{
+    
+}
+
+- (void)chooseFilename:(NSString *)fileName{
+    
+}
+
+- (void)chooseFilenames:(NSArray *)fileNames{
+    
+}
+
+- (void) webView:(WebView *)sender runOpenPanelForFileButtonWithResultListener:(id < WebOpenPanelResultListener>)resultListener
+{
+    // Create the File Open Dialog class.
+    NSOpenPanel* openDlg = [NSOpenPanel openPanel];
+    
+    // Enable the selection of files in the dialog.
+    [openDlg setCanChooseFiles:YES];
+    
+    // Enable the selection of directories in the dialog.
+    [openDlg setCanChooseDirectories:NO];
+    
+    if ( [openDlg runModal] == NSOKButton )
+    {
+        NSArray* URLs = [openDlg URLs];
+        NSMutableArray *files = [[NSMutableArray alloc]init];
+        for (int i = 0; i <[URLs count]; i++) {
+            NSString *filename = [[URLs objectAtIndex:i]relativePath];
+            [files addObject:filename];
+        }
+        
+        for(int i = 0; i < [files count]; i++ )
+        {
+            NSString* fileName = [files objectAtIndex:i];
+            [resultListener chooseFilename:fileName];
+            NSLog(@"file %@", fileName);
+        }
+        [files release];
+    }
+    
+}
+
+- (NSArray *)webView:(WebView *)sender contextMenuItemsForElement:(NSDictionary *)element defaultMenuItems:(NSArray *)defaultMenuItems{
+    NSLog(@"Right click");
+    if (![[configData objectForKey:@"allowWebkitDebug"] boolValue]){
+        return [[NSArray alloc] init];
+    }else{
+        return defaultMenuItems;
+    }
 }
 
 

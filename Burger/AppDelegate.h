@@ -12,7 +12,7 @@
 #import "Burger.h"
 #import "Console.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate,NSXMLParserDelegate, NSUserNotificationCenterDelegate>{
+@interface AppDelegate : NSObject <NSApplicationDelegate,NSXMLParserDelegate, NSUserNotificationCenterDelegate,WebOpenPanelResultListener>{
     IBOutlet NSMenu *statusMenu;
     IBOutlet NSMenu *appMenu;
     IBOutlet WebView *webView;

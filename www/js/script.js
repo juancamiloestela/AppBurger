@@ -13,7 +13,7 @@ App = (function() {
 
 		var i,
 			appName = document.getElementById('app-name').value,
-			appDestination = document.getElementById('app-destination').value,
+			appDestination = document.getElementById('app-destination').value + '/' + appName,
 			appIdentifier = document.getElementById('app-identifier').value;
 
 		if (appName === '' || appDestination === '' || appIdentifier === ''){
@@ -86,6 +86,11 @@ App = (function() {
 
 	function addEventListeners() {
 		document.getElementById('generate-app-form').addEventListener('submit', generateApp, true);
+        document.getElementById('app-destination').addEventListener('click', function(){
+            Burger.showOpenDialog(function(path){
+                document.getElementById('app-destination').value = path;
+            }, true, false, false, 'Choose the folder to create your app in');
+        }, true);
 	}
 
 	function init() {
@@ -98,16 +103,6 @@ App = (function() {
 		setTimeout(function() {
 			// useless but fancy boot up sequence delay
 			document.body.className = 'running';
-            Burger.addStatusBarItem('open file', function(){
-                Burger.showOpenDialog(function(files){
-                    console.log('opening ' + files.join(','));
-                }, true, true, true, 'Choose it!');
-            });
-                   Burger.addStatusBarItem('save file', function(){
-                                           Burger.showSaveDialog(function(path){
-                                                                 console.log('saving ' + path);
-                                                                 }, 'filename.txt');
-                                           });
 		}, 1000);
 	}
 

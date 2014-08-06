@@ -618,6 +618,8 @@
 - (void) showSaveDialog:(NSString *) callbackId withFilename:(NSString *) filename {
     NSSavePanel *savePanel = [NSSavePanel savePanel];
     [savePanel setNameFieldStringValue:filename];
+    [savePanel setCanCreateDirectories:YES];
+    
     [savePanel beginSheetModalForWindow:appWindow completionHandler:^(NSInteger result){
         if (result == NSFileHandlingPanelOKButton)
         {
@@ -639,6 +641,7 @@
     [openPanel setCanChooseFiles:f];
     [openPanel setAllowsMultipleSelection:m];
     [openPanel setMessage:message];
+    [openPanel setCanCreateDirectories:YES];
 
     [openPanel beginSheetModalForWindow:appWindow completionHandler:^(NSInteger result){
         NSString *js = @"";
@@ -650,6 +653,9 @@
         [appWebView stringByEvaluatingJavaScriptFromString:js];
     }];
 }
+
+
+
 
 
 
