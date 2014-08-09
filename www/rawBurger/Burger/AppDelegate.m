@@ -39,6 +39,15 @@ typedef struct
 } WindowListApplierData;
 
 
+- (void)setWindowWidth:(int) width andHeight: (int) height{
+    NSRect frame = [self.window frame];
+    frame.origin.y -= frame.size.height; // remove the old height
+    frame.origin.y += height; // add the new height
+    frame.size.height = height;
+    frame.size.width = width;
+    [self.window setFrame: frame display: YES];
+}
+
 
 -(void)awakeFromNib{
     NSString *path = [[NSBundle mainBundle] pathForResource:@"config" ofType:@"plist"];
@@ -61,21 +70,18 @@ typedef struct
         
         if ([self.window setFrameUsingName:@"AppBurger"] == NO){
             [self.window center];
+            if ([[configData objectForKey:@"startHeight"] intValue] > 0 && [[configData objectForKey:@"startWidth"] intValue] > 0){
+                [self setWindowWidth:[[configData objectForKey:@"startWidth"] intValue] andHeight:[[configData objectForKey:@"startHeight"] intValue]];
+            }
         }
         
         [[self.window windowController] setShouldCascadeWindows:NO]; // Tell the controller to not cascade its windows.
         [self.window setFrameAutosaveName:@"AppBurger"];
+    }else{
+        if ([[configData objectForKey:@"startHeight"] intValue] > 0 && [[configData objectForKey:@"startWidth"] intValue] > 0){
+            [self setWindowWidth:[[configData objectForKey:@"startWidth"] intValue] andHeight:[[configData objectForKey:@"startHeight"] intValue]];
+        }
     }
-    
-    if ([[configData objectForKey:@"startHeight"] intValue] > 0 && [[configData objectForKey:@"startWidth"] intValue] > 0){
-        NSRect frame = [self.window frame];
-        frame.origin.y -= frame.size.height; // remove the old height
-        frame.origin.y += [[configData objectForKey:@"startHeight"] intValue]; // add the new height
-        frame.size.height = [[configData objectForKey:@"startHeight"] intValue];
-        frame.size.width = [[configData objectForKey:@"startWidth"] intValue];
-        [self.window setFrame: frame display: YES];
-    }
-    
     
     if ([[configData objectForKey:@"allowWebkitDebug"] boolValue]){
         [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:@"WebKitDeveloperExtras"];
@@ -92,7 +98,7 @@ typedef struct
 		NSScanner *scanner = [NSScanner scannerWithString:hex];
 		(void)[scanner scanHexInt:&colorCode];
 	}
-
+    
     NSColor *backgroundColor = [NSColor colorWithDeviceRed:((colorCode>>16)&0xFF)/255.0 green:((colorCode>>8)&0xFF)/255.0 blue:((colorCode)&0xFF)/255.0 alpha:1.0];
     [self.window setBackgroundColor: backgroundColor];
     
@@ -133,7 +139,7 @@ typedef struct
         [statusItem setMenu:statusMenu];
         [statusItem setTitle:@"Burger"];
         [statusItem setHighlightMode:YES];
-    
+        
         [appInstance setAppStatusBar:statusItem];
     }
 }
@@ -251,7 +257,7 @@ decisionListener:(id < WebPolicyDecisionListener >)listener {
 }
 
 - (id)invokeDefaultMethodWithArguments:(NSArray *)args{
-    NSLog(@"invoke default method");    
+    NSLog(@"invoke default method");
     return nil;
 }
 
@@ -336,7 +342,7 @@ decisionListener:(id < WebPolicyDecisionListener >)listener {
     return _persistentStoreCoordinator;
 }
 
-// Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.) 
+// Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
 - (NSManagedObjectContext *)managedObjectContext
 {
     if (_managedObjectContext) {
@@ -354,7 +360,7 @@ decisionListener:(id < WebPolicyDecisionListener >)listener {
     }
     _managedObjectContext = [[NSManagedObjectContext alloc] init];
     [_managedObjectContext setPersistentStoreCoordinator:coordinator];
-
+    
     return _managedObjectContext;
 }
 
@@ -397,13 +403,13 @@ decisionListener:(id < WebPolicyDecisionListener >)listener {
     
     NSError *error = nil;
     if (![[self managedObjectContext] save:&error]) {
-
-        // Customize this code block to include application-specific recovery steps.              
+        
+        // Customize this code block to include application-specific recovery steps.
         BOOL result = [sender presentError:error];
         if (result) {
             return NSTerminateCancel;
         }
-
+        
         NSString *question = NSLocalizedString(@"Could not save changes while quitting. Quit anyway?", @"Quit without saves error question message");
         NSString *info = NSLocalizedString(@"Quitting now will lose any changes you have made since the last successful save", @"Quit without saves error question info");
         NSString *quitButton = NSLocalizedString(@"Quit anyway", @"Quit anyway button title");
@@ -413,14 +419,14 @@ decisionListener:(id < WebPolicyDecisionListener >)listener {
         [alert setInformativeText:info];
         [alert addButtonWithTitle:quitButton];
         [alert addButtonWithTitle:cancelButton];
-
+        
         NSInteger answer = [alert runModal];
         
         if (answer == NSAlertAlternateReturn) {
             return NSTerminateCancel;
         }
     }
-
+    
     return NSTerminateNow;
 }
 
