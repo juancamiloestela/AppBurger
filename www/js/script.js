@@ -96,7 +96,6 @@ App = (function() {
 	function init() {
 		Burger.setDockIcon('img/icon.png');
 		Burger.setStatusBarIcon('img/statusBarIcon.png', 'img/statusBarIconActive.png');
-		Burger.setWindowHeight(500);
 		Burger.centerWindow();
 		addEventListeners();
 		// wait for it...

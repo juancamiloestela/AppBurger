@@ -349,6 +349,10 @@
 - (int) addStatusBarItem:(NSString *)label withCallbackNamed:(NSString *)callbackId{
     NSLog(@"Added status bar item %@, %@",label,callbackId);
     
+    if (!appStatusBar){
+        return NO;
+    }
+    
     BurgerMenuItem *menuItem = [[BurgerMenuItem alloc] initWithTitle:label action:@selector(triggerCallback:) keyEquivalent:@""];
     [menuItem setTarget:self];
     [menuItem setCallbackId:callbackId];
@@ -357,7 +361,10 @@
 }
 
 - (BOOL) removeStatusBarItem:(NSString *)label{
-
+    if (!appStatusBar){
+        return NO;
+    }
+    
     return YES;
 }
 
@@ -370,11 +377,19 @@
 }
 
 - (void) setStatusBarIcon:(NSString *)imagePath withActiveIcon:(NSString *)activeImagePath{
+    if (!appStatusBar){
+        return;
+    }
+    
     [appStatusBar setImage:[self getImage:imagePath]];
     [appStatusBar setAlternateImage:[self getImage:activeImagePath]];
 }
 
 - (void) setStatusBarLabel:(NSString *)text{
+    if (!appStatusBar){
+        return;
+    }
+    
     [appStatusBar setTitle:text];
 }
 

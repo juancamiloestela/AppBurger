@@ -44,6 +44,29 @@ typedef struct
     NSString *path = [[NSBundle mainBundle] pathForResource:@"config" ofType:@"plist"];
     configData = [[NSDictionary dictionaryWithContentsOfFile:path] retain];
     
+    if (![[configData objectForKey:@"showDockIcon"] boolValue]){
+        BOOL canHide = [self.window canHide];
+        [self.window setCanHide:NO];
+        ProcessSerialNumber psn = { 0, kCurrentProcess };
+        TransformProcessType(&psn, kProcessTransformToUIElementApplication);
+        [self.window setCanHide:canHide];
+    }
+    
+    if ([[configData objectForKey:@"allowWindowResize"] boolValue]){
+        NSUInteger styleMask = [self.window styleMask];
+        styleMask ^= NSResizableWindowMask;
+        [self.window setStyleMask:styleMask];
+        
+        [[self.window standardWindowButton:NSWindowZoomButton] setEnabled:YES];
+        
+        if ([self.window setFrameUsingName:@"AppBurger"] == NO){
+            [self.window center];
+        }
+        
+        [[self.window windowController] setShouldCascadeWindows:NO]; // Tell the controller to not cascade its windows.
+        [self.window setFrameAutosaveName:@"AppBurger"];
+    }
+    
     if ([[configData objectForKey:@"startHeight"] intValue] > 0 && [[configData objectForKey:@"startWidth"] intValue] > 0){
         NSRect frame = [self.window frame];
         frame.origin.y -= frame.size.height; // remove the old height
@@ -52,6 +75,7 @@ typedef struct
         frame.size.width = [[configData objectForKey:@"startWidth"] intValue];
         [self.window setFrame: frame display: YES];
     }
+    
     
     if ([[configData objectForKey:@"allowWebkitDebug"] boolValue]){
         [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:@"WebKitDeveloperExtras"];
@@ -81,11 +105,6 @@ typedef struct
         [splashImageView setImage:splashImage];
         [[[self window] contentView] addSubview:splashImageView];
     }
-
-    statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
-    [statusItem setMenu:statusMenu];
-    [statusItem setTitle:@"Burger"];
-    [statusItem setHighlightMode:YES];
     
     NSString *startPage = [configData objectForKey:@"startPage"] ? : @"index.html";
     NSString *indexPath;
@@ -97,7 +116,6 @@ typedef struct
         indexPath = [[NSBundle mainBundle] pathForResource:resourceName ofType:@"html" inDirectory:@"www"];
     }
     
-    //webView = [[AppWebView alloc] initWithFrame:[[[self window] contentView] bounds]];
     [webView setMainFrameURL:indexPath];
     [[[self window] contentView] addSubview:webView];
     
@@ -109,7 +127,15 @@ typedef struct
     consoleInstance = [[Console alloc] init];
     
     [appInstance setAppWindow:[self window]];
-    [appInstance setAppStatusBar:statusItem];
+    
+    if ([[configData objectForKey:@"enableStatusBarMenu"] boolValue]){
+        statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
+        [statusItem setMenu:statusMenu];
+        [statusItem setTitle:@"Burger"];
+        [statusItem setHighlightMode:YES];
+    
+        [appInstance setAppStatusBar:statusItem];
+    }
 }
 
 - (IBAction)openAppWindow:(id)sender {
@@ -176,11 +202,9 @@ typedef struct
         }
         [files release];
     }
-    
 }
 
 - (NSArray *)webView:(WebView *)sender contextMenuItemsForElement:(NSDictionary *)element defaultMenuItems:(NSArray *)defaultMenuItems{
-    NSLog(@"Right click");
     if (![[configData objectForKey:@"allowWebkitDebug"] boolValue]){
         return [[NSArray alloc] init];
     }else{
@@ -195,7 +219,6 @@ decidePolicyForNavigationAction:(NSDictionary *)actionInformation
           frame:(WebFrame *)frame
 decisionListener:(id <WebPolicyDecisionListener>)listener
 {
-    NSLog(@"Navigating to %@", [request URL]);
     [listener use];
 }
 
@@ -205,7 +228,6 @@ decidePolicyForNewWindowAction:(NSDictionary *)actionInformation
    newFrameName:(NSString *)frameName
 decisionListener:(id < WebPolicyDecisionListener >)listener {
     if ([actionInformation objectForKey:WebActionElementKey]) {
-        NSLog(@"Opening in browser %@", [request URL]);
         [[NSWorkspace sharedWorkspace] openURL:[request URL]];
     }
 }
