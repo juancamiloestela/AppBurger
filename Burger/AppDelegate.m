@@ -39,6 +39,15 @@ typedef struct
 } WindowListApplierData;
 
 
+- (void)setWindowWidth:(int) width andHeight: (int) height{
+    NSRect frame = [self.window frame];
+    frame.origin.y -= frame.size.height; // remove the old height
+    frame.origin.y += height; // add the new height
+    frame.size.height = height;
+    frame.size.width = width;
+    [self.window setFrame: frame display: YES];
+}
+
 
 -(void)awakeFromNib{
     NSString *path = [[NSBundle mainBundle] pathForResource:@"config" ofType:@"plist"];
@@ -61,21 +70,18 @@ typedef struct
         
         if ([self.window setFrameUsingName:@"AppBurger"] == NO){
             [self.window center];
+            if ([[configData objectForKey:@"startHeight"] intValue] > 0 && [[configData objectForKey:@"startWidth"] intValue] > 0){
+                [self setWindowWidth:[[configData objectForKey:@"startWidth"] intValue] andHeight:[[configData objectForKey:@"startHeight"] intValue]];
+            }
         }
         
         [[self.window windowController] setShouldCascadeWindows:NO]; // Tell the controller to not cascade its windows.
         [self.window setFrameAutosaveName:@"AppBurger"];
+    }else{
+        if ([[configData objectForKey:@"startHeight"] intValue] > 0 && [[configData objectForKey:@"startWidth"] intValue] > 0){
+            [self setWindowWidth:[[configData objectForKey:@"startWidth"] intValue] andHeight:[[configData objectForKey:@"startHeight"] intValue]];
+        }
     }
-    
-    if ([[configData objectForKey:@"startHeight"] intValue] > 0 && [[configData objectForKey:@"startWidth"] intValue] > 0){
-        NSRect frame = [self.window frame];
-        frame.origin.y -= frame.size.height; // remove the old height
-        frame.origin.y += [[configData objectForKey:@"startHeight"] intValue]; // add the new height
-        frame.size.height = [[configData objectForKey:@"startHeight"] intValue];
-        frame.size.width = [[configData objectForKey:@"startWidth"] intValue];
-        [self.window setFrame: frame display: YES];
-    }
-    
     
     if ([[configData objectForKey:@"allowWebkitDebug"] boolValue]){
         [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:@"WebKitDeveloperExtras"];
